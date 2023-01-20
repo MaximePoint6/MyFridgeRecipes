@@ -1,0 +1,13 @@
+# rule identifiers to exclude from running
+disabled_rules:
+  - trailing_newline
+  - trailing_whitespace
+  - vertical_whitespace
+  - identifier_name
+  - switch_case_alignment
+  - force_cast
+  - force_try
+  - line_length
+
+# force_cast: warning
+# force_try: warning
