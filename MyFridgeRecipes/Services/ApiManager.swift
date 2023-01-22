@@ -11,8 +11,11 @@ import Alamofire
 class APIManager {
     static let shared = APIManager()
     
+    // URL Session customisé
     let sessionManager: Session = {
         let configuration = URLSessionConfiguration.af.default
+        
+        // récupere le cache quand il y a pas de reseau, et quand on recupere des datas mise en cache
         configuration.requestCachePolicy = .returnCacheDataElseLoad
         let responseCacher = ResponseCacher(behavior: .modify { _, response in
             let userInfo = ["date": Date()]
@@ -33,6 +36,8 @@ class APIManager {
             eventMonitors: [networkLogger])
     }()
     
+    
+    // MARK: - Functions
     func fetchFoodSearch(query: String, completion: @escaping ([String]) -> Void) {
         sessionManager.request(Router.fetchFoodSearch(query))
             .responseDecodable(of: [String].self) { response in
@@ -45,45 +50,11 @@ class APIManager {
     
     func fetchRecipeSearch(query: String, completion: @escaping (Recipes?) -> Void) {
         sessionManager.request(Router.fetchRecipeSearch(query))
-            .responseDecodable(of: Recipes.self) { response in
+            .responseDecodable(of: Recipes.self, decoder: SnakeCaseJSONDecoder()) { response in
                 guard let recipes = response.value else {
                     return completion(nil)
                 }
                 completion(recipes)
             }
     }
-    
-    //  func fetchPopularSwiftRepositories(completion: @escaping ([Repository]) -> Void) {
-    //    searchRepositories(query: "language:Swift", completion: completion)
-    //  }
-    //
-    //  func fetchCommits(for repository: String, completion: @escaping ([Commit]) -> Void) {
-    //    sessionManager.request(Router.fetchCommits(repository))
-    //      .responseDecodable(of: [Commit].self) { response in
-    //        guard let commits = response.value else {
-    //          return
-    //        }
-    //        completion(commits)
-    //      }
-    //  }
-    //
-    //  func searchRepositories(query: String, completion: @escaping ([Repository]) -> Void) {
-    //    sessionManager.request(Router.searchRepositories(query))
-    //      .responseDecodable(of: Repositories.self) { response in
-    //        guard let repositories = response.value else {
-    //          return completion([])
-    //        }
-    //        completion(repositories.items)
-    //      }
-    //  }
-    //
-    //  func fetchUserRepositories(completion: @escaping ([Repository]) -> Void) {
-    //    sessionManager.request(Router.fetchUserRepositories)
-    //      .responseDecodable(of: [Repository].self) { response in
-    //        guard let repositories = response.value else {
-    //          return completion([])
-    //        }
-    //        completion(repositories)
-    //      }
-    //  }
 }

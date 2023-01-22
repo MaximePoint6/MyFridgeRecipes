@@ -8,8 +8,10 @@
 import UIKit
 import Alamofire
 
+// Test du reseau
 class NetworkReachability {
   static let shared = NetworkReachability()
+    
   let reachabilityManager = NetworkReachabilityManager(host: "www.google.com")
   let offlineAlertController: UIAlertController = {
     UIAlertController(title: "No Network", message: "Please connect to network and try again", preferredStyle: .alert)

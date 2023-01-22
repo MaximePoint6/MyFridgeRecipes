@@ -7,7 +7,9 @@
 
 import Foundation
 
-class RecipesViewModel {
+class RecipesViewModel: ObservableObject {
+    
+    @Published var recipes: [Recipes.Hit] = []
     
 //    func fetchList() {
 //      guard let data = data else { return }
@@ -27,7 +29,10 @@ class RecipesViewModel {
     
     func fetchRecipeSearch() {
         APIManager.shared.fetchRecipeSearch(query: "potatoes chicken") { recipes in
-            print(recipes ?? "No Recipes")
+            guard let recipes = recipes else {
+                return
+            }
+            self.recipes = recipes.hits!
         }
     }
     

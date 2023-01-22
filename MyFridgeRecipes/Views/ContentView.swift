@@ -15,16 +15,18 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
+    
+    @ObservedObject var viewModel: RecipesViewModel
 
     var body: some View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(items) { item in
+                    ForEach(viewModel.recipes) { item in
                         NavigationLink {
-                            Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                            Text("Item at \(item.recipe?.label ?? "no label")")
                         } label: {
-                            Text(item.timestamp!, formatter: itemFormatter)
+                            Text(item.recipe?.label ?? "no label")
                         }
                     }
                     .onDelete(perform: deleteItems)
@@ -87,7 +89,10 @@ private let itemFormatter: DateFormatter = {
 }()
 
 struct ContentView_Previews: PreviewProvider {
+    
+    @StateObject static var viewModel = RecipesViewModel()
+    
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView(viewModel: viewModel).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

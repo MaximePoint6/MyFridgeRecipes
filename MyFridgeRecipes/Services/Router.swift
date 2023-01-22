@@ -9,16 +9,12 @@ import Foundation
 import Alamofire
 
 enum Router {
-    case fetchUserRepositories
-    case searchRepositories(String)
-    case fetchCommits(String)
+//    case fetchCommits(String)
     case fetchFoodSearch(String)
     case fetchRecipeSearch(String)
     
     var baseURL: String {
         switch self {
-            case .fetchUserRepositories, .searchRepositories, .fetchCommits:
-                return "https://api.github.com"
             case .fetchFoodSearch, .fetchRecipeSearch:
                 return "https://api.edamam.com"
         }
@@ -26,12 +22,8 @@ enum Router {
     
     var path: String {
         switch self {
-            case .fetchUserRepositories:
-                return "/user/repos"
-            case .searchRepositories:
-                return "/search/repositories"
-            case .fetchCommits(let repository):
-                return "/repos/\(repository)/commits"
+//            case .fetchCommits(let repository):
+//                return "/repos/\(repository)/commits"
             case .fetchFoodSearch:
                 return "/auto-complete"
             case .fetchRecipeSearch:
@@ -41,12 +33,6 @@ enum Router {
     
     var method: HTTPMethod {
         switch self {
-            case .fetchUserRepositories:
-                return .get
-            case .searchRepositories:
-                return .get
-            case .fetchCommits:
-                return .get
             case .fetchFoodSearch, .fetchRecipeSearch:
                 return .get
         }
@@ -54,12 +40,6 @@ enum Router {
     
     var parameters: [String: String]? {
         switch self {
-            case .fetchUserRepositories:
-                return ["per_page": "100"]
-            case .searchRepositories(let query):
-                return ["sort": "stars", "order": "desc", "page": "1", "q": query]
-            case .fetchCommits:
-                return nil
             case .fetchFoodSearch(let query):
                 return ["app_id": ApiKey.adamamFoodDatabaseID, "app_key": ApiKey.adamamFoodDatabase, "q": query, "limit": "10"]
             case .fetchRecipeSearch(let query):

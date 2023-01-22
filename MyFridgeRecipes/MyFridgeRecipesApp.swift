@@ -10,10 +10,11 @@ import SwiftUI
 @main
 struct MyFridgeRecipesApp: App {
     let persistenceController = PersistenceController.shared
+    @StateObject var recipesViewModel = RecipesViewModel()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: recipesViewModel)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
