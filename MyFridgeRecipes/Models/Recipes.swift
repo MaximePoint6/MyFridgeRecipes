@@ -12,18 +12,18 @@ struct Recipes: Codable {
     let from: Int? // Recette n° ... à ...
     let to: Int? // Recette n° ... à ...
     let count: Int? // bombre de recette
-    let _links: Links?
+//    let _links: Links?
     let hits: [Hit]?
     
     struct Links: Codable {
-        let `self`: Link?
+//        let `self`: Link?
         let next: Link? // page suivante
     }
     
     struct Hit: Codable, Identifiable {
-        var id = UUID()
+        let id = UUID()
         let recipe: Recipe?
-        let _links: Links?
+//        let _links: Links?
     }
     
     struct Link: Codable {
@@ -68,7 +68,7 @@ struct Recipes: Codable {
         let regular: ImageInfo?
         let large: ImageInfo?
     }
-    
+
     struct Ingredient: Codable {
         let text: String? // ligne des ingrédient (donc quantité + intitulé de l'ingrédient)
         let quantity: Double?
@@ -77,26 +77,26 @@ struct Recipes: Codable {
         let weight: Double?
         //        let foodId: String?
     }
-    
+
     struct NutrientsInfo: Codable {
         let enercKcal: NutrientsDetails // kcal
-        let fat: NutrientsDetails // lipide
-        let procnt: NutrientsDetails // proteine
-        let chocdf: NutrientsDetails // glucide
+        let FAT: NutrientsDetails // lipide
+        let PROCNT: NutrientsDetails // proteine
+        let CHOCDF: NutrientsDetails // glucide
     }
-    
+
     struct NutrientsDetails: Codable {
         let label: String
         let quantity: Double
         let unit: String
     }
-    
+
     struct ImageInfo: Codable {
         let url: String?
         let width: Int?
         let height: Int?
     }
-    
+
     struct DigestEntry: Codable {
         let label: String?
         let tag: String?

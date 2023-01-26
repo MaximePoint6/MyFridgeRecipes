@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-// Pour mettre les logs dans la console
+// To put logs in console
 class NetworkLogger: EventMonitor {
   let queue = DispatchQueue(label: "com.maximepoint.myfridgerecipes.networklogger")
 

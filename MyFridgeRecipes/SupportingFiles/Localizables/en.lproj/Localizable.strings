@@ -6,4 +6,7 @@
   
 */
 
-"test" = "test";
+// TopBarComponentView
+"good.morning," = "Good Morning,";
+"good.afternoon," = "Good Afternoon,";
+"good.evening," = "Good Evening,";

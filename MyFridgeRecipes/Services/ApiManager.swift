@@ -11,11 +11,11 @@ import Alamofire
 class APIManager {
     static let shared = APIManager()
     
-    // URL Session customisé
+    // Custom Session
     let sessionManager: Session = {
         let configuration = URLSessionConfiguration.af.default
         
-        // récupere le cache quand il y a pas de reseau, et quand on recupere des datas mise en cache
+        // Code caching the data, and if there is no network, we recover the cache.
         configuration.requestCachePolicy = .returnCacheDataElseLoad
         let responseCacher = ResponseCacher(behavior: .modify { _, response in
             let userInfo = ["date": Date()]
@@ -26,7 +26,9 @@ class APIManager {
                 storagePolicy: .allowed)
         })
         
+        // To put logs in console
         let networkLogger = NetworkLogger()
+        // Retry a request that had an error (settings: max retry, delay, etc.)
         let interceptor = MyRequestInterceptor()
         
         return Session(
@@ -37,24 +39,29 @@ class APIManager {
     }()
     
     
-    // MARK: - Functions
-    func fetchFoodSearch(query: String, completion: @escaping ([String]) -> Void) {
+    // MARK: - Function performing network requests
+    
+    func fetchFoodSearch(query: String, completion: @escaping (Result<[String], AFError>) -> Void) {
         sessionManager.request(Router.fetchFoodSearch(query))
             .responseDecodable(of: [String].self) { response in
-                guard let foods = response.value else {
-                    return completion([])
+                switch response.result {
+                    case .success(let foods):
+                        completion(.success(foods))
+                    case .failure(let error):
+                        completion(.failure(error))
                 }
-                completion(foods)
             }
     }
     
-    func fetchRecipeSearch(query: String, completion: @escaping (Recipes?) -> Void) {
+    func fetchRecipeSearch(query: String, completion: @escaping (Result<Recipes, AFError>) -> Void) {
         sessionManager.request(Router.fetchRecipeSearch(query))
             .responseDecodable(of: Recipes.self, decoder: SnakeCaseJSONDecoder()) { response in
-                guard let recipes = response.value else {
-                    return completion(nil)
+                switch response.result {
+                    case .success(let recipes):
+                        completion(.success(recipes))
+                    case .failure(let error):
+                        completion(.failure(error))
                 }
-                completion(recipes)
             }
     }
 }

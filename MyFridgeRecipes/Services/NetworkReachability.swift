@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-// Test du reseau
+// Network test
 class NetworkReachability {
   static let shared = NetworkReachability()
     

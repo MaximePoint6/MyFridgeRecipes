@@ -43,7 +43,7 @@ enum Router {
             case .fetchFoodSearch(let query):
                 return ["app_id": ApiKey.adamamFoodDatabaseID, "app_key": ApiKey.adamamFoodDatabase, "q": query, "limit": "10"]
             case .fetchRecipeSearch(let query):
-                return ["app_id": ApiKey.adamamRecipeSearchID, "app_key": ApiKey.adamamRecipeSearch, "type": "any", "q": query, "limit": "10"]
+                return ["app_id": ApiKey.adamamRecipeSearchID, "app_key": ApiKey.adamamRecipeSearch, "type": "any", "q": query]
         }
     }
 }
