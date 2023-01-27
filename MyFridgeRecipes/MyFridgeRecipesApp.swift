@@ -9,13 +9,14 @@ import SwiftUI
 
 @main
 struct MyFridgeRecipesApp: App {
+    
     let persistenceController = PersistenceController.shared
-    @StateObject var homeViewModel = HomeViewModel()
+    @StateObject var topBarViewModel = TopBarViewModel()
 
     var body: some Scene {
         WindowGroup {
             MyTabView()
-                .environmentObject(homeViewModel)
+                .environmentObject(topBarViewModel)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

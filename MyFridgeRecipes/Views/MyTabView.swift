@@ -13,15 +13,15 @@ struct MyTabView: View {
         TabView {
             HomeView()
                 .tabItem {
-                    Label("Home", systemImage: "house")
+                    Label("home".localized(), systemImage: "house")
                 }
-            SearchView()
+            FridgeView()
                 .tabItem {
-                    Label("Fridge", systemImage: "magnifyingglass")
+                    Label("my.fridge".localized(), systemImage: "snowflake")
                 }
-            FavoriteView()
+            FavouritesView()
                 .tabItem {
-                    Label("Favorite", systemImage: "heart.fill")
+                    Label("my.favourites".localized(), systemImage: "heart.fill")
                 }
         }
     }
@@ -30,10 +30,12 @@ struct MyTabView: View {
 
 // MARK: - Preview
 struct TabView_Previews: PreviewProvider {
-    @StateObject static var viewModel = HomeViewModel()
+    @StateObject static var homeViewModel = HomeViewModel()
+    @StateObject static var topBarViewModel = TopBarViewModel()
     
     static var previews: some View {
         MyTabView()
-            .environmentObject(viewModel)
+            .environmentObject(homeViewModel)
+            .environmentObject(topBarViewModel)
     }
 }

@@ -9,31 +9,35 @@ import Foundation
 import Alamofire
 
 enum Router {
-//    case fetchCommits(String)
     case fetchFoodSearch(String)
     case fetchRecipeSearch(String)
+    case fetchRandomRecipes
+    case fetchNextRecipesWithUrl(String)
+    case fetchImage(String)
     
     var baseURL: String {
         switch self {
-            case .fetchFoodSearch, .fetchRecipeSearch:
+            case .fetchFoodSearch, .fetchRecipeSearch, .fetchRandomRecipes:
                 return "https://api.edamam.com"
+            case .fetchNextRecipesWithUrl(let url), .fetchImage(let url):
+                return url
         }
     }
     
     var path: String {
         switch self {
-//            case .fetchCommits(let repository):
-//                return "/repos/\(repository)/commits"
             case .fetchFoodSearch:
                 return "/auto-complete"
-            case .fetchRecipeSearch:
+            case .fetchRecipeSearch, .fetchRandomRecipes:
                 return "/api/recipes/v2"
+            case .fetchNextRecipesWithUrl, .fetchImage:
+                return ""
         }
     }
     
     var method: HTTPMethod {
         switch self {
-            case .fetchFoodSearch, .fetchRecipeSearch:
+            case .fetchFoodSearch, .fetchRecipeSearch, .fetchRandomRecipes, .fetchNextRecipesWithUrl, .fetchImage:
                 return .get
         }
     }
@@ -44,6 +48,10 @@ enum Router {
                 return ["app_id": ApiKey.adamamFoodDatabaseID, "app_key": ApiKey.adamamFoodDatabase, "q": query, "limit": "10"]
             case .fetchRecipeSearch(let query):
                 return ["app_id": ApiKey.adamamRecipeSearchID, "app_key": ApiKey.adamamRecipeSearch, "type": "any", "q": query]
+            case .fetchRandomRecipes:
+                return ["app_id": ApiKey.adamamRecipeSearchID, "app_key": ApiKey.adamamRecipeSearch, "type": "any", "random": "true", "ingr": "1-10"]
+            case .fetchNextRecipesWithUrl, .fetchImage:
+                return nil
         }
     }
 }

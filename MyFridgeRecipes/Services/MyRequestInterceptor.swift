@@ -8,11 +8,12 @@
 import Foundation
 import Alamofire
 
+// Retry a request that had an error (settings: max retry, delay, etc.)
 class MyRequestInterceptor: RequestInterceptor {
-  let retryLimit = 3 // si appel ne fonctionn pas, alors 3 essais max (uniquement si statutCode est entre 500 et 599)
-  let retryDelay: TimeInterval = 10 // 10secondes max par appel
+  let retryLimit = 3 // If the request doesn't work, then 3 tries max (only if statusCode is between 500 and 599)
+  let retryDelay: TimeInterval = 10 // maximum delay per request (in seconds)
 
-    // pour mettre des entetes aux requetes comme Authorization par exemple
+    // To put headers to requests (example: Authorization)
   func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
 //    var urlRequest = urlRequest
 //    if let token = TokenManager.shared.fetchAccessToken() {

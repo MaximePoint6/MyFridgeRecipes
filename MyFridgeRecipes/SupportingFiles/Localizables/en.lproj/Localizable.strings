@@ -6,7 +6,21 @@
   
 */
 
+// TabView
+"home" = "Home";
+"my.fridge" = "My fridge";
+"my.favourites" = "My favourites";
+
 // TopBarComponentView
 "good.morning," = "Good Morning,";
 "good.afternoon," = "Good Afternoon,";
 "good.evening," = "Good Evening,";
+
+// HomeView
+"search.recipe" = "Search for a recipe";
+"recipe.ideas" = "Recipe ideas";
+"more.recipes" = "See more recipes";
+
+// FridgeView
+"add.food" = "Add food";
+"see.recipes" = "See recipes";

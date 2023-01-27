@@ -25,7 +25,7 @@ struct ErrorView: View {
                 case .backend(let code):
                     switch code {
                     case 403:
-                        Text("Github API limit reached, wait a second")
+                        Text("API limit reached, wait a second")
                     case 503:
                         Text("Service unavailable")
                     default:
@@ -33,8 +33,8 @@ struct ErrorView: View {
                     }
                 }
             }
-            .padding()
         }
+        .padding()
     }
 }
 
@@ -42,6 +42,11 @@ struct ErrorView: View {
 // MARK: - Preview
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView(error: .noInternet)
+        Group {
+            ErrorView(error: .noInternet)
+                .previewLayout(.sizeThatFits)
+            ErrorView(error: .backend(503))
+                .previewLayout(.sizeThatFits)
+        }
     }
 }

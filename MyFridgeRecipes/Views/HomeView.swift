@@ -9,55 +9,69 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
-    @EnvironmentObject var viewModel: HomeViewModel
-    @State var searchText = ""
-
+    
+    @EnvironmentObject var topBarViewModel: TopBarViewModel
+    @StateObject var homeViewModel = HomeViewModel()
+    @State private var searchText = ""
+    @State private var onCommit = false
+    @State private var timer: Timer?
+    private let delay: TimeInterval = 1 // delay in seconds
+    
     var body: some View {
         NavigationView {
             VStack {
-                TopBar()
-                switch viewModel.pageState {
+                TopBarView(viewModel: topBarViewModel)
+                SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+                Spacer()
+                switch homeViewModel.pageState {
                     case .loading:
                         ProgressView()
                     case .failed(let error):
                         ErrorView(error: error)
                     case .loaded(let recipes):
-                        Text("Idées de recette")
-                        SearchBarView(text: $searchText)
-                        List {
-                            ForEach(recipes) { item in
+                        Text("recipe.ideas".localized())
+                        List(recipes) { item in
+                            if let recipe = item.recipe {
                                 NavigationLink {
-                                    Text("Item at \(item.recipe?.label ?? "no label")")
+                                    RecipeDetailsView(viewModel: RecipeDetailsViewModel(recipe: recipe))
                                 } label: {
-                                    Text(item.recipe?.label ?? "no label")
+                                    RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
                                 }
                             }
                         }
                 }
-                Button("Request") {
-                    HomeViewModel().fetchRecipeSearch()
+                Spacer()
+                if homeViewModel.nextRecipesLoading {
+                    ProgressView()
+                } else {
+                    Button {
+                        homeViewModel.fetchNextRecipesWithUrl()
+                    } label: {
+                        Text("more.recipes".localized())
+                    }
                 }
             }
-            Text("Select an item")
         }
+        // To avoid making network calls at each change in the textField, we add a delay before launching the request.
+        .onChange(of: searchText) { newValue in
+            self.timer?.invalidate()
+            self.timer = Timer.scheduledTimer(withTimeInterval: self.delay, repeats: false, block: { _ in
+                homeViewModel.fetchRecipeSearch(searchText: newValue)
+            })
+        }
+
     }
 }
 
 
 // MARK: - Preview
-struct ContentView_Previews: PreviewProvider {
-    @StateObject static var viewModel = HomeViewModel()
+struct HomeView_Previews: PreviewProvider {
+    
+    @StateObject static var topBarViewModel = TopBarViewModel()
     
     static var previews: some View {
         HomeView()
-            .environmentObject(viewModel)
+            .environmentObject(topBarViewModel)
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

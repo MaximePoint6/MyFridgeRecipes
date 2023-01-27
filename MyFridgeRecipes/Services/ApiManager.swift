@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import SwiftUI
 
 class APIManager {
     static let shared = APIManager()
@@ -64,4 +65,29 @@ class APIManager {
                 }
             }
     }
+    
+    func fetchNextRecipesWithUrl(url: String, completion: @escaping (Result<Recipes, AFError>) -> Void) {
+        sessionManager.request(Router.fetchNextRecipesWithUrl(url))
+            .responseDecodable(of: Recipes.self, decoder: SnakeCaseJSONDecoder()) { response in
+                switch response.result {
+                    case .success(let recipes):
+                        completion(.success(recipes))
+                    case .failure(let error):
+                        completion(.failure(error))
+                }
+            }
+    }
+    
+    func fetchRandomRecipes(completion: @escaping (Result<Recipes, AFError>) -> Void) {
+        sessionManager.request(Router.fetchRandomRecipes)
+            .responseDecodable(of: Recipes.self, decoder: SnakeCaseJSONDecoder()) { response in
+                switch response.result {
+                    case .success(let recipes):
+                        completion(.success(recipes))
+                    case .failure(let error):
+                        completion(.failure(error))
+                }
+            }
+    }
+
 }
