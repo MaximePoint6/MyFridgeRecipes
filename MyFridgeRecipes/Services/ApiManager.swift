@@ -41,49 +41,12 @@ class APIManager {
     
     
     // MARK: - Function performing network requests
-    
-    func fetchFoodSearch(query: String, completion: @escaping (Result<[String], AFError>) -> Void) {
-        sessionManager.request(Router.fetchFoodSearch(query))
-            .responseDecodable(of: [String].self) { response in
+    func getRequest<T: Codable>(router: URLRequestConvertible, completion: @escaping (Result<T, AFError>) -> Void) {
+        sessionManager.request(router)
+            .responseDecodable(of: T.self, decoder: SnakeCaseJSONDecoder()) { response in
                 switch response.result {
-                    case .success(let foods):
-                        completion(.success(foods))
-                    case .failure(let error):
-                        completion(.failure(error))
-                }
-            }
-    }
-    
-    func fetchRecipeSearch(query: String, completion: @escaping (Result<Recipes, AFError>) -> Void) {
-        sessionManager.request(Router.fetchRecipeSearch(query))
-            .responseDecodable(of: Recipes.self, decoder: SnakeCaseJSONDecoder()) { response in
-                switch response.result {
-                    case .success(let recipes):
-                        completion(.success(recipes))
-                    case .failure(let error):
-                        completion(.failure(error))
-                }
-            }
-    }
-    
-    func fetchNextRecipesWithUrl(url: String, completion: @escaping (Result<Recipes, AFError>) -> Void) {
-        sessionManager.request(Router.fetchNextRecipesWithUrl(url))
-            .responseDecodable(of: Recipes.self, decoder: SnakeCaseJSONDecoder()) { response in
-                switch response.result {
-                    case .success(let recipes):
-                        completion(.success(recipes))
-                    case .failure(let error):
-                        completion(.failure(error))
-                }
-            }
-    }
-    
-    func fetchRandomRecipes(completion: @escaping (Result<Recipes, AFError>) -> Void) {
-        sessionManager.request(Router.fetchRandomRecipes)
-            .responseDecodable(of: Recipes.self, decoder: SnakeCaseJSONDecoder()) { response in
-                switch response.result {
-                    case .success(let recipes):
-                        completion(.success(recipes))
+                    case .success(let response):
+                        completion(.success(response))
                     case .failure(let error):
                         completion(.failure(error))
                 }

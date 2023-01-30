@@ -29,8 +29,39 @@ class HomeViewModel: ObservableObject {
         fetchRandomRecipes()
     }
     
+    func fetchRandomRecipes() {
+        apiManager.getRequest(router: Router.fetchRandomRecipes) { (result: Result<Recipes, AFError>) in
+            switch result {
+                case .success(let response):
+                    self.nextRecipesUrl = response._links?.next?.href ?? ""
+                    self.recipes = response.hits ?? []
+                    self.pageState = .loaded(self.recipes)
+                case .failure(let error):
+                    self.ErroManager(error: error)
+            }
+        }
+    }
+    
+    func fetchNextRecipesWithUrl() {
+        if self.nextRecipesUrl.isEmpty {
+            return
+        }
+        self.nextRecipesLoading = true
+        apiManager.getRequest(router: Router.fetchNextRecipesWithUrl(self.nextRecipesUrl)) { (result: Result<Recipes, AFError>) in
+            self.nextRecipesLoading = false
+            switch result {
+                case .success(let response):
+                    self.nextRecipesUrl = response._links?.next?.href ?? ""
+                    self.recipes.append(contentsOf: response.hits ?? [])
+                    self.pageState = .loaded(self.recipes)
+                case .failure(let error):
+                    self.ErroManager(error: error)
+            }
+        }
+    }
+    
     func fetchRecipeSearch(searchText: String) {
-        apiManager.fetchRecipeSearch(query: searchText) { (result: Result<Recipes, AFError>) in
+        apiManager.getRequest(router: Router.fetchRecipeSearch(searchText)) { (result: Result<Recipes, AFError>) in
             switch result {
                 case .success(let response):
                     self.nextRecipesUrl = response._links?.next?.href ?? ""
@@ -51,36 +82,6 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func fetchRandomRecipes() {
-        apiManager.fetchRandomRecipes { (result: Result<Recipes, AFError>) in
-            switch result {
-                case .success(let response):
-                    self.nextRecipesUrl = response._links?.next?.href ?? ""
-                    self.recipes = response.hits ?? []
-                    self.pageState = .loaded(self.recipes)
-                case .failure(let error):
-                    self.ErroManager(error: error)
-            }
-        }
-    }
-    
-    func fetchNextRecipesWithUrl() {
-        if self.nextRecipesUrl.isEmpty {
-            return
-        }
-        self.nextRecipesLoading = true
-        apiManager.fetchNextRecipesWithUrl(url: self.nextRecipesUrl) { (result: Result<Recipes, AFError>) in
-            self.nextRecipesLoading = false
-            switch result {
-                case .success(let response):
-                    self.nextRecipesUrl = response._links?.next?.href ?? ""
-                    self.recipes.append(contentsOf: response.hits ?? [])
-                    self.pageState = .loaded(self.recipes)
-                case .failure(let error):
-                    self.ErroManager(error: error)
-            }
-        }
-    }
     
     private func ErroManager(error: AFError) {
         if let code = error.responseCode {

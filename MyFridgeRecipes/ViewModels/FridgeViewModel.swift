@@ -30,7 +30,7 @@ class FridgeViewModel: ObservableObject {
     }
     
     func fetchFoodSearch(searchText: String) {
-        APIManager.shared.fetchFoodSearch(query: searchText) { (result: Result<[String], AFError>) in
+        apiManager.getRequest(router: Router.fetchFoodSearch(searchText)) { (result: Result<[String], AFError>) in
             switch result {
                 case .success(let response):
                     self.foods = response
@@ -50,7 +50,7 @@ class FridgeViewModel: ObservableObject {
     }
     
     func fetchRecipeSearch(searchText: String) {
-        apiManager.fetchRecipeSearch(query: searchText) { (result: Result<Recipes, AFError>) in
+        apiManager.getRequest(router: Router.fetchRecipeSearch(searchText)) { (result: Result<Recipes, AFError>) in
             switch result {
                 case .success(let response):
                     self.nextRecipesUrl = response._links?.next?.href ?? ""
