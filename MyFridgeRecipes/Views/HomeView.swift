@@ -13,7 +13,6 @@ struct HomeView: View {
     @EnvironmentObject var topBarViewModel: TopBarViewModel
     @StateObject var homeViewModel = HomeViewModel()
     @State private var searchText = ""
-    @State private var onCommit = false
     @State private var timer: Timer?
     private let delay: TimeInterval = 1 // delay in seconds
     
@@ -23,43 +22,22 @@ struct HomeView: View {
                 TopBarView(viewModel: topBarViewModel)
                 SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                 Spacer()
-                switch homeViewModel.pageState {
-                    case .loading:
-                        ProgressView()
-                    case .failed(let error):
-                        ErrorView(error: error)
-                    case .loaded(let recipes):
-                        Text("recipe.ideas".localized())
-                        List(recipes) { item in
-                            if let recipe = item.recipe {
-                                NavigationLink {
-                                    RecipeDetailsView(viewModel: RecipeDetailsViewModel(recipe: recipe))
-                                } label: {
-                                    RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
-                                }
-                            }
-                        }
-                }
+                RecipesListView(pageState: homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading)
                 Spacer()
-                if homeViewModel.nextRecipesLoading {
-                    ProgressView()
-                } else {
-                    Button {
-                        homeViewModel.fetchNextRecipesWithUrl()
-                    } label: {
-                        Text("more.recipes".localized())
-                    }
-                }
             }
         }
         // To avoid making network calls at each change in the textField, we add a delay before launching the request.
         .onChange(of: searchText) { newValue in
             self.timer?.invalidate()
             self.timer = Timer.scheduledTimer(withTimeInterval: self.delay, repeats: false, block: { _ in
-                homeViewModel.fetchRecipeSearch(searchText: newValue)
+                if searchText.isEmpty {
+                    homeViewModel.fetchRandomRecipes()
+                } else {
+                    homeViewModel.fetchRecipeSearch(searchText: newValue)
+                }
             })
         }
-
+        
     }
 }
 

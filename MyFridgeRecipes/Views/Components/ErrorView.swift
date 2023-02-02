@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ErrorView: View {
     
-    let error: ErrorType
+    let error: ErrorManager.ErrorType
     
     var body: some View {
         VStack {
@@ -46,6 +46,8 @@ struct ErrorView_Previews: PreviewProvider {
             ErrorView(error: .noInternet)
                 .previewLayout(.sizeThatFits)
             ErrorView(error: .backend(503))
+                .previewLayout(.sizeThatFits)
+            ErrorView(error: .decoding)
                 .previewLayout(.sizeThatFits)
         }
     }

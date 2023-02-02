@@ -1,5 +1,5 @@
 //
-//  MyFridgeRecipesView.swift
+//  RecipesListView.swift
 //  MyFridgeRecipes
 //
 //  Created by Maxime Point on 27/01/2023.
@@ -7,20 +7,18 @@
 
 import SwiftUI
 
-struct MyFridgeRecipesView: View {
+struct RecipesListView: View {
     
-    let recipes: [Recipes.Hit]
+    let recipes: [Recipes.Recipe]
     
     var body: some View {
         VStack {
-            List(recipes) { item in
-                if let recipe = item.recipe {
+            List(recipes) { recipe in
                     NavigationLink {
                         RecipeDetailsView(viewModel: RecipeDetailsViewModel(recipe: recipe))
                     } label: {
                         RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
                     }
-                }
             }
             Spacer()
         }
@@ -29,6 +27,6 @@ struct MyFridgeRecipesView: View {
 
 struct MyFridgeRecipesView_Previews: PreviewProvider {
     static var previews: some View {
-        MyFridgeRecipesView(recipes: MockData.previewRecipes.hits!)
+        RecipesListView(recipes: MockData.previewRecipeArray)
     }
 }

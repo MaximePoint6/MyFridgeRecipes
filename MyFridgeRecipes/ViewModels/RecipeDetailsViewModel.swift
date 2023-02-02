@@ -9,6 +9,7 @@ import Foundation
 
 
 class RecipeDetailsViewModel {
+    
     var recipe: Recipes.Recipe
     
     init(recipe: Recipes.Recipe) {

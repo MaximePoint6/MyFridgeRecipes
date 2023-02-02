@@ -10,7 +10,6 @@ import SwiftUI
 struct FridgeView: View {
     
     @StateObject var viewModel = FridgeViewModel()
-    
     @State var showSearchModalView = false
     @State private var action: Int? = 0
     let foods = ["Tomate"]
@@ -22,24 +21,27 @@ struct FridgeView: View {
     var body: some View {
         NavigationView {
             VStack {
+                List {
+                    Section {
+                        ForEach(foods, id: \.self) { item in
+                            Text(item)
+                        }
+                        .onDelete(perform: deleteItems)
+                    } header: {
+                        Text("\(foods.count) ingrédients selectionnés")
+                    }
+                }.listStyle(.insetGrouped)
                 Button {
                     showSearchModalView.toggle()
                 } label: {
-                    Text("add.food".localized())
-                }
-                
-                List {
-                    ForEach(foods, id: \.self) { item in
-                        Text(item)
-                    }
-                    .onDelete(perform: deleteItems)
-                }
+                    Text("Add other food".localized())
+                }.padding(20)
                 Spacer()
-                NavigationLink(destination: MyFridgeRecipesView(recipes: viewModel.recipes),
+                NavigationLink(destination: RecipesListView(pageState: viewModel.pageState, loadNextRecipes: viewModel.fetchNextRecipesWithUrl, nextRecipesLoading: viewModel.nextRecipesLoading),
                                tag: 1, selection: $action) {
                     EmptyView()
                 }
-                ButtonView(color: .black, title: "Voir les recettes") {
+                ButtonView(color: .black, title: "Show the recipes") {
                     viewModel.fetchRecipeSearch(searchText: foodsString)
                     self.action = 1
                 }

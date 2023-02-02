@@ -30,12 +30,10 @@ struct MyTabView: View {
 
 // MARK: - Preview
 struct TabView_Previews: PreviewProvider {
-    @StateObject static var homeViewModel = HomeViewModel()
     @StateObject static var topBarViewModel = TopBarViewModel()
     
     static var previews: some View {
         MyTabView()
-            .environmentObject(homeViewModel)
             .environmentObject(topBarViewModel)
     }
 }

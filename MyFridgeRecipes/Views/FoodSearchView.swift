@@ -11,6 +11,8 @@ struct FoodSearchView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    @StateObject var viewModel = FoodSearchViewModel()
+    
     @State var searchText = ""
     private var listOfFood = ["test1", "test2", "test3"]
     

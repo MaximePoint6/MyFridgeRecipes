@@ -6,14 +6,12 @@
 //
 
 import Foundation
-import SwiftUI
-import Alamofire
 
-class RecipeCardViewModel: ObservableObject {
+class RecipeCardViewModel {
     
     let recipe: Recipes.Recipe
     
-    init(recipe: Recipes.Recipe, apiManager: APIManager = APIManager.shared) {
+    init(recipe: Recipes.Recipe) {
         self.recipe = recipe
     }
     

@@ -10,7 +10,12 @@ import Foundation
 class MockData {
     
     static var previewSingleRecipe: Recipes.Recipe = load("Recipe.json")
+    
     static var previewRecipes: Recipes = load("Recipes.json")
+    
+    static var previewRecipeArray: [Recipes.Recipe] = previewRecipes.hits!
+        .filter { $0.recipe != nil }
+        .map { $0.recipe! }
     
     static private func load<T: Decodable>(_ filename: String) -> T {
         let data: Data

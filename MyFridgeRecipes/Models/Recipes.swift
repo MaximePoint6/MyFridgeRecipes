@@ -20,8 +20,7 @@ struct Recipes: Codable {
         let next: Link? // next page
     }
     
-    struct Hit: Codable, Identifiable {
-        let id = UUID()
+    struct Hit: Codable {
         let recipe: Recipe?
 //        let _links: Links?
     }
@@ -31,7 +30,8 @@ struct Recipes: Codable {
 //        let title: String?
     }
     
-    struct Recipe: Codable {
+    struct Recipe: Codable, Identifiable {
+        let id = UUID()
         //        let uri: String?
         let label: String?
         let image: String?
