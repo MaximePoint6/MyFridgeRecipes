@@ -15,7 +15,7 @@ struct RecipeCardView: View {
     var body: some View {
         HStack {
             ZStack {
-                KFImage(URL(string: viewModel.recipeImageUrl)!)
+                KFImage(URL(string: viewModel.recipe.getRecipeImageUrl)!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 130, height: 80)
@@ -27,10 +27,10 @@ struct RecipeCardView: View {
                 .padding(.trailing, 10)
             }
             VStack(alignment: .leading) {
-                Text(viewModel.label)
+                Text(viewModel.recipe.getTitleRecipe)
                     .font(.title2)
                     .lineLimit(2)
-                Text(viewModel.cuisineType)
+                Text(viewModel.recipe.getCuisineType)
                     .font(.headline)
                     .lineLimit(2)
             }

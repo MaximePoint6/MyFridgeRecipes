@@ -21,21 +21,26 @@ struct RecipesListView: View {
                 case .failed(let error):
                     ErrorView(error: error)
                 case .loaded(let recipes):
-                    Text("recipe.ideas".localized())
-                    List(recipes) { recipe in
-                        NavigationLink {
-                            RecipeDetailsView(viewModel: RecipeDetailsViewModel(recipe: recipe))
-                        } label: {
-                            RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
+                    List {
+                        Section {
+                            ForEach(recipes) { recipe in
+                                NavigationLink {
+                                    RecipeDetailsView(viewModel: RecipeDetailsViewModel(recipe: recipe))
+                                } label: {
+                                    RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
+                                }
+                                if recipe.id == recipes.last?.id {
+                                    Text("")
+                                    .onAppear(
+                                        perform:
+                                            loadNextRecipes
+                                    )
+                                }
+                            }
+                        } header: {
+                            Text("recipe.ideas".localized())
                         }
-                        if recipe.id == recipes.last?.id {
-                            Text("")
-                            .onAppear(
-                                perform:
-                                    loadNextRecipes
-                            )
-                        }
-                    }
+                    }.listStyle(.insetGrouped)
                     if nextRecipesLoading {
                         ProgressView()
                     }

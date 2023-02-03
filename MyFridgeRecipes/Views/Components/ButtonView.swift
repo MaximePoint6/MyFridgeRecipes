@@ -27,13 +27,13 @@ struct ButtonView: View {
         .background(color)
         .cornerRadius(15)
         .shadow(radius: 3)
+        .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
     }
 }
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
         ButtonView(color: .black, title: "Test Button", action: {})
-            .padding()
             .previewLayout(.sizeThatFits)
     }
 }

@@ -7,16 +7,12 @@
 
 import Foundation
 
-
 class RecipeDetailsViewModel {
     
-    var recipe: Recipes.Recipe
+    let recipe: Recipes.Recipe
     
     init(recipe: Recipes.Recipe) {
         self.recipe = recipe
     }
     
-    var titleRecipe: String {
-        return self.recipe.label ?? "-"
-    }
 }

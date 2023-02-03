@@ -12,40 +12,32 @@ struct FridgeView: View {
     @StateObject var viewModel = FridgeViewModel()
     @State var showSearchModalView = false
     @State private var action: Int? = 0
-    let foods = ["Tomate"]
-    
-    var foodsString: String {
-        return foods.compactMap { $0 }.joined(separator: ", ")
-    }
     
     var body: some View {
         NavigationView {
             VStack {
                 List {
                     Section {
-                        ForEach(foods, id: \.self) { item in
+                        ForEach(viewModel.fridgeIngredientList, id: \.self) { item in
                             Text(item)
                         }
-                        .onDelete(perform: deleteItems)
+                        .onDelete(perform: withAnimation { viewModel.deleteItems })
                     } header: {
-                        Text("\(foods.count) ingrédients selectionnés")
+                        Text(viewModel.selectedIngredients)
                     }
                 }.listStyle(.insetGrouped)
-                Button {
+                ButtonView(color: .green, title: "add.other.food".localized()) {
                     showSearchModalView.toggle()
-                } label: {
-                    Text("Add other food".localized())
-                }.padding(20)
+                }
                 Spacer()
                 NavigationLink(destination: RecipesListView(pageState: viewModel.pageState, loadNextRecipes: viewModel.fetchNextRecipesWithUrl, nextRecipesLoading: viewModel.nextRecipesLoading),
                                tag: 1, selection: $action) {
                     EmptyView()
                 }
-                ButtonView(color: .black, title: "Show the recipes") {
-                    viewModel.fetchRecipeSearch(searchText: foodsString)
+                ButtonView(color: .black, title: "show.recipes".localized()) {
+                    viewModel.fetchRecipeSearch()
                     self.action = 1
                 }
-                .padding()
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -54,13 +46,7 @@ struct FridgeView: View {
             }
         }
         .sheet(isPresented: $showSearchModalView) {
-            FoodSearchView()
-        }
-    }
-    
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            //            offsets.map { items[$0] }.forEach(viewContext.delete)
+            FoodSearchView(fridgeViewModel: viewModel)
         }
     }
     

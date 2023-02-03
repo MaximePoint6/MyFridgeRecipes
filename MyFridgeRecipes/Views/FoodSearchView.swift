@@ -10,32 +10,34 @@ import SwiftUI
 struct FoodSearchView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    
-    @StateObject var viewModel = FoodSearchViewModel()
-    
-    @State var searchText = ""
-    private var listOfFood = ["test1", "test2", "test3"]
-    
-    // Filter countries
-    var foods: [String] {
-        let lcFoods = listOfFood.map { $0.lowercased() }
-        return searchText == "" ? lcFoods : lcFoods.filter { $0.contains(searchText.lowercased()) }
-    }
+    @ObservedObject var fridgeViewModel: FridgeViewModel
+    @State private var searchText = ""
+    @State private var timer: Timer?
+    private let delay: TimeInterval = 0.7 // delay in seconds
     
     var body: some View {
         VStack {
-            SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "Search food")
+            SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.ingredient".localized())
             List {
-                ForEach(foods, id: \.self) { country in
+                ForEach(fridgeViewModel.ingredients, id: \.self) { ingredient in
                     Button {
+                        fridgeViewModel.addIngredient(ingredient)
                         presentationMode.wrappedValue.dismiss()
                     } label: {
-                        Text(country.capitalized)
+                        Text(ingredient.capitalized)
                     }
                     .padding()
                 }
             }
  
+        } // To avoid making network calls at each change in the textField, we add a delay before launching the request.
+        .onChange(of: searchText) { newValue in
+            self.timer?.invalidate()
+            self.timer = Timer.scheduledTimer(withTimeInterval: self.delay, repeats: false, block: { _ in
+                if !searchText.isEmpty {
+                    fridgeViewModel.fetchFoodSearch(searchText: newValue)
+                }
+            })
         }
     }
 }
@@ -43,7 +45,10 @@ struct FoodSearchView: View {
 
 // MARK: - Preview
 struct FoodSearchView_Previews: PreviewProvider {
+    
+    @StateObject static var fridgeViewModel = FridgeViewModel()
+    
     static var previews: some View {
-        FoodSearchView()
+        FoodSearchView(fridgeViewModel: fridgeViewModel)
     }
 }

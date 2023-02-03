@@ -22,5 +22,9 @@
 "more.recipes" = "See more recipes";
 
 // FridgeView
-"add.food" = "Add food";
-"see.recipes" = "See recipes";
+"add.other.food" = "Add other food";
+"selected.ingredients" = "%@ selected ingredients";
+"selected.ingredient" = "%@ selected ingredient";
+"show.recipes" = "Show recipes";
+"no.ingredient.selected" = "No ingredient selected";
+"search.ingredient" = "Search for an ingredient";

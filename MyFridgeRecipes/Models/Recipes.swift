@@ -60,6 +60,39 @@ struct Recipes: Codable {
         let totalNutrients: NutrientsInfo?
         //        let totalDaily: NutrientsInfo?
         let digest: [DigestEntry]
+        
+        // MARK: - UI
+        var getRecipeImageUrl: String {
+            return self.image ?? "-"
+        }
+        
+        var getTitleRecipe: String {
+            return self.label ?? "-"
+        }
+        
+        var getIngredientLines: [String] {
+            return self.ingredientLines ?? ["-"]
+        }
+        
+        var getCalories: String {
+            guard let calories = self.calories else {
+                return "- kcal"
+            }
+            return (String(calories) + " kcal")
+        }
+
+        var getCuisineType: String {
+            return self.cuisineType?.compactMap { $0 }.joined(separator: " - ") ?? ""
+        }
+        
+        var getMealType: String {
+            return self.mealType?.compactMap { $0 }.joined(separator: " - ") ?? ""
+        }
+        
+        var getInstructions: [String] {
+            return self.instructions ?? ["-"]
+        }
+        
     }
     
     struct InlineModel1: Codable {

@@ -13,12 +13,14 @@ class HomeViewModel: ObservableObject {
     @Published private(set) var pageState = PageState.loading
     @Published var nextRecipesLoading = false
     
-    var apiManager: APIManager
+    private let apiManager: APIManager
     
     init(apiManager: APIManager = APIManager.shared) {
         self.apiManager = apiManager
         fetchRandomRecipes()
     }
+    
+    // MARK: - Privates var
     
     private var recipes: [Recipes.Recipe] = [] {
         didSet {
@@ -26,19 +28,16 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    private(set) var nextRecipesUrl: String?
+    private var nextRecipesUrl: String?
     
     // MARK: - Functions
     func fetchRandomRecipes() {
         apiManager.getRequest(router: Router.fetchRandomRecipes) { (result: Result<Recipes, AFError>) in
             switch result {
                 case .success(let response):
-                    self.nextRecipesUrl = response._links?.next?.href ?? ""
+                    self.nextRecipesUrl = response._links?.next?.href ?? nil
                     
-                    guard let hits = response.hits else {
-                        self.recipes = []
-                        return
-                    }
+                    guard let hits = response.hits else { return self.recipes = [] }
                     
                     self.recipes = hits
                         .filter { $0.recipe != nil }
@@ -59,11 +58,9 @@ class HomeViewModel: ObservableObject {
             self.nextRecipesLoading = false
             switch result {
                 case .success(let response):
-                    self.nextRecipesUrl = response._links?.next?.href ?? ""
+                    self.nextRecipesUrl = response._links?.next?.href ?? nil
                     
-                    guard let hits = response.hits else {
-                        return
-                    }
+                    guard let hits = response.hits else { return }
                     
                     let newRecipes = hits
                         .filter { $0.recipe != nil }
@@ -82,12 +79,9 @@ class HomeViewModel: ObservableObject {
         apiManager.getRequest(router: Router.fetchRecipeSearch(searchText)) { (result: Result<Recipes, AFError>) in
             switch result {
                 case .success(let response):
-                    self.nextRecipesUrl = response._links?.next?.href ?? ""
+                    self.nextRecipesUrl = response._links?.next?.href ?? nil
 
-                    guard let hits = response.hits else {
-                        self.recipes = []
-                        return
-                    }
+                    guard let hits = response.hits else { return self.recipes = [] }
                     
                     self.recipes = hits
                         .filter { $0.recipe != nil }

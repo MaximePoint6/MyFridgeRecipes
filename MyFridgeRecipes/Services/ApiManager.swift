@@ -11,9 +11,14 @@ import SwiftUI
 
 class APIManager {
     static let shared = APIManager()
+    private init() {}
+    
+    init (sessionManager: Session) {
+        self.sessionManager = sessionManager
+    }
     
     // Custom Session
-    let sessionManager: Session = {
+    private var sessionManager: Session = {
         let configuration = URLSessionConfiguration.af.default
         
         // Code caching the data, and if there is no network, we recover the cache.

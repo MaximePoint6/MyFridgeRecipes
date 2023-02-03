@@ -13,7 +13,7 @@ struct SettingsView: View {
     
     var body: some View {
         Text("SettingsView")
-        Button("Fermer") {
+        Button("Close") {
             presentationMode.wrappedValue.dismiss()
         }
     }
