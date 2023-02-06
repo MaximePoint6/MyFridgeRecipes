@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecipesListView: View {
     
-    let pageState: PageState
+    @Binding var pageState: PageState
     let loadNextRecipes: () -> Void
     let nextRecipesLoading: Bool
     
@@ -23,13 +23,13 @@ struct RecipesListView: View {
                 case .loaded(let recipes):
                     List {
                         Section {
-                            ForEach(recipes) { recipe in
+                            ForEach(recipes, id: \.label) { recipe in
                                 NavigationLink {
                                     RecipeDetailsView(viewModel: RecipeDetailsViewModel(recipe: recipe))
                                 } label: {
                                     RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
                                 }
-                                if recipe.id == recipes.last?.id {
+                                if recipe.label == recipes.last?.label {
                                     Text("")
                                     .onAppear(
                                         perform:
@@ -52,11 +52,11 @@ struct RecipesListView: View {
     struct MyFridgeRecipesView_Previews: PreviewProvider {
         static var previews: some View {
             Group {
-                RecipesListView(pageState: PageState.loaded(MockData.previewRecipeArray), loadNextRecipes: {}, nextRecipesLoading: true)
-                RecipesListView(pageState: PageState.loading, loadNextRecipes: {}, nextRecipesLoading: false)
-                RecipesListView(pageState: PageState.failed(.noInternet), loadNextRecipes: {}, nextRecipesLoading: false)
-                RecipesListView(pageState: PageState.failed(.decoding), loadNextRecipes: {}, nextRecipesLoading: false)
-                RecipesListView(pageState: PageState.failed(.backend(400)), loadNextRecipes: {}, nextRecipesLoading: false)
+                RecipesListView(pageState: .constant(PageState.loaded(MockData.previewRecipeArray)), loadNextRecipes: {}, nextRecipesLoading: true)
+                RecipesListView(pageState: .constant(PageState.loading), loadNextRecipes: {}, nextRecipesLoading: false)
+                RecipesListView(pageState: .constant(PageState.failed(.noInternet)), loadNextRecipes: {}, nextRecipesLoading: false)
+                RecipesListView(pageState: .constant(PageState.failed(.decoding)), loadNextRecipes: {}, nextRecipesLoading: false)
+                RecipesListView(pageState: .constant(PageState.failed(.backend(400))), loadNextRecipes: {}, nextRecipesLoading: false)
             }
         }
     }

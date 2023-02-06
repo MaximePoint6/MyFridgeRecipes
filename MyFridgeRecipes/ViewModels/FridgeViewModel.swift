@@ -10,7 +10,7 @@ import Alamofire
 
 class FridgeViewModel: ObservableObject {
     
-    @Published private(set) var pageState = PageState.loading
+    @Published var pageState = PageState.loading
     @Published private(set) var nextRecipesLoading = false
     @Published var fridgeIngredientList = [String]()
     @Published var ingredients: [String] = []

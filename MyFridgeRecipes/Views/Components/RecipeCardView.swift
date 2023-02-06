@@ -10,11 +10,11 @@ import Kingfisher
 
 struct RecipeCardView: View {
     
-    let viewModel: RecipeCardViewModel
+    @ObservedObject var viewModel: RecipeCardViewModel
     
     var body: some View {
         HStack {
-            ZStack {
+            ZStack(alignment: .bottomTrailing) {
                 KFImage(URL(string: viewModel.recipe.getRecipeImageUrl)!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -34,6 +34,7 @@ struct RecipeCardView: View {
                     .font(.headline)
                     .lineLimit(2)
             }
+            Spacer()
         }
         .padding()
     }

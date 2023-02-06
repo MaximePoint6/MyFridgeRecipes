@@ -22,7 +22,7 @@ struct HomeView: View {
                 TopBarView(viewModel: topBarViewModel)
                 SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                 Spacer()
-                RecipesListView(pageState: homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading)
+                RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading)
                 Spacer()
             }
         }
@@ -50,6 +50,5 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .environmentObject(topBarViewModel)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

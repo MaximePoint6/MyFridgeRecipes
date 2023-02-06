@@ -19,7 +19,7 @@ struct MyTabView: View {
                 .tabItem {
                     Label("my.fridge".localized(), systemImage: "snowflake")
                 }
-            FavouritesView()
+            FavoritesView()
                 .tabItem {
                     Label("my.favourites".localized(), systemImage: "heart.fill")
                 }

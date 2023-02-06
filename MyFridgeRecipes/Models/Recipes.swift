@@ -9,8 +9,8 @@ import Foundation
 
 struct Recipes: Codable {
     
-    let from: Int?
-    let to: Int?
+//    let from: Int?
+//    let to: Int?
     let count: Int? // number of recipes
     let _links: Links?
     let hits: [Hit]?
@@ -30,36 +30,32 @@ struct Recipes: Codable {
 //        let title: String?
     }
     
-    struct Recipe: Codable, Identifiable {
-        let id = UUID()
-        //        let uri: String?
+    struct Recipe: Codable {
+//        let uri: String?
         let label: String?
         let image: String?
-        let images: InlineModel1?
-        //        let source: String?
-        //        let url: String?
-        let shareAs: String?
-        //        let yield: Double?
-        //        let dietLabels: [String]?
-        //        let healthLabels: [String]?
-        //        let cautions: [String]?
+//        var images: InlineModel1?
+//        let source: String?
+//        let url: String?
+        var shareAs: String?
+        let yield: Double? // Recipe for x person
+//        let dietLabels: [String]?
+//        let healthLabels: [String]?
+//        let cautions: [String]?
         let ingredientLines: [String]? // Ingrédient dans la recette
-        let ingredients: [Ingredient]? // détails des aliments
+//        let ingredients: [Ingredient]? // détails des aliments
         let calories: Double? // calories du plat
-        let glycemicIndex: Double?
-        let totalCO2Emissions: Double?
-        let co2EmissionsClass: String?
-        //        let totalWeight: Double?
+//        let glycemicIndex: Double?
+//        let totalWeight: Double?
         let totalTime: Double?
         let cuisineType: [String]?
         let mealType: [String]? // diner, lunch etc
-        //        let dishType: [String]?
+//        let dishType: [String]?
         let instructions: [String]?
-        let tags: [String]?
-        let externalId: String?
-        let totalNutrients: NutrientsInfo?
-        //        let totalDaily: NutrientsInfo?
-        let digest: [DigestEntry]
+//        let tags: [String]?
+//        let totalNutrients: NutrientsInfo?
+//        let totalDaily: NutrientsInfo?
+//        let digest: [DigestEntry]?
         
         // MARK: - UI
         var getRecipeImageUrl: String {
@@ -80,6 +76,20 @@ struct Recipes: Codable {
             }
             return (String(calories) + " kcal")
         }
+        
+        var getPortionNumber: String {
+            guard let portionNumber = self.yield else {
+                return "- portions"
+            }
+            return (String(portionNumber) + " portions")
+        }
+        
+        var getPreparationTime: String {
+            guard let preparationTime = self.totalTime else {
+                return "- minutes"
+            }
+            return (String(preparationTime) + " minutes")
+        }
 
         var getCuisineType: String {
             return self.cuisineType?.compactMap { $0 }.joined(separator: " - ") ?? ""
@@ -95,12 +105,12 @@ struct Recipes: Codable {
         
     }
     
-    struct InlineModel1: Codable {
-        let thumbnail: ImageInfo?
-        let small: ImageInfo?
-        let regular: ImageInfo?
-        let large: ImageInfo?
-    }
+//    struct InlineModel1: Codable {
+//        let thumbnail: ImageInfo?
+//        let small: ImageInfo?
+//        let regular: ImageInfo?
+//        let large: ImageInfo?
+//    }
 
     struct Ingredient: Codable {
         let text: String? // ligne des ingrédient (donc quantité + intitulé de l'ingrédient)
