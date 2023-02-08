@@ -18,8 +18,10 @@
 
 // HomeView
 "search.recipe" = "Rechercher une recipe";
+
+// RecipesListView
 "recipe.ideas" = "Idées de recettes";
-"more.recipes" = "Voir plus de recettes";
+"no.recipes" = "Pas de recettes trouvées";
 
 // FridgeView
 "add.other.food" = "Ajouter un autre aliment";
@@ -28,3 +30,11 @@
 "show.recipes" = "%@ Voir les recettes";
 "no.ingredient.selected" = "Pas d'ingredient sélectionné";
 "search.ingredient" = "Rechercher un ingrédient";
+
+// ErrorView
+"something.went.wrong" = "Quelque chose s'est mal passé";
+"contact.developer" = "Veuillez contacter le développeur";
+"no.internet.connection" = "S'il vous plait, vérifiez votre connexion internet";
+"api.limit" = "Limite API atteinte, attendez quelques secondes";
+"service.unavailable" = "Service non disponible";
+"server.error" = "Code d'erreur du serveur : ";

@@ -38,6 +38,7 @@ class FridgeViewModel: ObservableObject {
     // MARK: - Functions
     
     func fetchRecipeSearch() {
+        self.pageState = PageState.loading
         apiManager.getRequest(router: Router.fetchRecipeSearch(self.foodsString)) { (result: Result<Recipes, AFError>) in
             switch result {
                 case .success(let response):

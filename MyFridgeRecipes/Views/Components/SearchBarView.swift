@@ -49,7 +49,7 @@ struct SearchBarView: View {
 // MARK: - Preview
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBarView(text: .constant(""), keyBoardType: .asciiCapable, placeHolderText: "Search a recipe")
+        SearchBarView(text: .constant(""), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.light)
     }

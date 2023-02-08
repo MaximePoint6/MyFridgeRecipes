@@ -18,8 +18,10 @@
 
 // HomeView
 "search.recipe" = "Search for a recipe";
+
+// RecipesListView
 "recipe.ideas" = "Recipe ideas";
-"more.recipes" = "See more recipes";
+"no.recipes" = "No recipes found";
 
 // FridgeView
 "add.other.food" = "Add other food";
@@ -28,3 +30,11 @@
 "show.recipes" = "Show recipes";
 "no.ingredient.selected" = "No ingredient selected";
 "search.ingredient" = "Search for an ingredient";
+
+// ErrorView
+"something.went.wrong" = "Something went wrong";
+"contact.developer" = "Please contact developer";
+"no.internet.connection" = "Please check your internet connection";
+"api.limit" = "API limit reached, wait a few second";
+"server.error" = "Server error code: ";
+

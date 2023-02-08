@@ -13,23 +13,23 @@ struct ErrorView: View {
     
     var body: some View {
         VStack {
-            Text("Something went wrong")
+            Text("something.went.wrong".localized())
                 .font(.title)
                 .padding()
             Group {
                 switch error {
                 case .decoding:
-                    Text("Please contact developer")
+                    Text("contact.developer".localized())
                 case .noInternet:
-                    Text("Please check your internet connection")
+                        Text("no.internet.connection".localized())
                 case .backend(let code):
                     switch code {
                     case 403:
-                        Text("API limit reached, wait a second")
+                            Text("api.limit".localized())
                     case 503:
-                        Text("Service unavailable")
+                            Text("service.unavailable".localized())
                     default:
-                        Text("Server error code: \(code)")
+                            Text("server.error".localized() + String(code))
                     }
                 }
             }
@@ -48,6 +48,8 @@ struct ErrorView_Previews: PreviewProvider {
             ErrorView(error: .backend(503))
                 .previewLayout(.sizeThatFits)
             ErrorView(error: .decoding)
+                .previewLayout(.sizeThatFits)
+            ErrorView(error: .backend(400))
                 .previewLayout(.sizeThatFits)
         }
     }

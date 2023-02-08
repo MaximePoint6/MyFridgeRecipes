@@ -37,7 +37,7 @@ struct Recipes: Codable {
 //        var images: InlineModel1?
 //        let source: String?
 //        let url: String?
-        var shareAs: String?
+        let shareAs: String?
         let yield: Double? // Recipe for x person
 //        let dietLabels: [String]?
 //        let healthLabels: [String]?
@@ -112,43 +112,43 @@ struct Recipes: Codable {
 //        let large: ImageInfo?
 //    }
 
-    struct Ingredient: Codable {
-        let text: String? // ligne des ingrédient (donc quantité + intitulé de l'ingrédient)
-        let quantity: Double?
-        let measure: String?
-        let food: String?
-        let weight: Double?
-        //        let foodId: String?
-    }
+//    struct Ingredient: Codable {
+//        let text: String? // ligne des ingrédient (donc quantité + intitulé de l'ingrédient)
+//        let quantity: Double?
+//        let measure: String?
+//        let food: String?
+//        let weight: Double?
+//        //        let foodId: String?
+//    }
 
-    struct NutrientsInfo: Codable {
-        let enercKcal: NutrientsDetails // kcal
-        let FAT: NutrientsDetails // lipide
-        let PROCNT: NutrientsDetails // proteine
-        let CHOCDF: NutrientsDetails // glucide
-    }
+//    struct NutrientsInfo: Codable {
+//        let enercKcal: NutrientsDetails? // kcal
+//        let FAT: NutrientsDetails? // lipide
+//        let PROCNT: NutrientsDetails? // proteine
+//        let CHOCDF: NutrientsDetails? // glucide
+//    }
 
-    struct NutrientsDetails: Codable {
-        let label: String
-        let quantity: Double
-        let unit: String
-    }
+//    struct NutrientsDetails: Codable {
+//        let label: String?
+//        let quantity: Double?
+//        let unit: String?
+//    }
 
-    struct ImageInfo: Codable {
-        let url: String?
-        let width: Int?
-        let height: Int?
-    }
+//    struct ImageInfo: Codable {
+//        let url: String?
+//        let width: Int?
+//        let height: Int?
+//    }
 
-    struct DigestEntry: Codable {
-        let label: String?
-        let tag: String?
-        //        let schemaOrgTag: String?
-        let total: Double?
-        //        let hasRDI: Bool?
-        //        let daily: Double?
-        let unit: String?
-        let sub: [DigestEntry]?
-    }
+//    struct DigestEntry: Codable {
+//        let label: String?
+//        let tag: String?
+//        //        let schemaOrgTag: String?
+//        let total: Double?
+//        //        let hasRDI: Bool?
+//        //        let daily: Double?
+//        let unit: String?
+//        let sub: [DigestEntry]?
+//    }
     
 }

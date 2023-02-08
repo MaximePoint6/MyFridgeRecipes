@@ -21,28 +21,32 @@ struct RecipesListView: View {
                 case .failed(let error):
                     ErrorView(error: error)
                 case .loaded(let recipes):
-                    List {
-                        Section {
-                            ForEach(recipes, id: \.label) { recipe in
-                                NavigationLink {
-                                    RecipeDetailsView(viewModel: RecipeDetailsViewModel(recipe: recipe))
-                                } label: {
-                                    RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
+                    if recipes.isEmpty {
+                        Text("no.recipes".localized())
+                    } else {
+                        List {
+                            Section {
+                                ForEach(recipes, id: \.label) { recipe in
+                                    NavigationLink {
+                                        RecipeDetailsView(viewModel: RecipeDetailsViewModel(recipe: recipe))
+                                    } label: {
+                                        RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
+                                    }
+                                    if recipe.label == recipes.last?.label {
+                                        Text("")
+                                        .onAppear(
+                                            perform:
+                                                loadNextRecipes
+                                        )
+                                    }
                                 }
-                                if recipe.label == recipes.last?.label {
-                                    Text("")
-                                    .onAppear(
-                                        perform:
-                                            loadNextRecipes
-                                    )
-                                }
+                            } header: {
+                                Text("recipe.ideas".localized())
                             }
-                        } header: {
-                            Text("recipe.ideas".localized())
+                        }.listStyle(PlainListStyle())
+                        if nextRecipesLoading {
+                            ProgressView()
                         }
-                    }.listStyle(.insetGrouped)
-                    if nextRecipesLoading {
-                        ProgressView()
                     }
             }
         }
@@ -52,7 +56,7 @@ struct RecipesListView: View {
     struct MyFridgeRecipesView_Previews: PreviewProvider {
         static var previews: some View {
             Group {
-                RecipesListView(pageState: .constant(PageState.loaded(MockData.previewRecipeArray)), loadNextRecipes: {}, nextRecipesLoading: true)
+                RecipesListView(pageState: .constant(PageState.loaded(MockData.previewRecipeArray)), loadNextRecipes: {}, nextRecipesLoading: false)
                 RecipesListView(pageState: .constant(PageState.loading), loadNextRecipes: {}, nextRecipesLoading: false)
                 RecipesListView(pageState: .constant(PageState.failed(.noInternet)), loadNextRecipes: {}, nextRecipesLoading: false)
                 RecipesListView(pageState: .constant(PageState.failed(.decoding)), loadNextRecipes: {}, nextRecipesLoading: false)
