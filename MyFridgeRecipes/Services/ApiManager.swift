@@ -53,6 +53,7 @@ class APIManager {
                     case .success(let response):
                         completion(.success(response))
                     case .failure(let error):
+                        print(error)
                         completion(.failure(error))
                 }
             }

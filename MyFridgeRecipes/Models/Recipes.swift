@@ -11,7 +11,7 @@ struct Recipes: Codable {
     
 //    let from: Int?
 //    let to: Int?
-    let count: Int? // number of recipes
+//    let count: Int? // number of recipes
     let _links: Links?
     let hits: [Hit]?
     

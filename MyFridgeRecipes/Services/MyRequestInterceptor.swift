@@ -15,7 +15,9 @@ class MyRequestInterceptor: RequestInterceptor {
 
     // To put headers to requests (example: Authorization)
   func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-//    var urlRequest = urlRequest
+    var urlRequest = urlRequest
+      urlRequest.setValue("\(Language.en.rawValue)", forHTTPHeaderField: "Accept-Language")
+      urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
 //    if let token = TokenManager.shared.fetchAccessToken() {
 //      urlRequest.setValue("token \(token)", forHTTPHeaderField: "Authorization")
 //    }
