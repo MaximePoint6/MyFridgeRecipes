@@ -13,17 +13,32 @@ struct HomeView: View {
     @EnvironmentObject var topBarViewModel: TopBarViewModel
     @StateObject var homeViewModel = HomeViewModel()
     @State private var searchText = ""
+    @State private var isEditing = false
     @State private var timer: Timer?
     private let delay: TimeInterval = 1 // delay in seconds
     
     var body: some View {
         NavigationView {
-            VStack {
-                TopBarView(viewModel: topBarViewModel)
-                SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
-                Spacer()
-                RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading)
-                Spacer()
+            ZStack(alignment: .top) {
+                Color.clear
+                    .edgesIgnoringSafeArea(.all)
+                    .gesture(
+                        TapGesture().onEnded {
+                            if self.isEditing {
+                                UIApplication.shared.endEditing()
+                                self.isEditing = false
+//                            } else {
+//                                self.isEditing = false
+                            }
+                        }
+                    )
+                VStack {
+                    TopBarView(viewModel: topBarViewModel)
+                    SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+                    Spacer()
+                    RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading)
+                    Spacer()
+                }
             }
         }
         // To avoid making network calls at each change in the textField, we add a delay before launching the request.

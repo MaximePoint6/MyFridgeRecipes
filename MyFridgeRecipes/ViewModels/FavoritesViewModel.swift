@@ -28,7 +28,7 @@ class FavoritesViewModel: ObservableObject {
         }
     }
     
-    func getDesiredRecipes(searchText: String) {
+    func getFilteredRecipes(searchText: String) {
         repository.getFavoriteRecipes { recipes in
             self.favoriteRecipes = recipes.filter({ recipe in
                 if let label = recipe.label {
@@ -40,9 +40,9 @@ class FavoritesViewModel: ObservableObject {
         }
     }
     
-    func addFavoriteRecipe(newFavoriteRecipe: Recipes.Recipe) {
-        self.favoriteRecipes.append(newFavoriteRecipe)
-        repository.addFavoriteRecipes(recipe: newFavoriteRecipe)
-    }
+//    func addFavoriteRecipe(newFavoriteRecipe: Recipes.Recipe) {
+//        self.favoriteRecipes.append(newFavoriteRecipe)
+//        repository.addFavoriteRecipes(recipe: newFavoriteRecipe)
+//    }
     
 }

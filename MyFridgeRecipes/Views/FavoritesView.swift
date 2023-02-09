@@ -11,12 +11,13 @@ struct FavoritesView: View {
     @EnvironmentObject var topBarViewModel: TopBarViewModel
     @StateObject var viewModel = FavoritesViewModel()
     @State private var searchText = ""
+    @State private var isEditing = false
     
     var body: some View {
         NavigationView {
             VStack {
                 TopBarView(viewModel: topBarViewModel)
-                SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+                SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                 Spacer()
                 RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: {}, nextRecipesLoading: false)
             }
@@ -25,7 +26,7 @@ struct FavoritesView: View {
             if searchText.isEmpty {
                 viewModel.getFavoriteRecipes()
             } else {
-                viewModel.getDesiredRecipes(searchText: newValue)
+                viewModel.getFilteredRecipes(searchText: newValue)
             }
         }
         .onAppear {

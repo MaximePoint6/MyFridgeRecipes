@@ -1,5 +1,5 @@
 //
-//  LoadFromJson.swift
+//  MockData.swift
 //  MyFridgeRecipes
 //
 //  Created by Maxime Point on 26/01/2023.
@@ -9,14 +9,15 @@ import Foundation
 
 class MockData {
     
+    // Mock datas
     static var previewSingleRecipe: Recipes.Recipe = load("Recipe.json")
-    
     static var previewRecipes: Recipes = load("Recipes.json")
-    
     static var previewRecipeArray: [Recipes.Recipe] = previewRecipes.hits!
         .filter { $0.recipe != nil }
         .map { $0.recipe! }
     
+    
+    // Func Load from Json
     static private func load<T: Decodable>(_ filename: String) -> T {
         let data: Data
         

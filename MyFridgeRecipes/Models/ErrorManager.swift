@@ -10,10 +10,11 @@ import Alamofire
 
 class ErrorManager {
     
-    enum ErrorType {
+    enum ErrorType: Equatable {
         case decoding
         case noInternet
         case backend(Int)
+        case otherProblem
     }
     
     static func getErrorPageState(error: AFError) -> PageState {
@@ -27,6 +28,7 @@ class ErrorManager {
             return .failed(.decoding)
         }
         print(error)
-        return PageState.loading
+        return .failed(.otherProblem)
     }
+    
 }

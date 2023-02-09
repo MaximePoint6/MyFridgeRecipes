@@ -1,5 +1,5 @@
 //
-//  Router.swift
+//  APIRouter.swift
 //  MyFridgeRecipes
 //
 //  Created by Maxime Point on 21/01/2023.
@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-enum Router {
+enum APIRouter {
     case fetchFoodSearch(String)
     case fetchRecipeSearch(String)
     case fetchRandomRecipes
@@ -45,11 +45,11 @@ enum Router {
     var parameters: [String: String]? {
         switch self {
             case .fetchFoodSearch(let query):
-                return ["app_id": ApiKey.adamamFoodDatabaseID, "app_key": ApiKey.adamamFoodDatabase, "q": query, "limit": "10"]
+                return ["app_id": APIKeys.adamamFoodDatabaseID, "app_key": APIKeys.adamamFoodDatabase, "q": query, "limit": "10"]
             case .fetchRecipeSearch(let query):
-                return ["app_id": ApiKey.adamamRecipeSearchID, "app_key": ApiKey.adamamRecipeSearch, "type": "any", "q": query]
+                return ["app_id": APIKeys.adamamRecipeSearchID, "app_key": APIKeys.adamamRecipeSearch, "type": "any", "q": query]
             case .fetchRandomRecipes:
-                return ["app_id": ApiKey.adamamRecipeSearchID, "app_key": ApiKey.adamamRecipeSearch, "type": "any", "random": "true", "ingr": "1-10"]
+                return ["app_id": APIKeys.adamamRecipeSearchID, "app_key": APIKeys.adamamRecipeSearch, "type": "any", "random": "true", "ingr": "1-10"]
             case .fetchNextRecipesWithUrl, .fetchImage:
                 return nil
         }
@@ -57,7 +57,7 @@ enum Router {
 }
 
 // MARK: - URLRequestConvertible
-extension Router: URLRequestConvertible {
+extension APIRouter: URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         let url = try baseURL.asURL().appendingPathComponent(path)
         var request = URLRequest(url: url)

@@ -13,9 +13,9 @@ class HomeViewModel: ObservableObject {
     @Published var pageState = PageState.loading
     @Published var nextRecipesLoading = false
     
-    private let apiManager: APIManager
+    private let apiManager: APIManagerProtocol
     
-    init(apiManager: APIManager = APIManager.shared) {
+    init(apiManager: APIManagerProtocol = APIManager.shared) {
         self.apiManager = apiManager
         fetchRandomRecipes()
     }
@@ -28,11 +28,11 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    private var nextRecipesUrl: String?
+    var nextRecipesUrl: String?
     
     // MARK: - Functions
     func fetchRandomRecipes() {
-        apiManager.getRequest(router: Router.fetchRandomRecipes) { (result: Result<Recipes, AFError>) in
+        apiManager.getRequest(router: APIRouter.fetchRandomRecipes) { (result: Result<Recipes, AFError>) in
             switch result {
                 case .success(let response):
                     self.nextRecipesUrl = response._links?.next?.href ?? nil
@@ -54,7 +54,7 @@ class HomeViewModel: ObservableObject {
             return
         }
         self.nextRecipesLoading = true
-        apiManager.getRequest(router: Router.fetchNextRecipesWithUrl(nextRecipesUrl)) { (result: Result<Recipes, AFError>) in
+        apiManager.getRequest(router: APIRouter.fetchNextRecipesWithUrl(nextRecipesUrl)) { (result: Result<Recipes, AFError>) in
             self.nextRecipesLoading = false
             switch result {
                 case .success(let response):
@@ -76,7 +76,7 @@ class HomeViewModel: ObservableObject {
     
     func fetchRecipeSearch(searchText: String) {
         self.pageState = PageState.loading
-        apiManager.getRequest(router: Router.fetchRecipeSearch(searchText)) { (result: Result<Recipes, AFError>) in
+        apiManager.getRequest(router: APIRouter.fetchRecipeSearch(searchText)) { (result: Result<Recipes, AFError>) in
             switch result {
                 case .success(let response):
                     self.nextRecipesUrl = response._links?.next?.href ?? nil

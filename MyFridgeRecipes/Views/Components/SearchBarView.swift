@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchBarView: View {
     @Binding var text: String
+    @Binding var isEditing: Bool
     var keyBoardType: UIKeyboardType
     var placeHolderText: String
     
@@ -18,7 +19,9 @@ struct SearchBarView: View {
                 .foregroundColor(
                     text.isEmpty ? Color.gray : Color.black
                 )
-            TextField(placeHolderText, text: $text)
+            TextField(placeHolderText, text: $text, onEditingChanged: { isEditing in
+                self.isEditing = isEditing
+            })
                 .keyboardType(keyBoardType)
                 .foregroundColor(Color.black)
                 .overlay(
@@ -49,7 +52,7 @@ struct SearchBarView: View {
 // MARK: - Preview
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBarView(text: .constant(""), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+        SearchBarView(text: .constant(""), isEditing: .constant(false), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
             .previewLayout(.sizeThatFits)
             .preferredColorScheme(.light)
     }

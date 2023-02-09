@@ -51,3 +51,10 @@ extension String {
             comment: "")
     }
 }
+
+
+extension String? {
+    var isNilOrEmpty: Bool {
+        return self == nil || self == ""
+    }
+}

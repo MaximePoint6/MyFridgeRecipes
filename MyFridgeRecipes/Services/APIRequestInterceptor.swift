@@ -1,5 +1,5 @@
 //
-//  MyRequestInterceptor.swift
+//  APIRequestInterceptor.swift
 //  MyFridgeRecipes
 //
 //  Created by Maxime Point on 21/01/2023.
@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 // Retry a request that had an error (settings: max retry, delay, etc.)
-class MyRequestInterceptor: RequestInterceptor {
+class APIRequestInterceptor: RequestInterceptor {
   let retryLimit = 3 // If the request doesn't work, then 3 tries max (only if statusCode is between 500 and 599)
   let retryDelay: TimeInterval = 10 // maximum delay per request (in seconds)
 

@@ -22,7 +22,9 @@ struct RecipesListView: View {
                     ErrorView(error: error)
                 case .loaded(let recipes):
                     if recipes.isEmpty {
+                        Spacer()
                         Text("no.recipes".localized())
+                        Spacer()
                     } else {
                         List {
                             Section {

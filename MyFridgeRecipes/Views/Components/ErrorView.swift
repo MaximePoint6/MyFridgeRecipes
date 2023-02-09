@@ -18,19 +18,19 @@ struct ErrorView: View {
                 .padding()
             Group {
                 switch error {
-                case .decoding:
-                    Text("contact.developer".localized())
-                case .noInternet:
+                    case .decoding, .otherProblem:
+                        Text("contact.developer".localized())
+                    case .noInternet:
                         Text("no.internet.connection".localized())
-                case .backend(let code):
-                    switch code {
-                    case 403:
-                            Text("api.limit".localized())
-                    case 503:
-                            Text("service.unavailable".localized())
-                    default:
-                            Text("server.error".localized() + String(code))
-                    }
+                    case .backend(let code):
+                        switch code {
+                            case 403:
+                                Text("api.limit".localized())
+                            case 503:
+                                Text("service.unavailable".localized())
+                            default:
+                                Text("server.error".localized() + String(code))
+                        }
                 }
             }
         }

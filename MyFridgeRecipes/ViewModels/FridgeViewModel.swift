@@ -15,9 +15,9 @@ class FridgeViewModel: ObservableObject {
     @Published var fridgeIngredientList = [String]()
     @Published var ingredients: [String] = []
     
-    private let apiManager: APIManager
+    private let apiManager: APIManagerProtocol
     
-    init(apiManager: APIManager = APIManager.shared) {
+    init(apiManager: APIManagerProtocol = APIManager.shared) {
         self.apiManager = apiManager
     }
     
@@ -39,7 +39,7 @@ class FridgeViewModel: ObservableObject {
     
     func fetchRecipeSearch() {
         self.pageState = PageState.loading
-        apiManager.getRequest(router: Router.fetchRecipeSearch(self.foodsString)) { (result: Result<Recipes, AFError>) in
+        apiManager.getRequest(router: APIRouter.fetchRecipeSearch(self.foodsString)) { (result: Result<Recipes, AFError>) in
             switch result {
                 case .success(let response):
                     self.nextRecipesUrl = response._links?.next?.href ?? nil
@@ -61,7 +61,7 @@ class FridgeViewModel: ObservableObject {
             return
         }
         self.nextRecipesLoading = true
-        apiManager.getRequest(router: Router.fetchNextRecipesWithUrl(nextRecipesUrl)) { (result: Result<Recipes, AFError>) in
+        apiManager.getRequest(router: APIRouter.fetchNextRecipesWithUrl(nextRecipesUrl)) { (result: Result<Recipes, AFError>) in
             self.nextRecipesLoading = false
             switch result {
                 case .success(let response):
@@ -82,7 +82,7 @@ class FridgeViewModel: ObservableObject {
     }
     
     func fetchFoodSearch(searchText: String) {
-        apiManager.getRequest(router: Router.fetchFoodSearch(searchText)) { (result: Result<[String], AFError>) in
+        apiManager.getRequest(router: APIRouter.fetchFoodSearch(searchText)) { (result: Result<[String], AFError>) in
             switch result {
                 case .success(let response):
                     self.ingredients = response

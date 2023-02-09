@@ -31,6 +31,7 @@ struct Recipes: Codable {
     }
     
     struct Recipe: Codable {
+        var isFavorite: Bool? = false
 //        let uri: String?
         let label: String?
         let image: String?

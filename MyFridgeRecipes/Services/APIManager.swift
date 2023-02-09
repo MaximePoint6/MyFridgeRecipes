@@ -1,5 +1,5 @@
 //
-//  ApiManager.swift
+//  APIManager.swift
 //  MyFridgeRecipes
 //
 //  Created by Maxime Point on 21/01/2023.
@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import SwiftUI
 
-class APIManager {
+class APIManager: APIManagerProtocol {
     static let shared = APIManager()
     private init() {}
     
@@ -33,9 +33,9 @@ class APIManager {
         })
         
         // To put logs in console
-        let networkLogger = NetworkLogger()
+        let networkLogger = APINetworkLogger()
         // Retry a request that had an error (settings: max retry, delay, etc.)
-        let interceptor = MyRequestInterceptor()
+        let interceptor = APIRequestInterceptor()
         
         return Session(
             configuration: configuration,

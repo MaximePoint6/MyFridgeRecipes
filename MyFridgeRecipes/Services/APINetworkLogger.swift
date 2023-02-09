@@ -1,5 +1,5 @@
 //
-//  NetworkLogger.swift
+//  APINetworkLogger.swift
 //  MyFridgeRecipes
 //
 //  Created by Maxime Point on 21/01/2023.
@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 // To put logs in console
-class NetworkLogger: EventMonitor {
+class APINetworkLogger: EventMonitor {
   let queue = DispatchQueue(label: "com.maximepoint.myfridgerecipes.networklogger")
 
   func requestDidFinish(_ request: Request) {
