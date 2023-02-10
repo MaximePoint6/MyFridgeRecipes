@@ -26,7 +26,7 @@ struct FridgeView: View {
                         Text(viewModel.selectedIngredients)
                     }
                 }.listStyle(.insetGrouped)
-                ButtonView(color: .green, title: "add.other.food".localized()) {
+                ButtonView(buttonType: .secondary, color: .accentColor, title: "add.other.food".localized()) {
                     showSearchModalView.toggle()
                 }
                 Spacer()
@@ -34,7 +34,7 @@ struct FridgeView: View {
                                tag: 1, selection: $action) {
                     EmptyView()
                 }
-                ButtonView(color: .black, title: "show.recipes".localized()) {
+                ButtonView(buttonType: .primary, color: .accentColor, title: "show.recipes".localized()) {
                     viewModel.fetchRecipeSearch()
                     self.action = 1
                 }

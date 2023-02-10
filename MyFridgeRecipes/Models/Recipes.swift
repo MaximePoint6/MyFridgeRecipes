@@ -67,29 +67,25 @@ struct Recipes: Codable {
             return self.label ?? "-"
         }
         
-        var getIngredientLines: [String] {
-            return self.ingredientLines ?? ["-"]
-        }
-        
         var getCalories: String {
             guard let calories = self.calories else {
-                return "- kcal"
+                return "- " + "kcals".localized()
             }
-            return (String(calories) + " kcal")
+            return (String(Int(calories)) + " " + "kcals".localized())
         }
         
         var getPortionNumber: String {
             guard let portionNumber = self.yield else {
-                return "- portions"
+                return "- "
             }
-            return (String(portionNumber) + " portions")
+            return String(Int(portionNumber))
         }
         
         var getPreparationTime: String {
             guard let preparationTime = self.totalTime else {
-                return "- minutes"
+                return "- " + "minutes".localized()
             }
-            return (String(preparationTime) + " minutes")
+            return (String(Int(preparationTime)) + " " + "minutes".localized())
         }
 
         var getCuisineType: String {
@@ -98,10 +94,6 @@ struct Recipes: Codable {
         
         var getMealType: String {
             return self.mealType?.compactMap { $0 }.joined(separator: " - ") ?? ""
-        }
-        
-        var getInstructions: [String] {
-            return self.instructions ?? ["-"]
         }
         
     }

@@ -20,15 +20,15 @@ final class CDManager {
         return CDManager.shared.persistentContainer.viewContext
     }
     
-    private let persistentContainerName = "MyFridgeRecipes" // nom de la base qu'on souhaite instancier (c.a.d nom du fichier .xcdatamodel)
+    private let persistentContainerName = "MyFridgeRecipes" // name of the database to instantiate (i.e. name of the .xcdatamodel file)
     
-    // Lazy var, car on souhaite charger cette propriété seulement lorsqu'elle est réclamée pour la première fois.
-    // Ça évite d'installer plusieurs fois Core Data = gain de performance.
+    // LazyVar to load the property only the first time. This prevents installing Core Data multiple times = performance gain.
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: persistentContainerName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            // TODO: to modify, to process the error
             if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)") // code à modifier, pour traiter convenablement ce genre d'erreur
+                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         return container

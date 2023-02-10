@@ -38,3 +38,16 @@
 "api.limit" = "Limite API atteinte, attendez quelques secondes";
 "service.unavailable" = "Service non disponible";
 "server.error" = "Code d'erreur du serveur : ";
+
+// RecipeDetailsView
+"share" = "Partager";
+"preparation" = "Préparation";
+"per.portion" = "Par portion";
+"ingredients" = "Ingrédients";
+"for" = "Pour";
+"recipe" = "Recette";
+"step" = "Étape";
+"portions" = "portions";
+"minutes" = "minutes";
+"kcals" = "kcals";
+"favoris" = "Favoris";

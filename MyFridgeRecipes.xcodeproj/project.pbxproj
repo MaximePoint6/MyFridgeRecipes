@@ -61,6 +61,7 @@
 		CAB530502982AC22000726EF /* RecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB5304F2982AC22000726EF /* RecipeDetailsView.swift */; };
 		CAB530522982C8BA000726EF /* RecipeCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB530512982C8BA000726EF /* RecipeCardViewModel.swift */; };
 		CAB55619298BB85A003E5F4C /* PageState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB55618298BB85A003E5F4C /* PageState.swift */; };
+		CAFD13FB2996432000C4C933 /* IconAndDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD13FA2996432000C4C933 /* IconAndDataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		CAB5304F2982AC22000726EF /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
 		CAB530512982C8BA000726EF /* RecipeCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCardViewModel.swift; sourceTree = "<group>"; };
 		CAB55618298BB85A003E5F4C /* PageState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageState.swift; sourceTree = "<group>"; };
+		CAFD13FA2996432000C4C933 /* IconAndDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconAndDataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 		CA0FF6FA297AE07C00408598 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CAFD13FA2996432000C4C933 /* IconAndDataView.swift */,
 				CA025EEC297EF5430004B340 /* TopBarView.swift */,
 				CA99F681298419F700E5D43C /* RecipesListView.swift */,
 				CA025EE6297EEBA00004B340 /* ErrorView.swift */,
@@ -502,6 +505,7 @@
 				CAB5304A2982859E000726EF /* MockData.swift in Sources */,
 				CA4C1A97297ADE3A009EDF38 /* HomeView.swift in Sources */,
 				CAB55619298BB85A003E5F4C /* PageState.swift in Sources */,
+				CAFD13FB2996432000C4C933 /* IconAndDataView.swift in Sources */,
 				CA025EE5297EEAFC0004B340 /* ErrorManager.swift in Sources */,
 				CAB5304E2982ABA3000726EF /* RecipeDetailsViewModel.swift in Sources */,
 				CA78AA7E2990EAC300C5D8B6 /* MyFridgeRecipes.xcdatamodeld in Sources */,

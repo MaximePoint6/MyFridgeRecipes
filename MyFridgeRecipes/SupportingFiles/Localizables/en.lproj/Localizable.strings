@@ -36,5 +36,18 @@
 "contact.developer" = "Please contact developer";
 "no.internet.connection" = "Please check your internet connection";
 "api.limit" = "API limit reached, wait a few second";
+"service.unavailable" = "Service unavailable";
 "server.error" = "Server error code: ";
 
+// RecipeDetailsView
+"share" = "Share";
+"preparation" = "Preparation";
+"per.portion" = "Per portion";
+"ingredients" = "Ingredients";
+"for" = "For";
+"recipe" = "Recipe";
+"step" = "Step";
+"portions" = "portions";
+"minutes" = "minutes";
+"kcals" = "kcals";
+"favoris" = "Favoris";

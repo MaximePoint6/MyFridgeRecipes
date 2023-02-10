@@ -16,19 +16,16 @@ struct SearchBarView: View {
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(
-                    text.isEmpty ? Color.gray : Color.black
-                )
+                .foregroundColor(Color.gray)
             TextField(placeHolderText, text: $text, onEditingChanged: { isEditing in
                 self.isEditing = isEditing
             })
                 .keyboardType(keyBoardType)
-                .foregroundColor(Color.black)
                 .overlay(
                     Image(systemName: "xmark.circle.fill")
                         .padding()
                         .offset(x: 10)
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color.gray)
                         .opacity(text.isEmpty ? 0.0 : 1.0)
                         .onTapGesture {
                             UIApplication.shared.endEditing()
@@ -44,7 +41,10 @@ struct SearchBarView: View {
                 .fill(Color(.systemGray6))
                 .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
         )
-        .padding()
+        .padding(.leading)
+        .padding(.trailing)
+        .padding(.top, 5)
+        .padding(.bottom, 5)
     }
 }
 
@@ -54,6 +54,5 @@ struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
         SearchBarView(text: .constant(""), isEditing: .constant(false), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
             .previewLayout(.sizeThatFits)
-            .preferredColorScheme(.light)
     }
 }

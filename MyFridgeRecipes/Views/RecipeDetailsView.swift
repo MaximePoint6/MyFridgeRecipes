@@ -14,75 +14,105 @@ struct RecipeDetailsView: View {
     
     var body: some View {
         ScrollView {
-            ZStack(alignment: .bottom) {
-                VStack {
-                    Rectangle()
-                        .frame(height: 200)
-                        .foregroundColor(.gray)
-                    Spacer(minLength: 50)
-                }
+            ZStack(alignment: .bottomLeading) {
                 KFImage(URL(string: viewModel.recipe.getRecipeImageUrl)!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 150, height: 150)
-                    .clipShape(Circle())
-            }
-            Text(viewModel.recipe.getTitleRecipe)
-                .font(.title)
-                .fontWeight(.bold)
+                    .frame(height: 300)
+                    .clipped()
+                LinearGradient(
+                    gradient: Gradient(colors: [.clear, .black.opacity(0.8)]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                VStack(alignment: .leading) {
+                    Text(viewModel.recipe.getTitleRecipe)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                        .lineLimit(2)
+                    Text(viewModel.recipe.getMealType + " • " + viewModel.recipe.getCuisineType)
+                        .foregroundColor(Color.white.opacity(0.6))
+                        .font(.caption)
+                }
                 .padding()
-            Rectangle()
-                .frame(width: 100, height: 10)
-                .foregroundColor(.red)
-            Text(viewModel.recipe.getMealType)
-            Text(viewModel.recipe.getCuisineType)
-            HStack {
+            }
+            HStack(alignment: .center) {
+            Spacer()
+                HStack {
+                    Image(systemName: "square.and.arrow.up")
+                    Text("share".localized())
+                }
                 Spacer()
-                Text("Partager")
-                Spacer()
-                FavoriteButtonView(isLiked: $viewModel.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .red, offColor: .gray)
+                HStack {
+                    FavoriteButtonView(isLiked: $viewModel.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .red, offColor: .gray)
+                    Text("favoris".localized())
+                }
                 Spacer()
             }
+            .padding()
             ZStack(alignment: .center) {
                 Rectangle()
-                    .foregroundColor(.red)
+                    .foregroundColor(.accentColor)
                 HStack {
                     Spacer()
-                    VStack {
-                        Image(systemName: "flame")
-                        Text(viewModel.recipe.getPreparationTime)
-                        Text("préparation")
-                    }
+                    IconAndDataView(icon: "timer", data: viewModel.recipe.getPreparationTime, subtitle: "preparation".localized())
                     Spacer()
-                    VStack {
-                        Image(systemName: "flame")
-                        Text(viewModel.recipe.getCalories)
-                        Text("par plat")
-                    }
+                    IconAndDataView(icon: "flame", data: viewModel.recipe.getCalories, subtitle: "per.portion".localized())
                     Spacer()
                 }
+                .padding()
             }
-            Group {
-                Text("Ingredient")
-                Text("Pour " + viewModel.recipe.getPortionNumber)
+            if let ingredientLines = viewModel.recipe.ingredientLines, ingredientLines.count > 0 {
+                Group {
+                    VStack(alignment: .center, spacing: 5) {
+                        Text("ingredients".localized())
+                            .font(.title2)
+                            .padding(.top, 10)
+                        HStack(alignment: .center, spacing: 5) {
+                            Text("for".localized())
+                            HStack {
+                                Text(viewModel.recipe.getPortionNumber)
+                                Image(systemName: "fork.knife")
+                            }
+                            .foregroundColor(.white)
+                            .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
+                            .background(Color.accentColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                        }
+                    }
+                    VStack(alignment: .leading) {
+                        ForEach(ingredientLines, id: \.self) { ingredient in
+                            Text("• " + ingredient)
+                                .padding(1)
+                        }
+                    }
                     .padding()
-                ForEach(viewModel.recipe.getIngredientLines, id: \.self) { ingredient in
-                    Text(ingredient)
                 }
             }
-            Group {
-                Text("Recette")
-                    .padding()
-                ForEach(viewModel.recipe.getInstructions, id: \.self) { instruction in
-                    Text(instruction)
+            if let instructions = viewModel.recipe.instructions, instructions.count > 0 {
+                Group {
+                    Text("recipe".localized())
+                        .font(.title2)
+                        .padding(.top, 10)
+                        .padding(.bottom, 10)
+                    VStack(alignment: .leading) {
+                        ForEach(Array(instructions.enumerated()), id: \.offset) { (index, instruction) in
+                            VStack {
+                                Text("step".localized() + String(index))
+                                    .font(.caption)
+                                Text(instruction)
+                            }
+                            .padding()
+                        }
+                    }
                 }
             }
-            
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(.container, edges: .top)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                FavoriteButtonView(isLiked: $viewModel.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .red, offColor: .gray)
+                FavoriteButtonView(isLiked: $viewModel.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .red, offColor: .white)
             }
         }
         .onAppear {

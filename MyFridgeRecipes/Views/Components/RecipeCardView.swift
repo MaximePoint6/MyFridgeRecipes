@@ -30,9 +30,9 @@ struct RecipeCardView: View {
                 Text(viewModel.recipe.getTitleRecipe)
                     .font(.title2)
                     .lineLimit(2)
-                Text(viewModel.recipe.getCuisineType)
-                    .font(.headline)
-                    .lineLimit(2)
+                Text(viewModel.recipe.getMealType + " • " + viewModel.recipe.getCuisineType)
+                    .font(.caption)
+                    .lineLimit(1)
             }
             Spacer()
         }
@@ -47,6 +47,5 @@ struct RecipeCardView_Previews: PreviewProvider {
     static var previews: some View {
         RecipeCardView(viewModel: RecipeCardViewModel(recipe: MockData.previewSingleRecipe))
             .previewLayout(.sizeThatFits)
-            .preferredColorScheme(.light)
     }
 }

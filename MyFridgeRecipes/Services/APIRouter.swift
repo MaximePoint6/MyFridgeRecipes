@@ -45,11 +45,11 @@ enum APIRouter {
     var parameters: [String: String]? {
         switch self {
             case .fetchFoodSearch(let query):
-                return ["app_id": APIKeys.adamamFoodDatabaseID, "app_key": APIKeys.adamamFoodDatabase, "q": query, "limit": "10"]
+                return ["app_id": APIKeys.edamamFoodDatabaseID, "app_key": APIKeys.edamamFoodDatabase, "q": query, "limit": "10"]
             case .fetchRecipeSearch(let query):
-                return ["app_id": APIKeys.adamamRecipeSearchID, "app_key": APIKeys.adamamRecipeSearch, "type": "any", "q": query]
+                return ["app_id": APIKeys.edamamRecipeSearchID, "app_key": APIKeys.edamamRecipeSearch, "type": "any", "q": query]
             case .fetchRandomRecipes:
-                return ["app_id": APIKeys.adamamRecipeSearchID, "app_key": APIKeys.adamamRecipeSearch, "type": "any", "random": "true", "ingr": "1-10"]
+                return ["app_id": APIKeys.edamamRecipeSearchID, "app_key": APIKeys.edamamRecipeSearch, "type": "any", "random": "true", "ingr": "1-10"]
             case .fetchNextRecipesWithUrl, .fetchImage:
                 return nil
         }

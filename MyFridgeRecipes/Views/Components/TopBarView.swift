@@ -17,7 +17,6 @@ struct TopBarView: View {
             VStack(alignment: .leading) {
                 Text(viewModel.helloLabel)
                     .font(.caption)
-                    .foregroundColor(.gray)
                 Text("Maxime")
                     .font(.title)
                     .bold()
@@ -29,7 +28,10 @@ struct TopBarView: View {
                     showSettingsView.toggle()
                 }
         }
-        .padding(20)
+        .padding(.leading)
+        .padding(.trailing)
+        .padding(.top, 5)
+        .padding(.bottom, 5)
         .sheet(isPresented: $showSettingsView) {
             SettingsView()
         }
@@ -45,6 +47,5 @@ struct TopBar_Previews: PreviewProvider {
     static var previews: some View {
         TopBarView(viewModel: topBarViewModel)
             .previewLayout(.sizeThatFits)
-            .preferredColorScheme(.light)
     }
 }

@@ -32,7 +32,7 @@ struct HomeView: View {
                             }
                         }
                     )
-                VStack {
+                VStack(alignment: .center, spacing: 5) {
                     TopBarView(viewModel: topBarViewModel)
                     SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                     Spacer()
