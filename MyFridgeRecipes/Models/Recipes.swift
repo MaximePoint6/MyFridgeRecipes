@@ -31,13 +31,9 @@ struct Recipes: Codable {
     }
     
     struct Recipe: Codable {
-        var isFavorite: Bool? = false
-//        let uri: String?
+        var isFavorite: Bool
         let label: String?
         let image: String?
-//        var images: InlineModel1?
-//        let source: String?
-//        let url: String?
         let shareAs: String?
         let yield: Double? // Recipe for x person
 //        let dietLabels: [String]?
@@ -57,6 +53,36 @@ struct Recipes: Codable {
 //        let totalNutrients: NutrientsInfo?
 //        let totalDaily: NutrientsInfo?
 //        let digest: [DigestEntry]?
+        
+        enum CodingKeys: String, CodingKey {
+            case isFavorite
+            case label
+            case image
+            case shareAs
+            case yield
+            case ingredientLines
+            case calories
+            case totalTime
+            case cuisineType
+            case mealType
+            case instructions
+        }
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            label = try container.decode(String.self, forKey: .label)
+            image = try container.decode(String.self, forKey: .image)
+            shareAs = try container.decodeIfPresent(String.self, forKey: .shareAs)
+            yield = try container.decode(Double.self, forKey: .yield)
+            ingredientLines = try container.decode([String].self, forKey: .ingredientLines)
+            calories = try container.decodeIfPresent(Double.self, forKey: .calories)
+            totalTime = try container.decode(Double.self, forKey: .totalTime)
+            cuisineType = try container.decode([String].self, forKey: .cuisineType)
+            mealType = try container.decodeIfPresent([String].self, forKey: .mealType)
+            instructions = try container.decodeIfPresent([String].self, forKey: .instructions)
+            // Here decode a other property and if not present set default value
+            isFavorite = try container.decodeIfPresent(Bool.self, forKey: .isFavorite) ?? false
+        }
         
         // MARK: - UI
         var getRecipeImageUrl: String {

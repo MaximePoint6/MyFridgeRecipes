@@ -9,37 +9,40 @@ import Foundation
 
 class RecipeDetailsViewModel: ObservableObject {
     
-    let recipe: Recipes.Recipe
-    @Published var isFavorite: Bool = false
+   @Published var recipe: Recipes.Recipe
     
     private let repository = CDRecipesRepository()
+    private let updateFavoriteRecipes: VMFavoriteRecipesProtocol
     
-    init(recipe: Recipes.Recipe) {
+    init(recipe: Recipes.Recipe, updateFavoriteRecipes: VMFavoriteRecipesProtocol) {
         self.recipe = recipe
+        self.updateFavoriteRecipes = updateFavoriteRecipes
         self.checkIfIsfavorite()
     }
     
     func clickedOnIsfavorite() {
-        if self.isFavorite {
-            self.isFavorite = false
+        if recipe.isFavorite == true {
+            recipe.isFavorite = false
             removeFavoriteRecipe(recipe: recipe)
         } else {
-            self.isFavorite = true
+            recipe.isFavorite = true
             addFavoriteRecipe(newFavoriteRecipe: recipe)
         }
     }
     
     func addFavoriteRecipe(newFavoriteRecipe: Recipes.Recipe) {
         repository.addFavoriteRecipes(recipe: newFavoriteRecipe)
+        updateFavoriteRecipes.updateFavoriteRecipes()
     }
     
     func removeFavoriteRecipe(recipe: Recipes.Recipe) {
         repository.removeFavoriteRecipe(recipe: recipe)
+        updateFavoriteRecipes.updateFavoriteRecipes()
     }
     
     func checkIfIsfavorite() {
         repository.getFavoriteRecipes { favoriteRecipes in
-            self.isFavorite = favoriteRecipes.contains(where: { favoriteRecipes in favoriteRecipes.label == (recipe.label ?? "") })
+            recipe.isFavorite = favoriteRecipes.contains(where: { favoriteRecipes in favoriteRecipes.label == (recipe.label ?? "") })
         }
     }
     

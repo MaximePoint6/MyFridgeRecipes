@@ -45,7 +45,7 @@ struct RecipeDetailsView: View {
                 }
                 Spacer()
                 HStack {
-                    FavoriteButtonView(isLiked: $viewModel.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .red, offColor: .gray)
+                    FavoriteButtonView(isLiked: $viewModel.recipe.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .red, offColor: .gray)
                     Text("favoris".localized())
                 }
                 Spacer()
@@ -112,7 +112,7 @@ struct RecipeDetailsView: View {
         .ignoresSafeArea(.container, edges: .top)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                FavoriteButtonView(isLiked: $viewModel.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .red, offColor: .white)
+                FavoriteButtonView(isLiked: $viewModel.recipe.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .red, offColor: .white)
             }
         }
         .onAppear {
@@ -124,7 +124,7 @@ struct RecipeDetailsView: View {
 
 // MARK: - Preview
 struct RecipeDetailsView_Previews: PreviewProvider {
-    static var viewModel = RecipeDetailsViewModel(recipe: MockData.previewSingleRecipe)
+    static var viewModel = RecipeDetailsViewModel(recipe: MockData.previewSingleRecipe, updateFavoriteRecipes: FavoritesViewModel())
     
     static var previews: some View {
         RecipeDetailsView(viewModel: viewModel)

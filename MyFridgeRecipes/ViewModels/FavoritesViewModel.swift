@@ -8,7 +8,7 @@
 import Foundation
 
 
-class FavoritesViewModel: ObservableObject {
+class FavoritesViewModel: ObservableObject, VMFavoriteRecipesProtocol {
     
     @Published var pageState = PageState.loading
     
@@ -22,7 +22,7 @@ class FavoritesViewModel: ObservableObject {
         }
     }
     
-    func getFavoriteRecipes() {
+    func updateFavoriteRecipes() {
         repository.getFavoriteRecipes { recipes in
             self.favoriteRecipes = recipes
         }
@@ -39,10 +39,5 @@ class FavoritesViewModel: ObservableObject {
             })
         }
     }
-    
-//    func addFavoriteRecipe(newFavoriteRecipe: Recipes.Recipe) {
-//        self.favoriteRecipes.append(newFavoriteRecipe)
-//        repository.addFavoriteRecipes(recipe: newFavoriteRecipe)
-//    }
     
 }

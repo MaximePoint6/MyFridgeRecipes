@@ -6,6 +6,7 @@
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="ingredientLines" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
         <attribute name="instructions" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="label" optional="YES" attributeType="String"/>
         <attribute name="mealType" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
         <attribute name="shareAs" optional="YES" attributeType="String"/>

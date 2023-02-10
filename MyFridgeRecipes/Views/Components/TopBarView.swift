@@ -18,8 +18,8 @@ struct TopBarView: View {
                 Text(viewModel.helloLabel)
                     .font(.caption)
                 Text("Maxime")
-                    .font(.title)
-                    .bold()
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
             }
             Spacer()
             Image(systemName: "person.circle")

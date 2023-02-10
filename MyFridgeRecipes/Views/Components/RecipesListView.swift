@@ -12,9 +12,10 @@ struct RecipesListView: View {
     @Binding var pageState: PageState
     let loadNextRecipes: () -> Void
     let nextRecipesLoading: Bool
+    @ObservedObject var favoriteViewModel: FavoritesViewModel
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             switch pageState {
                 case .loading:
                     ProgressView()
@@ -30,16 +31,16 @@ struct RecipesListView: View {
                             Section {
                                 ForEach(recipes, id: \.label) { recipe in
                                     NavigationLink {
-                                        RecipeDetailsView(viewModel: RecipeDetailsViewModel(recipe: recipe))
+                                        RecipeDetailsView(viewModel: RecipeDetailsViewModel(recipe: recipe, updateFavoriteRecipes: favoriteViewModel))
                                     } label: {
                                         RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
                                     }
                                     if recipe.label == recipes.last?.label {
                                         Text("")
-                                        .onAppear(
-                                            perform:
-                                                loadNextRecipes
-                                        )
+                                            .onAppear(
+                                                perform:
+                                                    loadNextRecipes
+                                            )
                                     }
                                 }
                             } header: {
@@ -54,15 +55,16 @@ struct RecipesListView: View {
         }
     }
 }
-    
-    struct MyFridgeRecipesView_Previews: PreviewProvider {
-        static var previews: some View {
-            Group {
-                RecipesListView(pageState: .constant(PageState.loaded(MockData.previewRecipeArray)), loadNextRecipes: {}, nextRecipesLoading: false)
-                RecipesListView(pageState: .constant(PageState.loading), loadNextRecipes: {}, nextRecipesLoading: false)
-                RecipesListView(pageState: .constant(PageState.failed(.noInternet)), loadNextRecipes: {}, nextRecipesLoading: false)
-                RecipesListView(pageState: .constant(PageState.failed(.decoding)), loadNextRecipes: {}, nextRecipesLoading: false)
-                RecipesListView(pageState: .constant(PageState.failed(.backend(400))), loadNextRecipes: {}, nextRecipesLoading: false)
-            }
+
+struct MyFridgeRecipesView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            RecipesListView(pageState: .constant(PageState.loaded(MockData.previewRecipeArray)), loadNextRecipes: {}, nextRecipesLoading: false, favoriteViewModel: FavoritesViewModel())
+            RecipesListView(pageState: .constant(PageState.loaded([])), loadNextRecipes: {}, nextRecipesLoading: false, favoriteViewModel: FavoritesViewModel())
+            RecipesListView(pageState: .constant(PageState.loading), loadNextRecipes: {}, nextRecipesLoading: false, favoriteViewModel: FavoritesViewModel())
+            RecipesListView(pageState: .constant(PageState.failed(.noInternet)), loadNextRecipes: {}, nextRecipesLoading: false, favoriteViewModel: FavoritesViewModel())
+            RecipesListView(pageState: .constant(PageState.failed(.decoding)), loadNextRecipes: {}, nextRecipesLoading: false, favoriteViewModel: FavoritesViewModel())
+            RecipesListView(pageState: .constant(PageState.failed(.backend(400))), loadNextRecipes: {}, nextRecipesLoading: false, favoriteViewModel: FavoritesViewModel())
         }
     }
+}

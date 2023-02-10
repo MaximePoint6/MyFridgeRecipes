@@ -51,3 +51,7 @@
 "minutes" = "minutes";
 "kcals" = "kcals";
 "favoris" = "Favoris";
+
+// FavoritesView
+"all.favorites.recipes" =  "Find here, all your favorite recipes!";
+"available.offline" = "Available even offline.";

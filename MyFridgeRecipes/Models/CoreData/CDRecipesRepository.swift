@@ -35,6 +35,7 @@ final class CDRecipesRepository {
     
     func addFavoriteRecipes(recipe: Recipes.Recipe) {
         let newFavoriteRecipe = CDRecipe(context: cdManager.viewContext)
+        newFavoriteRecipe.isFavorite = recipe.isFavorite
         newFavoriteRecipe.label = recipe.label
         newFavoriteRecipe.image = recipe.image
         newFavoriteRecipe.shareAs = recipe.shareAs
@@ -77,6 +78,7 @@ final class CDRecipesRepository {
     
     func updateFavoriteRecipes(recipe: Recipes.Recipe) {
         if let label = recipe.label, let recipeToDelete = fetchCDRecipe(withLabel: label) {
+            recipeToDelete.isFavorite = recipe.isFavorite
             recipeToDelete.label = recipe.label
             recipeToDelete.image = recipe.image
             recipeToDelete.shareAs = recipe.shareAs
@@ -124,6 +126,7 @@ extension Recipes.Recipe {
 //              let instructions = coreDataObject.instructions else {
 //            return nil
 //        }
+        self.isFavorite = coreDataObject.isFavorite
         self.label = coreDataObject.label
         self.image = coreDataObject.image
         self.shareAs = coreDataObject.shareAs
