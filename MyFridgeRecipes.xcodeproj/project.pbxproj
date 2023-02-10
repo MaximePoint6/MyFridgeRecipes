@@ -36,7 +36,6 @@
 		CA4C1A97297ADE3A009EDF38 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C1A96297ADE3A009EDF38 /* HomeView.swift */; };
 		CA4C1A99297ADE3B009EDF38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA4C1A98297ADE3B009EDF38 /* Assets.xcassets */; };
 		CA4C1AAB297ADE3B009EDF38 /* APIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C1AAA297ADE3B009EDF38 /* APIManagerTests.swift */; };
-		CA68B45F2996B116007CF5E2 /* VMFavoriteRecipes+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA68B45E2996B116007CF5E2 /* VMFavoriteRecipes+Protocol.swift */; };
 		CA78AA73298D5F9600C5D8B6 /* MockResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78AA72298D5F9600C5D8B6 /* MockResponseData.swift */; };
 		CA78AA79298FE93B00C5D8B6 /* FavoriteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78AA78298FE93B00C5D8B6 /* FavoriteButtonView.swift */; };
 		CA78AA7B2990E8F900C5D8B6 /* CDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78AA7A2990E8F900C5D8B6 /* CDManager.swift */; };
@@ -107,7 +106,6 @@
 		CA4C1A98297ADE3B009EDF38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA4C1AA6297ADE3B009EDF38 /* MyFridgeRecipesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFridgeRecipesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4C1AAA297ADE3B009EDF38 /* APIManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerTests.swift; sourceTree = "<group>"; };
-		CA68B45E2996B116007CF5E2 /* VMFavoriteRecipes+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VMFavoriteRecipes+Protocol.swift"; sourceTree = "<group>"; };
 		CA78AA72298D5F9600C5D8B6 /* MockResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResponseData.swift; sourceTree = "<group>"; };
 		CA78AA78298FE93B00C5D8B6 /* FavoriteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonView.swift; sourceTree = "<group>"; };
 		CA78AA7A2990E8F900C5D8B6 /* CDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDManager.swift; sourceTree = "<group>"; };
@@ -201,7 +199,6 @@
 		CA0FF6FD297AE0B900408598 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				CA68B45E2996B116007CF5E2 /* VMFavoriteRecipes+Protocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -488,7 +485,6 @@
 				CA025ED7297C500E0004B340 /* APINetworkLogger.swift in Sources */,
 				CA025EE9297EF2DB0004B340 /* FridgeView.swift in Sources */,
 				CA025EE7297EEBA00004B340 /* ErrorView.swift in Sources */,
-				CA68B45F2996B116007CF5E2 /* VMFavoriteRecipes+Protocol.swift in Sources */,
 				CA99F680298417E400E5D43C /* ButtonView.swift in Sources */,
 				CAB5304629827599000726EF /* UIApplication+extension.swift in Sources */,
 				CA78AA802990EDC000C5D8B6 /* CDRecipe.swift in Sources */,

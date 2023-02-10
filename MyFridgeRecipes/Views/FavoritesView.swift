@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FavoritesView: View {
-    @StateObject var viewModel = FavoritesViewModel()
+    @EnvironmentObject var viewModel: FavoritesViewModel
     @State private var searchText = ""
     @State private var isEditing = false
     
@@ -31,7 +31,7 @@ struct FavoritesView: View {
                 SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                 }
                 Spacer()
-                RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: {}, nextRecipesLoading: false, favoriteViewModel: viewModel)
+                RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: {}, nextRecipesLoading: false)
             }
         }
         .onChange(of: searchText) { newValue in
@@ -41,9 +41,6 @@ struct FavoritesView: View {
                 viewModel.getFilteredRecipes(searchText: newValue)
             }
         }
-        .onAppear {
-            viewModel.updateFavoriteRecipes()
-        }
     }
 }
 
@@ -51,10 +48,11 @@ struct FavoritesView: View {
 // MARK: - Preview
 struct FavoriteView_Previews: PreviewProvider {
     @StateObject static var topBarViewModel = TopBarViewModel()
-    @StateObject var viewModel = FavoritesViewModel()
+    @StateObject static var viewModel = FavoritesViewModel()
     
     static var previews: some View {
         FavoritesView()
             .environmentObject(topBarViewModel)
+            .environmentObject(viewModel)
     }
 }

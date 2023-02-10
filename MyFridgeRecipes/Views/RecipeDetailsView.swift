@@ -11,6 +11,7 @@ import Kingfisher
 struct RecipeDetailsView: View {
     
     @ObservedObject var viewModel: RecipeDetailsViewModel
+    @EnvironmentObject var favoriteViewModel: FavoritesViewModel
     
     var body: some View {
         ScrollView {
@@ -116,6 +117,7 @@ struct RecipeDetailsView: View {
             }
         }
         .onAppear {
+            viewModel.setupFavoritesViewModel(favoritesViewModel: favoriteViewModel)
             viewModel.checkIfIsfavorite()
         }
     }
@@ -124,7 +126,7 @@ struct RecipeDetailsView: View {
 
 // MARK: - Preview
 struct RecipeDetailsView_Previews: PreviewProvider {
-    static var viewModel = RecipeDetailsViewModel(recipe: MockData.previewSingleRecipe, updateFavoriteRecipes: FavoritesViewModel())
+    static var viewModel = RecipeDetailsViewModel(recipe: MockData.previewSingleRecipe)
     
     static var previews: some View {
         RecipeDetailsView(viewModel: viewModel)

@@ -30,7 +30,7 @@ struct FridgeView: View {
                     showSearchModalView.toggle()
                 }
                 Spacer()
-                NavigationLink(destination: RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: viewModel.fetchNextRecipesWithUrl, nextRecipesLoading: viewModel.nextRecipesLoading, favoriteViewModel: FavoritesViewModel()),
+                NavigationLink(destination: RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: viewModel.fetchNextRecipesWithUrl, nextRecipesLoading: viewModel.nextRecipesLoading),
                                tag: 1, selection: $action) {
                     EmptyView()
                 }

@@ -10,14 +10,18 @@ import Foundation
 class RecipeDetailsViewModel: ObservableObject {
     
    @Published var recipe: Recipes.Recipe
+    var favoritesViewModel: FavoritesViewModel?
     
     private let repository = CDRecipesRepository()
-    private let updateFavoriteRecipes: VMFavoriteRecipesProtocol
     
-    init(recipe: Recipes.Recipe, updateFavoriteRecipes: VMFavoriteRecipesProtocol) {
+    
+    init(recipe: Recipes.Recipe) {
         self.recipe = recipe
-        self.updateFavoriteRecipes = updateFavoriteRecipes
         self.checkIfIsfavorite()
+    }
+    
+    func setupFavoritesViewModel(favoritesViewModel: FavoritesViewModel) {
+        self.favoritesViewModel = favoritesViewModel
     }
     
     func clickedOnIsfavorite() {
@@ -28,16 +32,15 @@ class RecipeDetailsViewModel: ObservableObject {
             recipe.isFavorite = true
             addFavoriteRecipe(newFavoriteRecipe: recipe)
         }
+        self.favoritesViewModel?.updateFavoriteRecipes()
     }
     
     func addFavoriteRecipe(newFavoriteRecipe: Recipes.Recipe) {
         repository.addFavoriteRecipes(recipe: newFavoriteRecipe)
-        updateFavoriteRecipes.updateFavoriteRecipes()
     }
     
     func removeFavoriteRecipe(recipe: Recipes.Recipe) {
         repository.removeFavoriteRecipe(recipe: recipe)
-        updateFavoriteRecipes.updateFavoriteRecipes()
     }
     
     func checkIfIsfavorite() {

@@ -11,11 +11,13 @@ import SwiftUI
 struct MyFridgeRecipesApp: App {
     
     @StateObject var topBarViewModel = TopBarViewModel()
+    @StateObject var favoritesViewModel = FavoritesViewModel()
 
     var body: some Scene {
         WindowGroup {
             MyTabView()
                 .environmentObject(topBarViewModel)
+                .environmentObject(favoritesViewModel)
         }
     }
 }

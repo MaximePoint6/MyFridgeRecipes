@@ -8,13 +8,15 @@
 import Foundation
 
 
-class FavoritesViewModel: ObservableObject, VMFavoriteRecipesProtocol {
+class FavoritesViewModel: ObservableObject {
     
     @Published var pageState = PageState.loading
     
     private let repository = CDRecipesRepository()
     
-    init() { }
+    init() {
+        updateFavoriteRecipes()
+    }
     
     private var favoriteRecipes: [Recipes.Recipe] = [] {
         didSet {

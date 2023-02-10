@@ -36,7 +36,7 @@ struct HomeView: View {
                     TopBarView(viewModel: topBarViewModel)
                     SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                     Spacer()
-                    RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading, favoriteViewModel: FavoritesViewModel())
+                    RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading)
                     Spacer()
                 }
             }
