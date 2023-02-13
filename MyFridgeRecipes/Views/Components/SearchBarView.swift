@@ -13,6 +13,7 @@ struct SearchBarView: View {
     var keyBoardType: UIKeyboardType
     var placeHolderText: String
     
+    // MARK: - Main View
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -20,19 +21,19 @@ struct SearchBarView: View {
             TextField(placeHolderText, text: $text, onEditingChanged: { isEditing in
                 self.isEditing = isEditing
             })
-                .keyboardType(keyBoardType)
-                .overlay(
-                    Image(systemName: "xmark.circle.fill")
-                        .padding()
-                        .offset(x: 10)
-                        .foregroundColor(Color.gray)
-                        .opacity(text.isEmpty ? 0.0 : 1.0)
-                        .onTapGesture {
-                            UIApplication.shared.endEditing()
-                            text = ""
-                        }
-                    , alignment: .trailing
-                )
+            .keyboardType(keyBoardType)
+            .overlay(
+                Image(systemName: "xmark.circle.fill")
+                    .padding()
+                    .offset(x: 10)
+                    .foregroundColor(Color.gray)
+                    .opacity(text.isEmpty ? 0.0 : 1.0)
+                    .onTapGesture {
+                        UIApplication.shared.endEditing()
+                        text = ""
+                    }
+                , alignment: .trailing
+            )
         }
         .font(.headline)
         .padding()

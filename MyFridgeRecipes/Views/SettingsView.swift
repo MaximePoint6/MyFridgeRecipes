@@ -11,6 +11,7 @@ struct SettingsView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    // MARK: - Main View
     var body: some View {
         Text("SettingsView")
         Button("Close") {

@@ -12,23 +12,13 @@ struct FavoritesView: View {
     @State private var searchText = ""
     @State private var isEditing = false
     
+    // MARK: - Main View
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .center) {
                 VStack(alignment: .leading) {
-                    VStack(alignment: .leading) {
-                        Text("all.favorites.recipes".localized())
-                            .font(.largeTitle)
-                            .fontWeight(.semibold)
-                        Text("available.offline".localized())
-                            .font(.caption)
-                            .foregroundColor(.accentColor)
-                    }
-                    .padding(.leading)
-                    .padding(.trailing)
-                    .padding(.top, 5)
-                .padding(.bottom, 5)
-                SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+                    titleSection
+                    SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                 }
                 Spacer()
                 RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: {}, nextRecipesLoading: false)
@@ -42,6 +32,24 @@ struct FavoritesView: View {
             }
         }
     }
+    
+    
+    // MARK: - SUbviews
+    var titleSection: some View {
+        VStack(alignment: .leading) {
+            Text("all.favorites.recipes".localized())
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+            Text("available.offline".localized())
+                .font(.caption)
+                .foregroundColor(.accentColor)
+        }
+        .padding(.leading)
+        .padding(.trailing)
+        .padding(.top, 5)
+        .padding(.bottom, 5)
+    }
+    
 }
 
 
@@ -49,7 +57,6 @@ struct FavoritesView: View {
 struct FavoriteView_Previews: PreviewProvider {
     @StateObject static var topBarViewModel = TopBarViewModel()
     @StateObject static var viewModel = FavoritesViewModel()
-    
     static var previews: some View {
         FavoritesView()
             .environmentObject(topBarViewModel)

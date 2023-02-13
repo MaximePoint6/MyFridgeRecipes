@@ -14,15 +14,15 @@ struct FavoriteButtonView: View {
     let onColor: Color
     let offColor: Color
     
-    // animation
+    // Animation
     @State private var animate = false
     let animationDuration: Double = 0.1
     var animationScale: CGFloat {
         isLiked ? 0.5 : 1.5
     }
     
+    // MARK: - Main View
     var body: some View {
-        
         Button(action: {
             self.animate = true
             DispatchQueue.main.asyncAfter(deadline: .now() + self.animationDuration, execute: {
@@ -39,11 +39,10 @@ struct FavoriteButtonView: View {
     }
 }
 
+// MARK: - Preview
 struct FavoriteButtonView_Previews: PreviewProvider {
-    
     @State static var isLiked: Bool = true
     @State static var isNotLiked: Bool = false
-    
     static var previews: some View {
         Group {
             FavoriteButtonView(isLiked: $isLiked, action: {}, onColor: Color.red, offColor: Color.gray)

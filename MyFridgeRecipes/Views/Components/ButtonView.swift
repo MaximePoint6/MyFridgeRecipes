@@ -19,6 +19,7 @@ struct ButtonView: View {
         case secondary
     }
     
+    // MARK: - Main View
     var body: some View {
         Button(action: action, label: {
             HStack {
@@ -48,6 +49,7 @@ struct ButtonView: View {
     }
 }
 
+// MARK: - Preview
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
         ButtonView(buttonType: .primary, color: .accentColor, title: "Test Button", action: {})

@@ -21,7 +21,7 @@
 
 // RecipesListView
 "recipe.ideas" = "Recipe ideas";
-"no.recipes" = "No recipes found";
+"no.recipe" = "No recipe found";
 
 // FridgeView
 "add.other.food" = "Add other food";

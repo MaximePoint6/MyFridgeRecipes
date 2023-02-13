@@ -11,6 +11,7 @@ struct ErrorView: View {
     
     let error: ErrorManager.ErrorType
     
+    // MARK: - Main View
     var body: some View {
         VStack {
             Text("something.went.wrong".localized())

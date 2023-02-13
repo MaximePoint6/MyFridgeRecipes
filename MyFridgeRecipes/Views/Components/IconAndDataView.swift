@@ -13,6 +13,7 @@ struct IconAndDataView: View {
     let data: String
     let subtitle: String
     
+    // MARK: - Main View
     var body: some View {
         VStack {
             Image(systemName: icon)
@@ -29,6 +30,7 @@ struct IconAndDataView: View {
     }
 }
 
+// MARK: - Preview
 struct IconAndDataView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {

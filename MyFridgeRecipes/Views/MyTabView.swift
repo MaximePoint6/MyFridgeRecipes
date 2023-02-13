@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MyTabView: View {
     
+    // MARK: - Main View
     var body: some View {
         TabView {
             HomeView()
@@ -31,9 +32,10 @@ struct MyTabView: View {
 // MARK: - Preview
 struct TabView_Previews: PreviewProvider {
     @StateObject static var topBarViewModel = TopBarViewModel()
-    
+    @StateObject static var favoritesViewModel = FavoritesViewModel()
     static var previews: some View {
         MyTabView()
             .environmentObject(topBarViewModel)
+            .environmentObject(favoritesViewModel)
     }
 }

@@ -12,6 +12,7 @@ struct TopBarView: View {
     @State private var showSettingsView = false
     var viewModel: TopBarViewModel
     
+    // MARK: - Main View
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -41,9 +42,7 @@ struct TopBarView: View {
 
 // MARK: - Preview
 struct TopBar_Previews: PreviewProvider {
-    
     @StateObject static var topBarViewModel = TopBarViewModel()
-    
     static var previews: some View {
         TopBarView(viewModel: topBarViewModel)
             .previewLayout(.sizeThatFits)

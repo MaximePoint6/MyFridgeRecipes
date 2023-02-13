@@ -17,6 +17,8 @@ struct HomeView: View {
     @State private var timer: Timer?
     private let delay: TimeInterval = 1 // delay in seconds
     
+    
+    // MARK: - Main View
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
@@ -59,9 +61,7 @@ struct HomeView: View {
 
 // MARK: - Preview
 struct HomeView_Previews: PreviewProvider {
-    
     @StateObject static var topBarViewModel = TopBarViewModel()
-    
     static var previews: some View {
         HomeView()
             .environmentObject(topBarViewModel)

@@ -13,6 +13,7 @@ struct RecipesListView: View {
     let loadNextRecipes: () -> Void
     let nextRecipesLoading: Bool
     
+    // MARK: - Main View
     var body: some View {
         VStack(alignment: .center) {
             switch pageState {
@@ -23,7 +24,7 @@ struct RecipesListView: View {
                 case .loaded(let recipes):
                     if recipes.isEmpty {
                         Spacer()
-                        Text("no.recipes".localized())
+                        Text("no.recipe".localized())
                         Spacer()
                     } else {
                         List {
@@ -55,6 +56,7 @@ struct RecipesListView: View {
     }
 }
 
+// MARK: - Preview
 struct MyFridgeRecipesView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
