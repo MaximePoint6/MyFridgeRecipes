@@ -1,0 +1,3 @@
+# MyFridgeRecipes
+
+- Project in progress
