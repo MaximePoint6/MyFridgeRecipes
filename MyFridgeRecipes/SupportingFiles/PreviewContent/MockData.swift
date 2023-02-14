@@ -10,9 +10,9 @@ import Foundation
 class MockData {
     
     // Mock datas
-    static var previewSingleRecipe: Recipes.Recipe = load("Recipe.json")
+    static var previewSingleRecipe: Recipe = load("Recipe.json")
     static var previewRecipes: Recipes = load("Recipes.json")
-    static var previewRecipeArray: [Recipes.Recipe] = previewRecipes.hits!
+    static var previewRecipeArray: [Recipe] = previewRecipes.hits!
         .filter { $0.recipe != nil }
         .map { $0.recipe! }
     

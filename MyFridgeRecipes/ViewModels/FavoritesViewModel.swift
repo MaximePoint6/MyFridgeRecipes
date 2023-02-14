@@ -18,7 +18,7 @@ class FavoritesViewModel: ObservableObject {
         updateFavoriteRecipes()
     }
     
-    private var favoriteRecipes: [Recipes.Recipe] = [] {
+    private var favoriteRecipes: [Recipe] = [] {
         didSet {
             self.pageState = .loaded(favoriteRecipes)
         }

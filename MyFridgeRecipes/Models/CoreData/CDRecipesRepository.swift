@@ -19,12 +19,12 @@ final class CDRecipesRepository {
     }
     
     // MARK: - Repository
-    func getFavoriteRecipes(completion: ([Recipes.Recipe]) -> Void) {
+    func getFavoriteRecipes(completion: ([Recipe]) -> Void) {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         do {
             let favoriteRecipes = try cdManager.viewContext.fetch(request)
-            let recipes = favoriteRecipes.compactMap({ (rawRecipe: CDRecipe) -> Recipes.Recipe? in
-                Recipes.Recipe(fromCoreDataObject: rawRecipe)
+            let recipes = favoriteRecipes.compactMap({ (rawRecipe: CDRecipe) -> Recipe? in
+                Recipe(fromCoreDataObject: rawRecipe)
             })
             completion(recipes)
         } catch {
@@ -33,7 +33,7 @@ final class CDRecipesRepository {
         }
     }
     
-    func addFavoriteRecipes(recipe: Recipes.Recipe) {
+    func addFavoriteRecipes(recipe: Recipe) {
         let newFavoriteRecipe = CDRecipe(context: cdManager.viewContext)
         newFavoriteRecipe.isFavorite = recipe.isFavorite
         newFavoriteRecipe.label = recipe.label
@@ -55,7 +55,7 @@ final class CDRecipesRepository {
 //        }
     }
     
-    func removeFavoriteRecipe(recipe: Recipes.Recipe) {
+    func removeFavoriteRecipe(recipe: Recipe) {
         if let label = recipe.label, let recipeToDelete = fetchCDRecipe(withLabel: label) {
             cdManager.viewContext.delete(recipeToDelete)
             saveData()
@@ -76,7 +76,7 @@ final class CDRecipesRepository {
         }
     }
     
-    func updateFavoriteRecipes(recipe: Recipes.Recipe) {
+    func updateFavoriteRecipes(recipe: Recipe) {
         if let label = recipe.label, let recipeToDelete = fetchCDRecipe(withLabel: label) {
             recipeToDelete.isFavorite = recipe.isFavorite
             recipeToDelete.label = recipe.label
@@ -115,7 +115,7 @@ final class CDRecipesRepository {
 
 
 
-extension Recipes.Recipe {
+extension Recipe {
     init?(fromCoreDataObject coreDataObject: CDRecipe) {
 //        guard let label = coreDataObject.label,
 //              let image = coreDataObject.image,

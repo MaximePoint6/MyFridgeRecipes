@@ -10,5 +10,5 @@ import Foundation
 enum PageState {
     case loading
     case failed(ErrorManager.ErrorType)
-    case loaded([Recipes.Recipe])
+    case loaded([Recipe])
 }

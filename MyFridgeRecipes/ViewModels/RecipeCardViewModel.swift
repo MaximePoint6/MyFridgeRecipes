@@ -9,9 +9,9 @@ import Foundation
 
 class RecipeCardViewModel: ObservableObject {
     
-    @Published var recipe: Recipes.Recipe
+    @Published var recipe: Recipe
     
-    init(recipe: Recipes.Recipe) {
+    init(recipe: Recipe) {
         self.recipe = recipe
     }
 

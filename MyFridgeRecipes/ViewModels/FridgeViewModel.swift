@@ -25,7 +25,7 @@ class FridgeViewModel: ObservableObject {
     
     private var nextRecipesUrl: String?
     
-    private var recipes: [Recipes.Recipe] = [] {
+    private var recipes: [Recipe] = [] {
         didSet {
             self.pageState = .loaded(recipes)
         }
