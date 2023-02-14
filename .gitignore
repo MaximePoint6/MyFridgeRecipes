@@ -22,6 +22,10 @@ DerivedData/
 ## Obj-C/Swift specific
 *.hmap
 MyFridgeRecipes/Services/ApiKey.swift
+MyFridgeRecipes/Services/APIKeys.swift
+MyFridgeRecipes/SupportingFiles/PreviewContent/Recipe.json
+MyFridgeRecipes/SupportingFiles/PreviewContent/Recipes.json
+MyFridgeRecipesTests/Recipes.json
 
 ## App packaging
 *.ipa

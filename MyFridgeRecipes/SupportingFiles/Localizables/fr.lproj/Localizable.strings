@@ -6,4 +6,52 @@
   
 */
 
-"test" = "test";
+// TabView
+"home" = "Accueil";
+"my.fridge" = "Mon frigo";
+"my.favourites" = "Mes favoris";
+
+// TopBarComponentView
+"good.morning," = "Bonne matinée,";
+"good.afternoon," = "Bon après-midi,";
+"good.evening," = "Bonsoir,";
+
+// HomeView
+"search.recipe" = "Rechercher une recipe";
+
+// RecipesListView
+"recipe.ideas" = "Idées de recettes";
+"no.recipe" = "Pas de recette trouvée";
+
+// FridgeView
+"add.other.food" = "Ajouter un autre aliment";
+"selected.ingredients" = "%@ ingrédients sélectionnés";
+"selected.ingredient" = "%@ ingrédient sélectionné";
+"show.recipes" = "%@ Voir les recettes";
+"no.ingredient.selected" = "Pas d'ingredient sélectionné";
+"search.ingredient" = "Rechercher un ingrédient";
+
+// ErrorView
+"something.went.wrong" = "Quelque chose s'est mal passé";
+"contact.developer" = "Veuillez contacter le développeur";
+"no.internet.connection" = "S'il vous plait, vérifiez votre connexion internet";
+"api.limit" = "Limite API atteinte, attendez quelques secondes";
+"service.unavailable" = "Service non disponible";
+"server.error" = "Code d'erreur du serveur : ";
+
+// RecipeDetailsView
+"share" = "Partager";
+"preparation" = "Préparation";
+"per.portion" = "Par portion";
+"ingredients" = "Ingrédients";
+"for" = "Pour";
+"recipe" = "Recette";
+"step" = "Étape";
+"portions" = "portions";
+"minutes" = "minutes";
+"kcals" = "kcals";
+"favoris" = "Favoris";
+
+// FavoritesView
+"all.favorites.recipes" =  "Retrouve ici, toutes tes recettes favorites !";
+"available.offline" = "Disponibles même hors ligne.";

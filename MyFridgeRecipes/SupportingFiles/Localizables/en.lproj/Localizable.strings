@@ -6,4 +6,52 @@
   
 */
 
-"test" = "test";
+// TabView
+"home" = "Home";
+"my.fridge" = "My fridge";
+"my.favourites" = "My favourites";
+
+// TopBarComponentView
+"good.morning," = "Good Morning,";
+"good.afternoon," = "Good Afternoon,";
+"good.evening," = "Good Evening,";
+
+// HomeView
+"search.recipe" = "Search for a recipe";
+
+// RecipesListView
+"recipe.ideas" = "Recipe ideas";
+"no.recipe" = "No recipe found";
+
+// FridgeView
+"add.other.food" = "Add other food";
+"selected.ingredients" = "%@ selected ingredients";
+"selected.ingredient" = "%@ selected ingredient";
+"show.recipes" = "Show recipes";
+"no.ingredient.selected" = "No ingredient selected";
+"search.ingredient" = "Search for an ingredient";
+
+// ErrorView
+"something.went.wrong" = "Something went wrong";
+"contact.developer" = "Please contact developer";
+"no.internet.connection" = "Please check your internet connection";
+"api.limit" = "API limit reached, wait a few second";
+"service.unavailable" = "Service unavailable";
+"server.error" = "Server error code: ";
+
+// RecipeDetailsView
+"share" = "Share";
+"preparation" = "Preparation";
+"per.portion" = "Per portion";
+"ingredients" = "Ingredients";
+"for" = "For";
+"recipe" = "Recipe";
+"step" = "Step";
+"portions" = "portions";
+"minutes" = "minutes";
+"kcals" = "kcals";
+"favoris" = "Favoris";
+
+// FavoritesView
+"all.favorites.recipes" =  "Find here, all your favorite recipes!";
+"available.offline" = "Available even offline.";
