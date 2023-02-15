@@ -36,6 +36,9 @@ struct FavoriteButtonView: View {
         })
         .scaleEffect(animate ? animationScale : 1)
         .animation(.easeIn(duration: animationDuration), value: isLiked)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel("like".localized())
+        .accessibilityValue(isLiked ? Text("saved.recipe".localized()) : Text("recipe.not.saved".localized()))
     }
 }
 

@@ -21,7 +21,7 @@ struct FavoritesView: View {
                     SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                 }
                 Spacer()
-                RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: {}, nextRecipesLoading: false)
+                RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: {}, nextRecipesLoading: false, sectionTitle: "favorite.recipes".localized())
             }
         }
         .onChange(of: searchText) { newValue in

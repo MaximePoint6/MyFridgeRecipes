@@ -2,13 +2,13 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CDRecipe" representedClassName=".CDRecipe" syncable="YES" codeGenerationType="category">
         <attribute name="calories" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="cuisineType" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
+        <attribute name="cuisineType" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName=".[String]"/>
         <attribute name="image" optional="YES" attributeType="String"/>
-        <attribute name="ingredientLines" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
-        <attribute name="instructions" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
+        <attribute name="ingredientLines" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName=".[String]"/>
+        <attribute name="instructions" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName=".[String]"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="label" optional="YES" attributeType="String"/>
-        <attribute name="mealType" optional="YES" attributeType="Transformable" customClassName=".[String]"/>
+        <attribute name="mealType" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName=".[String]"/>
         <attribute name="shareAs" optional="YES" attributeType="String"/>
         <attribute name="totalTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="yield" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

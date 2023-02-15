@@ -9,7 +9,7 @@ import Foundation
 
 class RecipeDetailsViewModel: ObservableObject {
     
-   @Published var recipe: Recipe
+    @Published var recipe: Recipe
     var favoritesViewModel: FavoritesViewModel?
     
     private let repository = CDRecipesRepository()
@@ -47,6 +47,10 @@ class RecipeDetailsViewModel: ObservableObject {
         repository.getFavoriteRecipes { favoriteRecipes in
             recipe.isFavorite = favoriteRecipes.contains(where: { favoriteRecipes in favoriteRecipes.label == (recipe.label ?? "") })
         }
+    }
+    
+    func share(this elements: [Any]) {
+        shareButton(elements: elements)
     }
     
 }

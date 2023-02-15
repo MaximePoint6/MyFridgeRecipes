@@ -23,6 +23,7 @@ struct FridgeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
+                        .accessibilityHint("remove.fridge.ingredients".localized())
                 }
             }
         }
@@ -51,7 +52,7 @@ struct FridgeView: View {
             showSearchModalView.toggle()
         }
         Spacer()
-        NavigationLink(destination: RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: viewModel.fetchNextRecipesWithUrl, nextRecipesLoading: viewModel.nextRecipesLoading),
+        NavigationLink(destination: RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: viewModel.fetchNextRecipesWithUrl, nextRecipesLoading: viewModel.nextRecipesLoading, sectionTitle: "recipe.ideas".localized()),
                        tag: 1, selection: $action) {
             EmptyView()
         }

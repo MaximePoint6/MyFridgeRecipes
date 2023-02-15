@@ -21,6 +21,7 @@
 
 // RecipesListView
 "recipe.ideas" = "Idées de recettes";
+"favorite.recipes" = "Recettes favorites";
 "no.recipe" = "Pas de recette trouvée";
 
 // FridgeView
@@ -30,6 +31,7 @@
 "show.recipes" = "%@ Voir les recettes";
 "no.ingredient.selected" = "Pas d'ingredient sélectionné";
 "search.ingredient" = "Rechercher un ingrédient";
+"remove.fridge.ingredients" = "Supprimer des ingrédients du frigo";
 
 // ErrorView
 "something.went.wrong" = "Quelque chose s'est mal passé";
@@ -41,6 +43,7 @@
 
 // RecipeDetailsView
 "share" = "Partager";
+"share.recipe" = "Share this recipe.";
 "preparation" = "Préparation";
 "per.portion" = "Par portion";
 "ingredients" = "Ingrédients";
@@ -51,7 +54,19 @@
 "minutes" = "minutes";
 "kcals" = "kcals";
 "favoris" = "Favoris";
+"like" = "J'aime";
+"saved.recipe" = "Recette enregistrée dans les favorites";
+"recipe.not.saved" = "Recette non enregistrée";
+"recipe.picture" = "Image de la recette";
+"people" = "Personnes";
 
 // FavoritesView
 "all.favorites.recipes" =  "Retrouve ici, toutes tes recettes favorites !";
 "available.offline" = "Disponibles même hors ligne.";
+
+// SearchBarView
+"delete" = "Supprimer";
+"delete.text" = "Supprime le texte dans la barre de recherche";
+"text.in.search.bar" = "Le texte dans la barre de recherche est ";
+"empty.search.bar" = "La barre de recherche est vide";
+"search.bar" = "Barre de recherche";

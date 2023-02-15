@@ -25,7 +25,7 @@ struct RecipeDetailsView: View {
         .ignoresSafeArea(.container, edges: .top)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                FavoriteButtonView(isLiked: $viewModel.recipe.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .red, offColor: .white)
+                FavoriteButtonView(isLiked: $viewModel.recipe.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .accentColor, offColor: .white)
             }
         }
         .onAppear {
@@ -43,6 +43,7 @@ struct RecipeDetailsView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(height: 300)
                 .clipped()
+                .accessibilityLabel(Text("recipe.picture".localized()))
             LinearGradient(
                 gradient: Gradient(colors: [.clear, .black.opacity(0.8)]),
                 startPoint: .top,
@@ -64,15 +65,28 @@ struct RecipeDetailsView: View {
     
     var shareAndFavoritesButtonSection: some View {
         HStack(alignment: .center) {
-            Spacer()
-            HStack {
-                Image(systemName: "square.and.arrow.up")
-                Text("share".localized())
+            if let shareURL = viewModel.recipe.getShareURL {
+                Spacer()
+                    Button {
+                        viewModel.share(this: [shareURL])
+                    } label: {
+                        HStack {
+                            Image(systemName: "square.and.arrow.up")
+                                .accessibility(hidden: true)
+                            Text("share".localized())
+                                .accessibility(hidden: true)
+                        }
+                    }
+                    .foregroundColor(.black)
+                    .accessibilityAddTraits(.isButton)
+                    .accessibilityLabel("share".localized())
+                    .accessibility(hint: Text("share.recipe".localized()))
             }
             Spacer()
             HStack {
-                FavoriteButtonView(isLiked: $viewModel.recipe.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .red, offColor: .gray)
+                FavoriteButtonView(isLiked: $viewModel.recipe.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .accentColor, offColor: .gray)
                 Text("favoris".localized())
+                    .accessibility(hidden: true)
             }
             Spacer()
         }
@@ -107,12 +121,15 @@ struct RecipeDetailsView: View {
                         HStack {
                             Text(viewModel.recipe.getPortionNumber)
                             Image(systemName: "fork.knife")
+                                .accessibility(hidden: true)
                         }
                         .foregroundColor(.white)
                         .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
                         .background(Color.accentColor)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                     }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("for".localized() + " \(viewModel.recipe.getPortionNumber) " + "people".localized())
                 }
                 VStack(alignment: .leading) {
                     ForEach(ingredientLines, id: \.self) { ingredient in
