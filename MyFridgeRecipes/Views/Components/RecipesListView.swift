@@ -12,6 +12,7 @@ struct RecipesListView: View {
     @Binding var pageState: PageState
     let loadNextRecipes: () -> Void
     let nextRecipesLoading: Bool
+    let sectionTitle: String
     
     // MARK: - Main View
     var body: some View {
@@ -44,7 +45,7 @@ struct RecipesListView: View {
                                     }
                                 }
                             } header: {
-                                Text("recipe.ideas".localized())
+                                Text(sectionTitle)
                             }
                         }.listStyle(PlainListStyle())
                         if nextRecipesLoading {
@@ -60,12 +61,12 @@ struct RecipesListView: View {
 struct MyFridgeRecipesView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RecipesListView(pageState: .constant(PageState.loaded(MockData.previewRecipeArray)), loadNextRecipes: {}, nextRecipesLoading: false)
-            RecipesListView(pageState: .constant(PageState.loaded([])), loadNextRecipes: {}, nextRecipesLoading: false)
-            RecipesListView(pageState: .constant(PageState.loading), loadNextRecipes: {}, nextRecipesLoading: false)
-            RecipesListView(pageState: .constant(PageState.failed(.noInternet)), loadNextRecipes: {}, nextRecipesLoading: false)
-            RecipesListView(pageState: .constant(PageState.failed(.decoding)), loadNextRecipes: {}, nextRecipesLoading: false)
-            RecipesListView(pageState: .constant(PageState.failed(.backend(400))), loadNextRecipes: {}, nextRecipesLoading: false)
+            RecipesListView(pageState: .constant(PageState.loaded(MockData.previewRecipeArray)), loadNextRecipes: {}, nextRecipesLoading: false, sectionTitle: "recipe.ideas".localized())
+            RecipesListView(pageState: .constant(PageState.loaded([])), loadNextRecipes: {}, nextRecipesLoading: false, sectionTitle: "recipe.ideas".localized())
+            RecipesListView(pageState: .constant(PageState.loading), loadNextRecipes: {}, nextRecipesLoading: false, sectionTitle: "recipe.ideas".localized())
+            RecipesListView(pageState: .constant(PageState.failed(.noInternet)), loadNextRecipes: {}, nextRecipesLoading: false, sectionTitle: "recipe.ideas".localized())
+            RecipesListView(pageState: .constant(PageState.failed(.decoding)), loadNextRecipes: {}, nextRecipesLoading: false, sectionTitle: "recipe.ideas".localized())
+            RecipesListView(pageState: .constant(PageState.failed(.backend(400))), loadNextRecipes: {}, nextRecipesLoading: false, sectionTitle: "recipe.ideas".localized())
         }
     }
 }

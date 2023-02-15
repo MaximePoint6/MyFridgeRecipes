@@ -21,6 +21,7 @@
 
 // RecipesListView
 "recipe.ideas" = "Recipe ideas";
+"favorite.recipes" = "Favorite recipes";
 "no.recipe" = "No recipe found";
 
 // FridgeView
@@ -30,6 +31,7 @@
 "show.recipes" = "Show recipes";
 "no.ingredient.selected" = "No ingredient selected";
 "search.ingredient" = "Search for an ingredient";
+"remove.fridge.ingredients" = "Remove ingredients from the fridge";
 
 // ErrorView
 "something.went.wrong" = "Something went wrong";
@@ -41,6 +43,7 @@
 
 // RecipeDetailsView
 "share" = "Share";
+"share.recipe" = "Share this recipe.";
 "preparation" = "Preparation";
 "per.portion" = "Per portion";
 "ingredients" = "Ingredients";
@@ -51,7 +54,19 @@
 "minutes" = "minutes";
 "kcals" = "kcals";
 "favoris" = "Favoris";
+"like" = "Like";
+"saved.recipe" = "Recipe saved in favorites";
+"recipe.not.saved" = "Recipe not saved";
+"recipe.picture" = "Recipe picture";
+"people" = "People";
 
 // FavoritesView
 "all.favorites.recipes" =  "Find here, all your favorite recipes!";
 "available.offline" = "Available even offline.";
+
+// SearchBarView
+"delete" = "Delete";
+"delete.text" = "Delete text in search bar";
+"text.in.search.bar" = "Text in search bar is ";
+"empty.search.bar" = "Search bar is empty";
+"search.bar" = "Search bar";

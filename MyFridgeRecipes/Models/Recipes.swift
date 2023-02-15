@@ -113,4 +113,9 @@ extension Recipe {
     var getMealType: String {
         return self.mealType?.compactMap { $0 }.joined(separator: " - ") ?? ""
     }
+    
+    var getShareURL: URL? {
+        guard let urlString = self.shareAs else { return nil }
+        return URL(string: urlString)
+    }
 }

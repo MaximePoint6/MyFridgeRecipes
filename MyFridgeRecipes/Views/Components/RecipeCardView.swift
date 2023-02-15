@@ -35,7 +35,7 @@ struct RecipeCardView: View {
                     .stroke(Color.gray, lineWidth: 0.2)
             )
             .padding(.trailing, 10)
-        //        }
+            .accessibilityLabel(Text("recipe.picture".localized()))
     }
     
     var cardText: some View {

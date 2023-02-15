@@ -18,22 +18,26 @@ struct SearchBarView: View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(Color.gray)
+                .accessibility(hidden: true)
             TextField(placeHolderText, text: $text, onEditingChanged: { isEditing in
                 self.isEditing = isEditing
             })
             .keyboardType(keyBoardType)
-            .overlay(
-                Image(systemName: "xmark.circle.fill")
-                    .padding()
-                    .offset(x: 10)
-                    .foregroundColor(Color.gray)
-                    .opacity(text.isEmpty ? 0.0 : 1.0)
-                    .onTapGesture {
-                        UIApplication.shared.endEditing()
-                        text = ""
-                    }
-                , alignment: .trailing
-            )
+            .accessibilityValue(text.isEmpty ? Text("empty.search.bar".localized()) : Text("text.in.search.bar".localized() + text))
+            .accessibilityLabel("search.bar".localized())
+            .accessibilityAddTraits(.isSearchField)
+            Spacer()
+            Image(systemName: "xmark.circle.fill")
+                .foregroundColor(Color.gray)
+                .opacity(text.isEmpty ? 0.0 : 1.0)
+                .onTapGesture {
+                    UIApplication.shared.endEditing()
+                    text = ""
+                }
+                .accessibility(hidden: text.isEmpty ? true: false)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel("delete".localized())
+                .accessibility(hint: Text("delete.text".localized()))
         }
         .font(.headline)
         .padding()
@@ -53,6 +57,8 @@ struct SearchBarView: View {
 // MARK: - Preview
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
+        SearchBarView(text: .constant("test"), isEditing: .constant(false), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+            .previewLayout(.sizeThatFits)
         SearchBarView(text: .constant(""), isEditing: .constant(false), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
             .previewLayout(.sizeThatFits)
     }

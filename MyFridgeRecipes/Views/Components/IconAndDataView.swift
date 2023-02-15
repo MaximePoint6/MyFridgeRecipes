@@ -20,6 +20,7 @@ struct IconAndDataView: View {
                 .font(.title)
                 .foregroundColor(.white)
                 .padding(.bottom, 2)
+                .accessibility(hidden: true)
             Text(data)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
@@ -27,6 +28,7 @@ struct IconAndDataView: View {
                 .font(.footnote)
                 .foregroundColor(.white)
         }
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -36,7 +38,7 @@ struct IconAndDataView_Previews: PreviewProvider {
         ZStack {
             Rectangle()
                 .foregroundColor(.accentColor)
-            IconAndDataView(icon: "flame", data: "555", subtitle: "per.portion".localized())
+            IconAndDataView(icon: "flame", data: "555 kcals", subtitle: "per.portion".localized())
         }
         .previewLayout(.sizeThatFits)
     }

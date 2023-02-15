@@ -29,8 +29,6 @@ struct HomeView: View {
                             if self.isEditing {
                                 UIApplication.shared.endEditing()
                                 self.isEditing = false
-//                            } else {
-//                                self.isEditing = false
                             }
                         }
                     )
@@ -38,7 +36,7 @@ struct HomeView: View {
                     TopBarView(viewModel: topBarViewModel)
                     SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                     Spacer()
-                    RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading)
+                    RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading, sectionTitle: "recipe.ideas".localized())
                     Spacer()
                 }
             }

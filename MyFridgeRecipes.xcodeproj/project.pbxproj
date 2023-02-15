@@ -36,6 +36,7 @@
 		CA4C1A97297ADE3A009EDF38 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C1A96297ADE3A009EDF38 /* HomeView.swift */; };
 		CA4C1A99297ADE3B009EDF38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA4C1A98297ADE3B009EDF38 /* Assets.xcassets */; };
 		CA4C1AAB297ADE3B009EDF38 /* APIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C1AAA297ADE3B009EDF38 /* APIManagerTests.swift */; };
+		CA5CAF58299CD68A00DBB57C /* shareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5CAF57299CD68A00DBB57C /* shareButton.swift */; };
 		CA78AA73298D5F9600C5D8B6 /* MockResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78AA72298D5F9600C5D8B6 /* MockResponseData.swift */; };
 		CA78AA79298FE93B00C5D8B6 /* FavoriteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78AA78298FE93B00C5D8B6 /* FavoriteButtonView.swift */; };
 		CA78AA7B2990E8F900C5D8B6 /* CDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78AA7A2990E8F900C5D8B6 /* CDManager.swift */; };
@@ -106,6 +107,8 @@
 		CA4C1A98297ADE3B009EDF38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA4C1AA6297ADE3B009EDF38 /* MyFridgeRecipesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFridgeRecipesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA4C1AAA297ADE3B009EDF38 /* APIManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerTests.swift; sourceTree = "<group>"; };
+		CA5CAF57299CD68A00DBB57C /* shareButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shareButton.swift; sourceTree = "<group>"; };
+		CA5CAF59299CDD0900DBB57C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CA78AA72298D5F9600C5D8B6 /* MockResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResponseData.swift; sourceTree = "<group>"; };
 		CA78AA78298FE93B00C5D8B6 /* FavoriteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButtonView.swift; sourceTree = "<group>"; };
 		CA78AA7A2990E8F900C5D8B6 /* CDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDManager.swift; sourceTree = "<group>"; };
@@ -242,6 +245,7 @@
 		CA4C1A93297ADE3A009EDF38 /* MyFridgeRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				CA5CAF59299CDD0900DBB57C /* Info.plist */,
 				CA4C1A94297ADE3A009EDF38 /* MyFridgeRecipesApp.swift */,
 				CA4C1AC7297ADEED009EDF38 /* Services */,
 				CA4C1AC3297ADE79009EDF38 /* Models */,
@@ -307,6 +311,7 @@
 		CA4C1AC6297ADEB1009EDF38 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				CA5CAF56299CD65E00DBB57C /* Helpers */,
 				CA0FF6FE297AE0C100408598 /* Extensions */,
 				CA0FF6FD297AE0B900408598 /* Protocols */,
 				CA0FF6FC297AE0AF00408598 /* Localizables */,
@@ -340,6 +345,14 @@
 				CA78AA812990EE8C00C5D8B6 /* CDRecipesRepository.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		CA5CAF56299CD65E00DBB57C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CA5CAF57299CD68A00DBB57C /* shareButton.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,6 +508,7 @@
 				CAB530502982AC22000726EF /* RecipeDetailsView.swift in Sources */,
 				CA025EBA297AF2A10004B340 /* String+Extension.swift in Sources */,
 				CA78AA842990F3D300C5D8B6 /* FavoritesViewModel.swift in Sources */,
+				CA5CAF58299CD68A00DBB57C /* shareButton.swift in Sources */,
 				CA025EBC297AF3B50004B340 /* Language.swift in Sources */,
 				CA025EED297EF5430004B340 /* TopBarView.swift in Sources */,
 				CA025EDF297C59B60004B340 /* Recipes.swift in Sources */,
@@ -696,8 +710,8 @@
 				DEVELOPMENT_TEAM = 3SQYF6L285;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyFridgeRecipes/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -726,8 +740,8 @@
 				DEVELOPMENT_TEAM = 3SQYF6L285;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyFridgeRecipes/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
