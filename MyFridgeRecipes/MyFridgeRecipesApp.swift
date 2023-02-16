@@ -18,6 +18,7 @@ struct MyFridgeRecipesApp: App {
             MyTabView()
                 .environmentObject(topBarViewModel)
                 .environmentObject(favoritesViewModel)
+                .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
         }
     }
 }

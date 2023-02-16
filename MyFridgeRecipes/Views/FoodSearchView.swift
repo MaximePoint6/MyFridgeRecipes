@@ -12,14 +12,13 @@ struct FoodSearchView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var fridgeViewModel: FridgeViewModel
     @State private var searchText = ""
-    @State private var isEditing = false
     @State private var timer: Timer?
     private let delay: TimeInterval = 0.7 // delay in seconds
     
     // MARK: - Main View
     var body: some View {
         VStack {
-            SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.ingredient".localized())
+            SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.ingredient".localized())
                 .padding(.top)
                 .padding(.bottom)
             ingredientList

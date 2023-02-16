@@ -10,7 +10,6 @@ import SwiftUI
 struct SearchBarView: View {
     @Environment(\.colorScheme) var colorScheme
     @Binding var text: String
-    @Binding var isEditing: Bool
     var keyBoardType: UIKeyboardType
     var placeHolderText: String
     
@@ -20,9 +19,7 @@ struct SearchBarView: View {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(Color.gray)
                 .accessibility(hidden: true)
-            TextField(placeHolderText, text: $text, onEditingChanged: { isEditing in
-                self.isEditing = isEditing
-            })
+            TextField(placeHolderText, text: $text)
             .keyboardType(keyBoardType)
             .accessibilityValue(text.isEmpty ? Text("empty.search.bar".localized()) : Text("text.in.search.bar".localized() + text))
             .accessibilityLabel("search.bar".localized())
@@ -58,9 +55,9 @@ struct SearchBarView: View {
 // MARK: - Preview
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBarView(text: .constant("test"), isEditing: .constant(false), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+        SearchBarView(text: .constant("test"), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
             .previewLayout(.sizeThatFits)
-        SearchBarView(text: .constant(""), isEditing: .constant(false), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+        SearchBarView(text: .constant(""), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
             .previewLayout(.sizeThatFits)
     }
 }

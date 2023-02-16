@@ -13,7 +13,6 @@ struct HomeView: View {
     @EnvironmentObject var topBarViewModel: TopBarViewModel
     @StateObject var homeViewModel = HomeViewModel()
     @State private var searchText = ""
-    @State private var isEditing = false
     @State private var timer: Timer?
     private let delay: TimeInterval = 1 // delay in seconds
     
@@ -21,24 +20,12 @@ struct HomeView: View {
     // MARK: - Main View
     var body: some View {
         NavigationView {
-            ZStack(alignment: .top) {
-                Color.clear
-                    .edgesIgnoringSafeArea(.all)
-                    .gesture(
-                        TapGesture().onEnded {
-                            if self.isEditing {
-                                UIApplication.shared.endEditing()
-                                self.isEditing = false
-                            }
-                        }
-                    )
-                VStack(alignment: .center, spacing: 5) {
-                    TopBarView(viewModel: topBarViewModel)
-                    SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
-                    Spacer()
-                    RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading, sectionTitle: "recipe.ideas".localized())
-                    Spacer()
-                }
+            VStack(alignment: .center, spacing: 5) {
+                TopBarView(viewModel: topBarViewModel)
+                SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+                Spacer()
+                RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading, sectionTitle: "recipe.ideas".localized())
+                Spacer()
             }
         }
         // To avoid making network calls at each change in the textField, we add a delay before launching the request.

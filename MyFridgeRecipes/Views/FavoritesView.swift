@@ -10,7 +10,6 @@ import SwiftUI
 struct FavoritesView: View {
     @EnvironmentObject var viewModel: FavoritesViewModel
     @State private var searchText = ""
-    @State private var isEditing = false
     
     // MARK: - Main View
     var body: some View {
@@ -18,7 +17,7 @@ struct FavoritesView: View {
             VStack(alignment: .center) {
                 VStack(alignment: .leading) {
                     titleSection
-                    SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+                    SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                 }
                 Spacer()
                 RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: {}, nextRecipesLoading: false, sectionTitle: "favorite.recipes".localized())
