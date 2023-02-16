@@ -20,6 +20,8 @@ struct FoodSearchView: View {
     var body: some View {
         VStack {
             SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.ingredient".localized())
+                .padding(.top)
+                .padding(.bottom)
             ingredientList
             
         } // To avoid making network calls at each change in the textField, we add a delay before launching the request.

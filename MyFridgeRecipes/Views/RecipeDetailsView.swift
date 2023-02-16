@@ -77,7 +77,7 @@ struct RecipeDetailsView: View {
                                 .accessibility(hidden: true)
                         }
                     }
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
                     .accessibilityAddTraits(.isButton)
                     .accessibilityLabel("share".localized())
                     .accessibility(hint: Text("share.recipe".localized()))

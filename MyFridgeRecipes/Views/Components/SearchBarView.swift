@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchBarView: View {
+    @Environment(\.colorScheme) var colorScheme
     @Binding var text: String
     @Binding var isEditing: Bool
     var keyBoardType: UIKeyboardType
@@ -43,7 +44,7 @@ struct SearchBarView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color(.systemGray6))
+                .fill(colorScheme == .dark ? Color(.systemGray5): Color(.systemGray6))
                 .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
         )
         .padding(.leading)
