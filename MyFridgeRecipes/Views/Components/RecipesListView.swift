@@ -37,13 +37,10 @@ struct RecipesListView: View {
                                         RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
                                     }
                                     .accessibilityHint(Text("navigate.to.recipe.details"))
-                                    if recipe.label == recipes.last?.label {
-                                        EmptyView()
-                                            .onAppear(
-                                                perform:
-                                                    loadNextRecipes
-                                            )
-                                            .accessibility(hidden: true)
+                                    .onAppear {
+                                        if recipe.label == recipes.last?.label {
+                                            loadNextRecipes()
+                                        }
                                     }
                                 }
                             } header: {

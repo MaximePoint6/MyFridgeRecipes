@@ -48,9 +48,9 @@ class HomeViewModel: ObservableObject {
     }
     
     func fetchNextRecipesWithUrl() {
-        guard let nextRecipesUrl = self.nextRecipesUrl else {
-            return
-        }
+        guard let nextRecipesUrl = self.nextRecipesUrl else { return }
+        guard !nextRecipesLoading else { return }
+        
         self.nextRecipesLoading = true
         apiManager.getRequest(router: APIRouter.fetchNextRecipesWithUrl(nextRecipesUrl)) { (result: Result<Recipes, AFError>) in
             self.nextRecipesLoading = false
