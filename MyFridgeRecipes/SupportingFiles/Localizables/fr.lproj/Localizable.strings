@@ -9,7 +9,10 @@
 // TabView
 "home" = "Accueil";
 "my.fridge" = "Mon frigo";
-"my.favourites" = "Mes favoris";
+"my.favorites" = "Mes favoris";
+"home.page.tab" = "Onglet de la page d'accueil";
+"myfridge.page.tab" = "Onglet de la page d'accueil mon frigo";
+"myfavorites.page.tab" = "Onglet de la page mes favoris";
 
 // TopBarView
 "good.morning," = "Bonne matinée,";
@@ -24,16 +27,21 @@
 "recipe.ideas" = "Idées de recettes";
 "favorite.recipes" = "Recettes favorites";
 "no.recipe" = "Pas de recette trouvée";
+"recipe.list.including" = "Liste de recettes comprenant ";
+"navigate.to.recipe.details" = "Navigue vers les détails de la recette";
 
 // FridgeView
-"add.other.food" = "Ajouter un autre aliment";
+"add.other.ingredient" = "Ajouter un autre ingrédient";
 "selected.ingredients" = "%@ ingrédients sélectionnés";
 "selected.ingredient" = "%@ ingrédient sélectionné";
 "show.recipes" = "Voir les recettes";
-"no.ingredient.selected" = "Pas d'ingredient sélectionné";
+"no.added.ingredient" = "Pas d'ingrédient ajouté";
 "search.ingredient" = "Rechercher un ingrédient";
-"remove.fridge.ingredients" = "Supprimer des ingrédients du frigo";
-"indicate.fridge.ingredients" = "Indique les ingredients de ton frigo, et on te trouve des recettes !";
+"remove.fridge.ingredients" = "Ajoute des boutons de suppresion à coté de chaque ingrédients du frigo.";
+"add.fridge.ingredients" = "Ajoute les ingrédients de ton frigo, et on te trouve des recettes !";
+"navigate.to.ingredient.search.View" = "Navigue vers l'écran de recherche d'ingrédients";
+"navigate.to.recipe.list" = "Navigue vers la liste de recettes";
+"add.ingredient" = "Ajoute l'ingrédient à la liste des ingrédients du frigo et ferme cette écran de recherche.";
 
 // ErrorView
 "something.went.wrong" = "Quelque chose s'est mal passé";
@@ -45,7 +53,7 @@
 
 // RecipeDetailsView
 "share" = "Partager";
-"share.recipe" = "Partager cette recette.";
+"share.recipe" = "Partage cette recette.";
 "preparation" = "Préparation";
 "per.portion" = "Par portion";
 "per.dish" = "Par plat";
@@ -64,6 +72,11 @@
 "recipe.picture" = "Image de la recette";
 "people" = "Personnes";
 "for.x.people" = "Pour %@ personnes";
+"save.your.recipe" = "Sauvegarde votre recette dans les favoris.";
+"remove.from.favorites" = "Supprime des favoris.";
+"recipe.name" = "Nom de la recette :";
+"meal.type" = "Type de repas :";
+"cuisine.type" = "Type de cuisine :";
 
 // FavoritesView
 "all.favorites.recipes" =  "Retrouve ici, toutes tes recettes favorites !";
@@ -75,7 +88,9 @@
 "text.in.search.bar" = "Le texte dans la barre de recherche est ";
 "empty.search.bar" = "La barre de recherche est vide";
 "search.bar" = "Barre de recherche";
+"find.available.content" = "Cherche le contenu disponible en fonction du texte renseigné.";
 
 // OnBoardingView
 "welcome" = "Bienvenue sur MyFridgeRecipe !";
-"get.ready" = "Prépares-toi à préparer de délicieux petit plats !";
+"get.ready" = "Prépares-toi à cuisiner de délicieux petits plats !";
+"navigates.main.screen" = "Navigue vers l'écran principal.";

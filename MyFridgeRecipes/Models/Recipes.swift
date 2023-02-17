@@ -77,8 +77,11 @@ struct Recipe: Codable {
 
 extension Recipe {
     // MARK: - UI
-    var getRecipeImageUrl: String {
-        return self.image ?? "-"
+    var getRecipeImageUrl: URL {
+        guard let urlString = self.image else {
+            return URL(string: "https://cdn.pixabay.com/photo/2015/10/26/07/21/vegetables-1006694_960_720.jpg")!
+        }
+        return URL(string: urlString)!
     }
     
     var getTitleRecipe: String {

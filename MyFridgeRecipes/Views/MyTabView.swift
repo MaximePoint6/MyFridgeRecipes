@@ -15,14 +15,18 @@ struct MyTabView: View {
             HomeView()
                 .tabItem {
                     Label("home".localized(), systemImage: "house")
+                        .accessibilityLabel("home.page.tab".localized())
                 }
             FridgeView()
                 .tabItem {
                     Label("my.fridge".localized(), systemImage: "snowflake")
+                        .accessibilityLabel("myfridge.page.tab".localized())
                 }
+                .accessibilityHint(Text("navigue vers"))
             FavoritesView()
                 .tabItem {
-                    Label("my.favourites".localized(), systemImage: "heart.fill")
+                    Label("my.favorites".localized(), systemImage: "heart.fill")
+                        .accessibilityLabel("myfavorites.page.tab".localized())
                 }
         }
     }

@@ -36,18 +36,22 @@ struct RecipesListView: View {
                                     } label: {
                                         RecipeCardView(viewModel: RecipeCardViewModel(recipe: recipe))
                                     }
+                                    .accessibilityHint(Text("navigate.to.recipe.details"))
                                     if recipe.label == recipes.last?.label {
-                                        Text("")
+                                        EmptyView()
                                             .onAppear(
                                                 perform:
                                                     loadNextRecipes
                                             )
+                                            .accessibility(hidden: true)
                                     }
                                 }
                             } header: {
                                 Text(sectionTitle)
+                                    .accessibilityLabel("recipe.list.including".localized() + sectionTitle)
                             }
-                        }.listStyle(PlainListStyle())
+                        }
+                        .listStyle(PlainListStyle())
                         if nextRecipesLoading {
                             ProgressView()
                         }

@@ -38,6 +38,7 @@ struct FavoriteButtonView: View {
         .animation(.easeIn(duration: animationDuration), value: isLiked)
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel("like".localized())
+        .accessibilityHint(isLiked ? Text("remove.from.favorites".localized()) : Text("save.your.recipe".localized()))
         .accessibilityValue(isLiked ? Text("saved.recipe".localized()) : Text("recipe.not.saved".localized()))
     }
 }

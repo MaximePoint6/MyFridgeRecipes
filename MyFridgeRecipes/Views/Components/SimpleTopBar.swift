@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct SimpleTopBar: View {
-    
-    @State private var showSettingsView = false
+
     var viewModel: TopBarViewModel
     
     // MARK: - Main View
@@ -27,9 +26,6 @@ struct SimpleTopBar: View {
         .padding(.trailing)
         .padding(.top, 5)
         .padding(.bottom, 5)
-        .sheet(isPresented: $showSettingsView) {
-            SettingsView()
-        }
     }
     
     // MARK: - SUbviews

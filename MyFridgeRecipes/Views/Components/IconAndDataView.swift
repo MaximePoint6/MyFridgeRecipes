@@ -29,6 +29,7 @@ struct IconAndDataView: View {
                 .foregroundColor(.white)
         }
         .accessibilityElement(children: .combine)
+        .accessibilityLabel(subtitle + data)
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  FoodSearchView.swift
+//  IngredientSearchView.swift
 //  MyFridgeRecipes
 //
 //  Created by Maxime Point on 26/01/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FoodSearchView: View {
+struct IngredientSearchView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var fridgeViewModel: FridgeViewModel
@@ -45,6 +45,7 @@ struct FoodSearchView: View {
                     Text(ingredient.capitalized)
                 }
                 .padding()
+                .accessibilityHint(Text("add.ingredient"))
             }
         }
     }
@@ -52,9 +53,9 @@ struct FoodSearchView: View {
 
 
 // MARK: - Preview
-struct FoodSearchView_Previews: PreviewProvider {
+struct IngredientSearchView_Previews: PreviewProvider {
     @StateObject static var fridgeViewModel = FridgeViewModel()
     static var previews: some View {
-        FoodSearchView(fridgeViewModel: fridgeViewModel)
+        IngredientSearchView(fridgeViewModel: fridgeViewModel)
     }
 }

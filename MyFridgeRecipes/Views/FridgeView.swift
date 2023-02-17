@@ -28,7 +28,7 @@ struct FridgeView: View {
             }
         }
         .sheet(isPresented: $showSearchModalView) {
-            FoodSearchView(fridgeViewModel: viewModel)
+            IngredientSearchView(fridgeViewModel: viewModel)
         }
     }
     
@@ -45,38 +45,48 @@ struct FridgeView: View {
                     Text(viewModel.selectedIngredients)
                 }
             }.listStyle(.insetGrouped)
-            if viewModel.fridgeIngredientList.isEmpty {
-                HStack(alignment: .bottom) {
-                    Image(systemName: "arrow.turn.left.down")
-                        .foregroundColor(.accentColor)
-                        .font(.largeTitle)
-                        .rotationEffect(.degrees(10))
-                        .padding(.trailing, 5)
-                        .blinking(duration: 0.5)
-                        .accessibility(hidden: true)
-                    Text("indicate.fridge.ingredients".localized())
-                        .foregroundColor(.accentColor)
-                        .font(.title2)
-                }
-                .padding()
+            helpSection
+        }
+    }
+    
+    @ViewBuilder
+    var helpSection: some View {
+        if viewModel.fridgeIngredientList.isEmpty {
+            HStack(alignment: .bottom, spacing: 20) {
+                Image(systemName: "arrow.turn.left.down")
+                    .foregroundColor(.accentColor)
+                    .font(.largeTitle)
+                    .rotationEffect(.degrees(10))
+                    .blinking(duration: 0.5)
+                    .accessibility(hidden: true)
+                Image("Fridge")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 100)
+                    .clipped()
+                    .accessibility(hidden: true)
+                Text("add.fridge.ingredients".localized())
+                    .foregroundColor(.accentColor)
+                    .font(.title2)
             }
+            .padding()
         }
     }
     
     @ViewBuilder
     var buttonsSection: some View {
-        ButtonView(buttonType: .secondary, color: .accentColor, title: "add.other.food".localized()) {
+        ButtonView(buttonType: .secondary, color: .accentColor, title: "add.other.ingredient".localized()) {
             showSearchModalView.toggle()
         }
+        .accessibilityHint("navigate.to.ingredient.search.View".localized())
         Spacer()
-        NavigationLink(destination: RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: viewModel.fetchNextRecipesWithUrl, nextRecipesLoading: viewModel.nextRecipesLoading, sectionTitle: "recipe.ideas".localized()),
-                       tag: 1, selection: $action) {
-            EmptyView()
-        }
+        NavigationLink(destination: RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: viewModel.fetchNextRecipesWithUrl, nextRecipesLoading: viewModel.nextRecipesLoading, sectionTitle: "recipe.ideas".localized()), tag: 1, selection: $action) { EmptyView() }
+            .accessibility(hidden: true)
         ButtonView(buttonType: .primary, color: .accentColor, title: "show.recipes".localized()) {
             viewModel.fetchRecipeSearch()
             self.action = 1
         }
+        .accessibilityHint("navigate.to.recipe.list".localized())
     }
     
 }

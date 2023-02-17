@@ -25,7 +25,7 @@ final class CDManager {
     // LazyVar to load the property only the first time. This prevents installing Core Data multiple times = performance gain.
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: persistentContainerName)
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { _, error in
             // TODO: to modify, to process the error
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")

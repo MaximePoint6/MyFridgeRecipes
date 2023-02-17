@@ -24,8 +24,7 @@ struct RecipeCardView: View {
     
     // MARK: - Subviews
     var cardImage: some View {
-        //        ZStack(alignment: .bottomTrailing) {
-        KFImage(URL(string: viewModel.recipe.getRecipeImageUrl)!)
+        KFImage(viewModel.recipe.getRecipeImageUrl)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: 130, height: 80)
@@ -47,6 +46,8 @@ struct RecipeCardView: View {
                 .font(.caption)
                 .lineLimit(1)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("recipe.name".localized() + viewModel.recipe.getTitleRecipe + ". " + "meal.type".localized() + viewModel.recipe.getMealType + ". " + "cuisine.type".localized() + viewModel.recipe.getCuisineType)
     }
 }
 

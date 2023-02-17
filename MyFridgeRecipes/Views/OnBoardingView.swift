@@ -12,10 +12,10 @@ struct OnBoardingView: View {
     
     var body: some View {
         Color.accentColor
-            .ignoresSafeArea() // Ignore just for the color
+            .ignoresSafeArea()
             .overlay(
                 VStack {
-                    VStack(spacing: 5) {
+                    VStack(alignment: .leading, spacing: 5) {
                         Text("welcome".localized())
                             .font(.title)
                             .fontWeight(.light)
@@ -38,9 +38,8 @@ struct OnBoardingView: View {
                         )
                     }
                     .accessibility(hidden: true)
-                    OnBoardingButtonView(backgroundColor: .white, textColor: .accentColor, title: "show.recipes".localized(), action: {
-                        shoulShowOnBoarding.toggle()
-                    })
+                    OnBoardingButtonView(backgroundColor: .white, textColor: .accentColor, title: "show.recipes".localized(), action: { shoulShowOnBoarding.toggle() })
+                        .accessibilityHint(Text("navigates.main.screen".localized()))
                 }
                 .padding()
             )
