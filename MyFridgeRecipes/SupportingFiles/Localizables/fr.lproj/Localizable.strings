@@ -11,13 +11,14 @@
 "my.fridge" = "Mon frigo";
 "my.favourites" = "Mes favoris";
 
-// TopBarComponentView
+// TopBarView
 "good.morning," = "Bonne matinée,";
 "good.afternoon," = "Bon après-midi,";
 "good.evening," = "Bonsoir,";
+"what.to.cook.today" = "Quelle recette souhaites-tu cuisiner aujourd'hui ?";
 
 // HomeView
-"search.recipe" = "Rechercher une recipe";
+"search.recipe" = "Rechercher une recette";
 
 // RecipesListView
 "recipe.ideas" = "Idées de recettes";
@@ -28,10 +29,11 @@
 "add.other.food" = "Ajouter un autre aliment";
 "selected.ingredients" = "%@ ingrédients sélectionnés";
 "selected.ingredient" = "%@ ingrédient sélectionné";
-"show.recipes" = "%@ Voir les recettes";
+"show.recipes" = "Voir les recettes";
 "no.ingredient.selected" = "Pas d'ingredient sélectionné";
 "search.ingredient" = "Rechercher un ingrédient";
 "remove.fridge.ingredients" = "Supprimer des ingrédients du frigo";
+"indicate.fridge.ingredients" = "Indique les ingredients de ton frigo, et on te trouve des recettes !";
 
 // ErrorView
 "something.went.wrong" = "Quelque chose s'est mal passé";
@@ -43,22 +45,25 @@
 
 // RecipeDetailsView
 "share" = "Partager";
-"share.recipe" = "Share this recipe.";
+"share.recipe" = "Partager cette recette.";
 "preparation" = "Préparation";
 "per.portion" = "Par portion";
+"per.dish" = "Par plat";
 "ingredients" = "Ingrédients";
 "for" = "Pour";
 "recipe" = "Recette";
 "step" = "Étape";
-"portions" = "portions";
-"minutes" = "minutes";
-"kcals" = "kcals";
+"minutes" = "%.0f minutes";
+"kcals" = "%.0f kcals";
+"minute" = "minute";
+"kcal" = "kcal";
 "favoris" = "Favoris";
 "like" = "J'aime";
 "saved.recipe" = "Recette enregistrée dans les favorites";
 "recipe.not.saved" = "Recette non enregistrée";
 "recipe.picture" = "Image de la recette";
 "people" = "Personnes";
+"for.x.people" = "Pour %@ personnes";
 
 // FavoritesView
 "all.favorites.recipes" =  "Retrouve ici, toutes tes recettes favorites !";
@@ -70,3 +75,7 @@
 "text.in.search.bar" = "Le texte dans la barre de recherche est ";
 "empty.search.bar" = "La barre de recherche est vide";
 "search.bar" = "Barre de recherche";
+
+// OnBoardingView
+"welcome" = "Bienvenue sur MyFridgeRecipe !";
+"get.ready" = "Prépares-toi à préparer de délicieux petit plats !";

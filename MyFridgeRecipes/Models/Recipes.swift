@@ -86,24 +86,27 @@ extension Recipe {
     }
     
     var getCalories: String {
-        guard let calories = self.calories else {
-            return "- " + "kcals".localized()
+        guard let calories = self.calories, calories > 0 else {
+            return "- " + "kcal".localized()
         }
-        return (String(Int(calories)) + " " + "kcals".localized())
+        guard let portions = self.yield, portions > 0 else {
+            return String(format: "kcals".localized(), calories)
+        }
+        return String(format: "kcals".localized(), calories/portions)
     }
     
     var getPortionNumber: String {
-        guard let portionNumber = self.yield else {
-            return "- "
+        guard let portions = self.yield, portions > 0 else {
+            return "-"
         }
-        return String(Int(portionNumber))
+        return String(Int(portions))
     }
     
     var getPreparationTime: String {
-        guard let preparationTime = self.totalTime else {
-            return "- " + "minutes".localized()
+        guard let preparationTime = self.totalTime, preparationTime > 0 else {
+            return "- " + "minute".localized()
         }
-        return (String(Int(preparationTime)) + " " + "minutes".localized())
+        return String(format: "minutes".localized(), preparationTime)
     }
     
     var getCuisineType: String {

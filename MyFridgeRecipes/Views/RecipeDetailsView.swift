@@ -101,7 +101,7 @@ struct RecipeDetailsView: View {
                 Spacer()
                 IconAndDataView(icon: "timer", data: viewModel.recipe.getPreparationTime, subtitle: "preparation".localized())
                 Spacer()
-                IconAndDataView(icon: "flame", data: viewModel.recipe.getCalories, subtitle: "per.portion".localized())
+                IconAndDataView(icon: "flame", data: viewModel.recipe.getCalories, subtitle: viewModel.recipe.getPortionNumber != "-" ? "per.portion".localized() : "per.dish".localized())
                 Spacer()
             }
             .padding()
@@ -129,7 +129,7 @@ struct RecipeDetailsView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                     }
                     .accessibilityElement(children: .ignore)
-                    .accessibilityLabel("for".localized() + " \(viewModel.recipe.getPortionNumber) " + "people".localized())
+                    .accessibilityLabel(String(format: "for.x.people".localized(), viewModel.recipe.getPortionNumber))
                 }
                 VStack(alignment: .leading) {
                     ForEach(ingredientLines, id: \.self) { ingredient in

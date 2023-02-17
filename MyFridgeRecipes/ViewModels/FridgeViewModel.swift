@@ -110,7 +110,7 @@ class FridgeViewModel: ObservableObject {
     var selectedIngredients: String {
         if fridgeIngredientList.count == 0 {
             return "no.ingredient.selected".localized()
-        } else if fridgeIngredientList.count == 0 {
+        } else if fridgeIngredientList.count == 1 {
             return String(format: "selected.ingredient".localized(), String(fridgeIngredientList.count))
         } else {
             return String(format: "selected.ingredients".localized(), String(fridgeIngredientList.count))

@@ -14,6 +14,7 @@ struct HomeView: View {
     @StateObject var homeViewModel = HomeViewModel()
     @State private var searchText = ""
     @State private var timer: Timer?
+    @State private var shoulShowOnBoarding = true
     private let delay: TimeInterval = 1 // delay in seconds
     
     
@@ -21,7 +22,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 5) {
-                TopBarView(viewModel: topBarViewModel)
+                SimpleTopBar(viewModel: topBarViewModel)
                 SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                 Spacer()
                 RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading, sectionTitle: "recipe.ideas".localized())
@@ -38,6 +39,9 @@ struct HomeView: View {
                     homeViewModel.fetchRecipeSearch(searchText: newValue)
                 }
             })
+        }
+        .fullScreenCover(isPresented: $shoulShowOnBoarding) {
+            OnBoardingView(shoulShowOnBoarding: $shoulShowOnBoarding)
         }
         
     }

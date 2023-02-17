@@ -11,10 +11,11 @@
 "my.fridge" = "My fridge";
 "my.favourites" = "My favourites";
 
-// TopBarComponentView
+// TopBarView
 "good.morning," = "Good Morning,";
 "good.afternoon," = "Good Afternoon,";
 "good.evening," = "Good Evening,";
+"what.to.cook.today" = "Which recipe do you want to cook today?";
 
 // HomeView
 "search.recipe" = "Search for a recipe";
@@ -32,6 +33,7 @@
 "no.ingredient.selected" = "No ingredient selected";
 "search.ingredient" = "Search for an ingredient";
 "remove.fridge.ingredients" = "Remove ingredients from the fridge";
+"indicate.fridge.ingredients" = "Indicate your fridge ingredients, and we'll find recipes for you!";
 
 // ErrorView
 "something.went.wrong" = "Something went wrong";
@@ -46,19 +48,22 @@
 "share.recipe" = "Share this recipe.";
 "preparation" = "Preparation";
 "per.portion" = "Per portion";
+"per.dish" = "Per dish";
 "ingredients" = "Ingredients";
 "for" = "For";
 "recipe" = "Recipe";
 "step" = "Step";
-"portions" = "portions";
-"minutes" = "minutes";
-"kcals" = "kcals";
+"minutes" = "%.0f minutes";
+"kcals" = "%.0f kcals";
+"minute" = "minute";
+"kcal" = "kcal";
 "favoris" = "Favoris";
 "like" = "Like";
 "saved.recipe" = "Recipe saved in favorites";
 "recipe.not.saved" = "Recipe not saved";
 "recipe.picture" = "Recipe picture";
 "people" = "People";
+"for.x.people" = "For %@ people";
 
 // FavoritesView
 "all.favorites.recipes" =  "Find here, all your favorite recipes!";
@@ -70,3 +75,7 @@
 "text.in.search.bar" = "Text in search bar is ";
 "empty.search.bar" = "Search bar is empty";
 "search.bar" = "Search bar";
+
+// OnBoardingView
+"welcome" = "Welcome to MyFridgeRecipe!";
+"get.ready" = "Get ready to prepare delicious meals!";

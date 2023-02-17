@@ -34,16 +34,33 @@ struct FridgeView: View {
     
     // MARK: - Subviews
     var ingredientListSection: some View {
-        List {
-            Section {
-                ForEach(viewModel.fridgeIngredientList, id: \.self) { item in
-                    Text(item)
+        ZStack(alignment: .bottom) {
+            List {
+                Section {
+                    ForEach(viewModel.fridgeIngredientList, id: \.self) { item in
+                        Text(item)
+                    }
+                    .onDelete(perform: withAnimation { viewModel.deleteItems })
+                } header: {
+                    Text(viewModel.selectedIngredients)
                 }
-                .onDelete(perform: withAnimation { viewModel.deleteItems })
-            } header: {
-                Text(viewModel.selectedIngredients)
+            }.listStyle(.insetGrouped)
+            if viewModel.fridgeIngredientList.isEmpty {
+                HStack(alignment: .bottom) {
+                    Image(systemName: "arrow.turn.left.down")
+                        .foregroundColor(.accentColor)
+                        .font(.largeTitle)
+                        .rotationEffect(.degrees(10))
+                        .padding(.trailing, 5)
+                        .blinking(duration: 0.5)
+                        .accessibility(hidden: true)
+                    Text("indicate.fridge.ingredients".localized())
+                        .foregroundColor(.accentColor)
+                        .font(.title2)
+                }
+                .padding()
             }
-        }.listStyle(.insetGrouped)
+        }
     }
     
     @ViewBuilder
