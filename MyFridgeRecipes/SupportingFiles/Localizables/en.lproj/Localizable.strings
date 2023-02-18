@@ -20,7 +20,6 @@
 "good.evening," = "Good Evening,";
 "what.to.cook.today" = "Which recipe do you want to cook today?";
 
-
 // HomeView
 "search.recipe" = "Search for a recipe";
 
@@ -95,3 +94,7 @@
 "welcome" = "Welcome to MyFridgeRecipe!";
 "get.ready" = "Get ready to cook delicious meals!";
 "navigates.main.screen" = "Navigates to main screen.";
+
+// Alert
+"error = Error";
+"save.problem" = "There was a problem with the save";

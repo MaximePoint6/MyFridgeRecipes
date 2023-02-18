@@ -94,3 +94,7 @@
 "welcome" = "Bienvenue sur MyFridgeRecipe !";
 "get.ready" = "Prépares-toi à cuisiner de délicieux petits plats !";
 "navigates.main.screen" = "Navigue vers l'écran principal.";
+
+// Alert
+"error = Erreur";
+"save.problem" = "Un probleme est survenu avec la sauvegarde";

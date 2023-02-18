@@ -30,6 +30,9 @@ struct FavoritesView: View {
                 viewModel.getFilteredRecipes(searchText: newValue)
             }
         }
+        .alert(isPresented: $viewModel.coreDataError) {
+            Alert(title: Text("CoreData Error"), message: Text("Il y a eu une erreur avec CoreData."))
+        }
     }
     
     

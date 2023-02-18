@@ -32,6 +32,9 @@ struct RecipeDetailsView: View {
             viewModel.setupFavoritesViewModel(favoritesViewModel: favoriteViewModel)
             viewModel.checkIfIsfavorite()
         }
+        .alert(isPresented: $viewModel.coreDataError) {
+            Alert(title: Text("error".localized()), message: Text("save.problem"), dismissButton: .cancel())
+        }
     }
     
     

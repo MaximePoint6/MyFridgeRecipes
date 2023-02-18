@@ -39,10 +39,6 @@ struct Recipe: Codable {
     let cuisineType: [String]?
     let mealType: [String]? // diner, lunch etc
     let instructions: [String]?
-    //        let tags: [String]?
-    //        let totalNutrients: NutrientsInfo?
-    //        let totalDaily: NutrientsInfo?
-    //        let digest: [DigestEntry]?
     
     enum CodingKeys: String, CodingKey {
         case isFavorite
@@ -72,6 +68,20 @@ struct Recipe: Codable {
         instructions = try container.decodeIfPresent([String].self, forKey: .instructions)
         // Here decode a other property and if not present set default value
         isFavorite = try container.decodeIfPresent(Bool.self, forKey: .isFavorite) ?? false
+    }
+    
+    init?(fromCoreDataObject coreDataObject: CDRecipe) {
+        self.isFavorite = coreDataObject.isFavorite
+        self.label = coreDataObject.label
+        self.image = coreDataObject.image
+        self.shareAs = coreDataObject.shareAs
+        self.yield = coreDataObject.yield
+        self.ingredientLines = coreDataObject.ingredientLines
+        self.calories = coreDataObject.calories
+        self.totalTime = coreDataObject.totalTime
+        self.cuisineType = coreDataObject.cuisineType
+        self.mealType = coreDataObject.mealType
+        self.instructions = coreDataObject.instructions
     }
 }
 

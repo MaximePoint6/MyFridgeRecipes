@@ -10,6 +10,7 @@ import Foundation
 class RecipeDetailsViewModel: ObservableObject {
     
     @Published var recipe: Recipe
+    @Published var coreDataError = false
     var favoritesViewModel: FavoritesViewModel?
     
     private let repository = CDRecipesRepository()
@@ -36,16 +37,30 @@ class RecipeDetailsViewModel: ObservableObject {
     }
     
     func addFavoriteRecipe(newFavoriteRecipe: Recipe) {
-        repository.addFavoriteRecipes(recipe: newFavoriteRecipe)
+        do {
+            try repository.addFavoriteRecipes(recipe: newFavoriteRecipe)
+        } catch {
+            coreDataError = true
+        }
     }
     
     func removeFavoriteRecipe(recipe: Recipe) {
-        repository.removeFavoriteRecipe(recipe: recipe)
+        do {
+            try repository.removeFavoriteRecipe(recipe: recipe)
+        } catch {
+            coreDataError = true
+        }
     }
     
     func checkIfIsfavorite() {
-        repository.getFavoriteRecipes { favoriteRecipes in
-            recipe.isFavorite = favoriteRecipes.contains(where: { favoriteRecipes in favoriteRecipes.label == (recipe.label ?? "") })
+        guard let label = recipe.label else { return }
+        repository.getFavoriteRecipes { (result: Result<[Recipe], Error>) in
+            switch result {
+                case .success(let response):
+                    recipe.isFavorite = response.contains(where: { response in response.label == (label) })
+                case .failure:
+                    coreDataError = true
+            }
         }
     }
     
