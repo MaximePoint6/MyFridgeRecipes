@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct OnBoardingView: View {
-    @Binding var shoulShowOnBoarding: Bool
+    
+    @Binding var shouldAppear: Bool
     
     var body: some View {
         Color.accentColor
@@ -38,7 +39,9 @@ struct OnBoardingView: View {
                         )
                     }
                     .accessibility(hidden: true)
-                    OnBoardingButtonView(backgroundColor: .white, textColor: .accentColor, title: "show.recipes".localized(), action: { shoulShowOnBoarding.toggle() })
+                    OnBoardingButtonView(backgroundColor: .white, textColor: .accentColor, title: "show.recipes".localized(), action: {
+                        shouldAppear.toggle()
+                    })
                         .accessibilityHint(Text("navigates.main.screen".localized()))
                 }
                 .padding()
@@ -48,9 +51,8 @@ struct OnBoardingView: View {
 
 
 struct OnBoardingView_Previews: PreviewProvider {
-    @State static var shoulShowOnBoarding = true
-    
+    @State static var OnBoardingViewShouldAppear = true
     static var previews: some View {
-        OnBoardingView(shoulShowOnBoarding: $shoulShowOnBoarding)
+        OnBoardingView(shouldAppear: $OnBoardingViewShouldAppear)
     }
 }

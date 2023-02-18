@@ -9,16 +9,14 @@ import SwiftUI
 
 @main
 struct MyFridgeRecipesApp: App {
-    
-    @StateObject var topBarViewModel = TopBarViewModel()
+
     @StateObject var favoritesViewModel = FavoritesViewModel()
 
     var body: some Scene {
         WindowGroup {
             MyTabView()
-                .environmentObject(topBarViewModel)
                 .environmentObject(favoritesViewModel)
-                .onAppear(perform: UIApplication.shared.addTapGestureRecognizer) // add tapgesture in app to hide keyboard
+                .onAppear(perform: UIApplication.shared.addTapGestureRecognizer) // Add tapgesture in app to hide keyboard
         }
     }
 }

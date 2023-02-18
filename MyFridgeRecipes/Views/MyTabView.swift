@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MyTabView: View {
     
+    @AppStorage(AppStorageKeys.OnBoardingViewShouldAppear.rawValue) var OnBoardingViewShouldAppear: Bool = true
+    
     // MARK: - Main View
     var body: some View {
         TabView {
@@ -29,17 +31,18 @@ struct MyTabView: View {
                         .accessibilityLabel("myfavorites.page.tab".localized())
                 }
         }
+        .fullScreenCover(isPresented: $OnBoardingViewShouldAppear) {
+            OnBoardingView(shouldAppear: $OnBoardingViewShouldAppear)
+        }
     }
 }
 
 
 // MARK: - Preview
 struct TabView_Previews: PreviewProvider {
-    @StateObject static var topBarViewModel = TopBarViewModel()
     @StateObject static var favoritesViewModel = FavoritesViewModel()
     static var previews: some View {
         MyTabView()
-            .environmentObject(topBarViewModel)
             .environmentObject(favoritesViewModel)
     }
 }

@@ -9,12 +9,11 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-    
-    @EnvironmentObject var topBarViewModel: TopBarViewModel
+
     @StateObject var homeViewModel = HomeViewModel()
+    @StateObject var topBarViewModel = TopBarViewModel()
     @State private var searchText = ""
     @State private var timer: Timer?
-    @State private var shoulShowOnBoarding = true
     private let delay: TimeInterval = 1 // delay in seconds
     
     
@@ -22,7 +21,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 5) {
-                SimpleTopBar(viewModel: topBarViewModel)
+                TopBarView(viewModel: topBarViewModel)
                 SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                 Spacer()
                 RecipesListView(pageState: $homeViewModel.pageState, loadNextRecipes: homeViewModel.fetchNextRecipesWithUrl, nextRecipesLoading: homeViewModel.nextRecipesLoading, sectionTitle: "recipe.ideas".localized())
@@ -40,19 +39,13 @@ struct HomeView: View {
                 }
             })
         }
-        .fullScreenCover(isPresented: $shoulShowOnBoarding) {
-            OnBoardingView(shoulShowOnBoarding: $shoulShowOnBoarding)
-        }
-        
     }
 }
 
 
 // MARK: - Preview
 struct HomeView_Previews: PreviewProvider {
-    @StateObject static var topBarViewModel = TopBarViewModel()
     static var previews: some View {
         HomeView()
-            .environmentObject(topBarViewModel)
     }
 }

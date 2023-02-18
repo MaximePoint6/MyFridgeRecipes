@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SimpleTopBar: View {
+struct TopBarView: View {
 
     var viewModel: TopBarViewModel
     
@@ -40,10 +40,10 @@ struct SimpleTopBar: View {
 
 
 // MARK: - Preview
-struct SimpleTopBar_Previews: PreviewProvider {
+struct TopBarView_Previews: PreviewProvider {
     @StateObject static var topBarViewModel = TopBarViewModel()
     static var previews: some View {
-        SimpleTopBar(viewModel: topBarViewModel)
+        TopBarView(viewModel: topBarViewModel)
             .previewLayout(.sizeThatFits)
     }
 }

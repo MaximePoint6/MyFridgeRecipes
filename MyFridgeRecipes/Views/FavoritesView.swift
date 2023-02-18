@@ -57,11 +57,9 @@ struct FavoritesView: View {
 
 // MARK: - Preview
 struct FavoriteView_Previews: PreviewProvider {
-    @StateObject static var topBarViewModel = TopBarViewModel()
     @StateObject static var viewModel = FavoritesViewModel()
     static var previews: some View {
         FavoritesView()
-            .environmentObject(topBarViewModel)
             .environmentObject(viewModel)
     }
 }
