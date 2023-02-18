@@ -15,6 +15,7 @@ enum APIRouter {
     case fetchNextRecipesWithUrl(String)
     case fetchImage(String)
     
+    /// Base url of the request.
     var baseURL: String {
         switch self {
             case .fetchFoodSearch, .fetchRecipeSearch, .fetchRandomRecipes:
@@ -24,6 +25,7 @@ enum APIRouter {
         }
     }
     
+    /// Request path.
     var path: String {
         switch self {
             case .fetchFoodSearch:
@@ -35,6 +37,7 @@ enum APIRouter {
         }
     }
     
+    /// HTTP request methods.
     var method: HTTPMethod {
         switch self {
             case .fetchFoodSearch, .fetchRecipeSearch, .fetchRandomRecipes, .fetchNextRecipesWithUrl, .fetchImage:
@@ -42,6 +45,7 @@ enum APIRouter {
         }
     }
     
+    /// Query Parameter.
     var parameters: [String: String]? {
         switch self {
             case .fetchFoodSearch(let query):
@@ -56,8 +60,12 @@ enum APIRouter {
     }
 }
 
+
 // MARK: - URLRequestConvertible
 extension APIRouter: URLRequestConvertible {
+    
+    /// Create from the router of APIRouter a URLRequest.
+    /// - Returns: URLRequest or Error.
     func asURLRequest() throws -> URLRequest {
         let url = try baseURL.asURL().appendingPathComponent(path)
         var request = URLRequest(url: url)
@@ -71,5 +79,6 @@ extension APIRouter: URLRequestConvertible {
         }
         return request
     }
+    
 }
 

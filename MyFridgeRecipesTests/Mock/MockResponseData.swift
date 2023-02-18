@@ -30,14 +30,14 @@ class MockResponseData {
         )
     }
     
-    // MARK: Error simulation
+    // MARK: Mock error
     class TestError: Error { }
     static let error = TestError()
     
-    // MARK: Mock datas
+    // MARK: Mock correct datas
     static let recipesCorrectData: URL = Bundle(for: MockResponseData.self).url(forResource: "Recipes", withExtension: "json")!
-    static let recipesIncorrectData = "erreur".data(using: .utf8)!
     
+    // static let recipesIncorrectData = "erreur".data(using: .utf8)!
     //    static let botAvatarImageResponseHead: Data = try! Data(contentsOf: Bundle(for: MockedData.self).url(forResource: "Resources/Responses/bot-avatar-image-head", withExtension: "data")!)
     //    static let botAvatarImageFileUrl: URL = Bundle(for: MockedData.self).url(forResource: "wetransfer_bot_avater", withExtension: "png")!
     //    static var recipesCorrectData: Data? {

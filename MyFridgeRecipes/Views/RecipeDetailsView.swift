@@ -41,7 +41,7 @@ struct RecipeDetailsView: View {
     // MARK: - Subviews
     var headerSection: some View {
         ZStack(alignment: .bottomLeading) {
-            KFImage(viewModel.recipe.getRecipeImageUrl)
+            KFImage(viewModel.recipe.getImageUrl)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(height: 300)
@@ -53,7 +53,7 @@ struct RecipeDetailsView: View {
                 endPoint: .bottom
             )
             VStack(alignment: .leading) {
-                Text(viewModel.recipe.getTitleRecipe)
+                Text(viewModel.recipe.getTitle)
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
@@ -63,7 +63,7 @@ struct RecipeDetailsView: View {
                     .font(.caption)
             }
             .accessibilityElement(children: .combine)
-            .accessibilityLabel("recipe.name".localized() + viewModel.recipe.getTitleRecipe + ". " + "meal.type".localized() + viewModel.recipe.getMealType + ". " + "cuisine.type".localized() + viewModel.recipe.getCuisineType)
+            .accessibilityLabel("recipe.name".localized() + viewModel.recipe.getTitle + ". " + "meal.type".localized() + viewModel.recipe.getMealType + ". " + "cuisine.type".localized() + viewModel.recipe.getCuisineType)
             .padding()
         }
     }

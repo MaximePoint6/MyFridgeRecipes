@@ -8,4 +8,5 @@
 import Foundation
 import CoreData
 
+/// Essential class for CoreData.
 class CDRecipe: NSManagedObject { }

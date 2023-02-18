@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Create a custom modifier for a blinking view.
 struct BlinkViewModifier: ViewModifier {
     
     let duration: Double
@@ -25,6 +26,8 @@ struct BlinkViewModifier: ViewModifier {
 }
 
 extension View {
+    /// Allows this view to blink with an animation.
+    /// - Parameter duration: Duration of animation (blinking) in seconds.
     func blinking(duration: Double = 0.75) -> some View {
         modifier(BlinkViewModifier(duration: duration))
     }

@@ -16,7 +16,7 @@ struct MyFridgeRecipesApp: App {
         WindowGroup {
             MyTabView()
                 .environmentObject(favoritesViewModel)
-                .onAppear(perform: UIApplication.shared.addTapGestureRecognizer) // Add tapgesture in app to hide keyboard
+                .onAppear(perform: UIApplication.shared.addTapGestureRecognizer) // Add tapgesture in app to hide keyboard.
         }
     }
 }

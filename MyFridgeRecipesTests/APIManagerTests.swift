@@ -29,7 +29,7 @@ final class APIManagerTests: XCTestCase {
     }
     
     
-    func testAPIManager() {
+    func testAPIManager_success() {
         // Inform the router of the request
         let routerURLRequest = try! APIRouter.fetchRandomRecipes.asURLRequest()
         

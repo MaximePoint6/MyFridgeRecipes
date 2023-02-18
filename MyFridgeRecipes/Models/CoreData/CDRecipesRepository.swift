@@ -18,7 +18,11 @@ final class CDRecipesRepository {
         self.cdManager = coreDataStack
     }
     
-    // MARK: - Repository
+    // MARK: - Repository Functions
+    
+    
+    /// To get all the favorite recipes (CoreData).
+    /// - Parameter completion: Returns a result of type [Recipe] for success, or of type Error for failure.
     func getFavoriteRecipes(completion: (Result<[Recipe], Error>) -> Void) {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         do {
@@ -33,6 +37,8 @@ final class CDRecipesRepository {
         }
     }
     
+    /// To add a favorite recipe (CoreData). Function that can return an error.
+    /// - Parameter recipe: the recipe to add.
     func addFavoriteRecipes(recipe: Recipe) throws {
         let newFavoriteRecipe = CDRecipe(context: cdManager.viewContext)
         newFavoriteRecipe.isFavorite = recipe.isFavorite
@@ -53,6 +59,8 @@ final class CDRecipesRepository {
         }
     }
     
+    /// To remove a favorite recipe. Function that can return an error.
+    /// - Parameter recipe: the recipe to delete.
     func removeFavoriteRecipe(recipe: Recipe) throws {
         do {
             if let label = recipe.label, let recipeToDelete = try fetchRecipe(withLabel: label) {
@@ -68,6 +76,7 @@ final class CDRecipesRepository {
         }
     }
     
+    /// To delete all favorite recipes (CoreData). Function that can return an error.
     func removeAllFavoriteRecipes() throws {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         do {
@@ -86,7 +95,9 @@ final class CDRecipesRepository {
         }
     }
     
-    func updateFavoriteRecipes(recipe: Recipe) throws {
+    /// To edit a favorite recipe (CoreData). Function that can return an error.
+    /// - Parameter recipe: the recipe to edit.
+    func editFavoriteRecipes(recipe: Recipe) throws {
         do {
             if let label = recipe.label, let recipeToUpdate = try fetchRecipe(withLabel: label) {
                 recipeToUpdate.isFavorite = recipe.isFavorite
@@ -107,7 +118,11 @@ final class CDRecipesRepository {
     }
     
     
-    // MARK: - Private functions
+    // MARK: - Privates functions
+    
+    /// To fetch a recipe in CoreData. Function that can return an error.
+    /// - Parameter withLabel: Label / name of the recipe to fetch.
+    /// - Returns: a recipe of type CDRecipe? (CoreData).
     private func fetchRecipe(withLabel: String) throws -> CDRecipe? {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         request.predicate = NSPredicate(format: "label == %@", withLabel as CVarArg)
@@ -121,6 +136,7 @@ final class CDRecipesRepository {
         }
     }
     
+    /// To save the viewContext in CoreData. Function that can return an error.
     private func saveData() throws {
         if cdManager.viewContext.hasChanges {
             do {

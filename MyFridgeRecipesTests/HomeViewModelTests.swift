@@ -19,10 +19,9 @@ final class HomeViewModelTests: XCTestCase {
         super.setUp()
         // Given a success fetch with a certain data
         recipes = MockData.previewRecipes
-        // setup MockAPIManager
+        // Setup MockAPIManager
         mockAPIManager = MockAPIManager()
         homeViewModel = HomeViewModel(apiManager: mockAPIManager)
-        mockAPIManager.fetchSuccess(result: recipes)
     }
     
     override func tearDown() {
@@ -33,7 +32,7 @@ final class HomeViewModelTests: XCTestCase {
     
     
     // MARK: - FetchRamdomRecipes Function
-    func test_FetchRandomRecipesFunction_InViewModel() {
+    func test_FetchRandomRecipesFunction_inViewModel_success() {
         // When start fetch
         homeViewModel.fetchRandomRecipes()
         mockAPIManager.fetchSuccess(result: recipes)
@@ -50,7 +49,7 @@ final class HomeViewModelTests: XCTestCase {
         }
     }
     
-    func test_FetchRandomRecipesFunction_InViewModel_fail() {
+    func test_FetchRandomRecipesFunction_inViewModel_fail() {
         // Given a failed fetch with a certain failure
         let error = AFError.responseValidationFailed(reason: .dataFileNil)
         // When start fetch
@@ -70,7 +69,7 @@ final class HomeViewModelTests: XCTestCase {
     
     
     // MARK: - fetchNextRecipesWithUrl Function
-    func test_fetchNextRecipesWithUrlFunction_InViewModel() {
+    func test_fetchNextRecipesWithUrlFunction_inViewModel_success() {
         // Add a nextRecipesUrl
         homeViewModel.nextRecipesUrl = recipes._links!.next!.href!
         // When start fetch
@@ -89,7 +88,7 @@ final class HomeViewModelTests: XCTestCase {
         }
     }
     
-    func test_fetchNextRecipesWithUrlFunction_InViewModel_fail() {
+    func test_fetchNextRecipesWithUrlFunction_inViewModel_fail() {
         // Given a failed fetch with a certain failure
         let error = AFError.sessionTaskFailed(error: MockResponseData.error)
         // Add a nextRecipesUrl
@@ -109,9 +108,7 @@ final class HomeViewModelTests: XCTestCase {
         }
     }
     
-    func test_fetchNextRecipesWithUrlFunction_InViewModel_Return() {
-        // Given a failed fetch with a certain failure
-        let error = AFError.sessionTaskFailed(error: MockResponseData.error)
+    func test_fetchNextRecipesWithUrlFunction_inViewModel_return() {
         // Remove the nextRecipesUrl
         homeViewModel.nextRecipesUrl = nil
         homeViewModel.pageState = .loading
@@ -129,7 +126,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     // MARK: - fetchRecipeSearch Function
-    func test_fetchRecipeSearchFunction_InViewModel() {
+    func test_fetchRecipeSearchFunction_inViewModel_success() {
         // When start fetch
         homeViewModel.fetchRecipeSearch(searchText: "Tomato")
         mockAPIManager.fetchSuccess(result: recipes)
@@ -146,7 +143,7 @@ final class HomeViewModelTests: XCTestCase {
         }
     }
     
-    func test_fetchRecipeSearchFunction_InViewModel_fail() {
+    func test_fetchRecipeSearchFunction_inViewModel_fail_decoding() {
         // Given a failed fetch with a certain failure
         let error = AFError.responseSerializationFailed(reason: .inputFileNil)
         // When start fetch
@@ -164,7 +161,7 @@ final class HomeViewModelTests: XCTestCase {
         }
     }
     
-    func test_fetchRecipeSearchFunction_InViewModel_fail_BackEndError() {
+    func test_fetchRecipeSearchFunction_inViewModel_fail_BackEndError() {
         // Given a failed fetch with a certain failure
         let error = AFError.responseValidationFailed(reason: .unacceptableStatusCode(code: 500))
         // When start fetch

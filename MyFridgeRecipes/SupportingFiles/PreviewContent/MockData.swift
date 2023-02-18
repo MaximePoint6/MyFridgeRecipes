@@ -16,8 +16,9 @@ class MockData {
         .filter { $0.recipe != nil }
         .map { $0.recipe! }
     
-    
-    // Func Load from Json
+    /// To load a JSON file, decode it and return an object of generic type T.
+    /// - Parameter filename: filename.
+    /// - Returns: object of generic type T.
     static private func load<T: Decodable>(_ filename: String) -> T {
         let data: Data
         

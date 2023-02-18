@@ -24,7 +24,7 @@ struct RecipeCardView: View {
     
     // MARK: - Subviews
     var cardImage: some View {
-        KFImage(viewModel.recipe.getRecipeImageUrl)
+        KFImage(viewModel.recipe.getImageUrl)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: 130, height: 80)
@@ -39,7 +39,7 @@ struct RecipeCardView: View {
     
     var cardText: some View {
         VStack(alignment: .leading) {
-            Text(viewModel.recipe.getTitleRecipe)
+            Text(viewModel.recipe.getTitle)
                 .font(.title2)
                 .lineLimit(2)
             Text(viewModel.recipe.getMealType + " • " + viewModel.recipe.getCuisineType)
@@ -47,7 +47,7 @@ struct RecipeCardView: View {
                 .lineLimit(1)
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("recipe.name".localized() + viewModel.recipe.getTitleRecipe + ". " + "meal.type".localized() + viewModel.recipe.getMealType + ". " + "cuisine.type".localized() + viewModel.recipe.getCuisineType)
+        .accessibilityLabel("recipe.name".localized() + viewModel.recipe.getTitle + ". " + "meal.type".localized() + viewModel.recipe.getMealType + ". " + "cuisine.type".localized() + viewModel.recipe.getCuisineType)
     }
 }
 

@@ -13,7 +13,7 @@ struct Recipes: Codable {
     let hits: [Hit]?
     
     struct Links: Codable {
-        let next: Link? // next page
+        let next: Link? // recipe next page
     }
     
     struct Hit: Codable {
@@ -31,13 +31,13 @@ struct Recipe: Codable {
     var isFavorite: Bool
     let label: String?
     let image: String?
-    let shareAs: String?
-    let yield: Double? // Recipe for x person
-    let ingredientLines: [String]? // Ingrédient dans la recette
-    let calories: Double? // calories du plat
+    let shareAs: String? // share link
+    let yield: Double? // number of portions in recipe
+    let ingredientLines: [String]?
+    let calories: Double? // calories of dish
     let totalTime: Double?
     let cuisineType: [String]?
-    let mealType: [String]? // diner, lunch etc
+    let mealType: [String]? // diner, lunch ...
     let instructions: [String]?
     
     enum CodingKeys: String, CodingKey {
@@ -85,19 +85,23 @@ struct Recipe: Codable {
     }
 }
 
+// MARK: - Properties used for UI
 extension Recipe {
-    // MARK: - UI
-    var getRecipeImageUrl: URL {
+    
+    /// To get recipe image url.
+    var getImageUrl: URL {
         guard let urlString = self.image else {
             return URL(string: "https://cdn.pixabay.com/photo/2015/10/26/07/21/vegetables-1006694_960_720.jpg")!
         }
         return URL(string: urlString)!
     }
     
-    var getTitleRecipe: String {
+    /// To get recipe title.
+    var getTitle: String {
         return self.label ?? "-"
     }
     
+    /// To get calories (per portion if available, otherwise per dish).
     var getCalories: String {
         guard let calories = self.calories, calories > 0 else {
             return "- " + "kcal".localized()
@@ -108,6 +112,7 @@ extension Recipe {
         return String(format: "kcals".localized(), calories/portions)
     }
     
+    /// To get portion number.
     var getPortionNumber: String {
         guard let portions = self.yield, portions > 0 else {
             return "-"
@@ -115,6 +120,7 @@ extension Recipe {
         return String(Int(portions))
     }
     
+    /// To get preparation time (in minutes).
     var getPreparationTime: String {
         guard let preparationTime = self.totalTime, preparationTime > 0 else {
             return "- " + "minute".localized()
@@ -122,14 +128,17 @@ extension Recipe {
         return String(format: "minutes".localized(), preparationTime)
     }
     
+    /// To get cuisine type.
     var getCuisineType: String {
         return self.cuisineType?.compactMap { $0 }.joined(separator: " - ") ?? ""
     }
     
+    /// To get meal type.
     var getMealType: String {
         return self.mealType?.compactMap { $0 }.joined(separator: " - ") ?? ""
     }
     
+    /// To get share URL.
     var getShareURL: URL? {
         guard let urlString = self.shareAs else { return nil }
         return URL(string: urlString)
