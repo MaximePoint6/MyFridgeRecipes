@@ -10,9 +10,9 @@ import SwiftUI
 struct FavoriteButtonView: View {
     
     @Binding var isLiked: Bool
-    let action: () -> Void
     let onColor: Color
     let offColor: Color
+    let action: () -> Void
     
     // Animation
     @State private var animate = false
@@ -43,15 +43,16 @@ struct FavoriteButtonView: View {
     }
 }
 
-// MARK: - Preview
+
+// MARK: - Previews
 struct FavoriteButtonView_Previews: PreviewProvider {
     @State static var isLiked: Bool = true
     @State static var isNotLiked: Bool = false
     static var previews: some View {
         Group {
-            FavoriteButtonView(isLiked: $isLiked, action: {}, onColor: Color.red, offColor: Color.gray)
+            FavoriteButtonView(isLiked: $isLiked, onColor: Color.red, offColor: Color.gray, action: {})
                 .previewLayout(.sizeThatFits)
-            FavoriteButtonView(isLiked: $isNotLiked, action: {}, onColor: Color.red, offColor: Color.gray)
+            FavoriteButtonView(isLiked: $isNotLiked, onColor: Color.red, offColor: Color.gray, action: {})
                 .previewLayout(.sizeThatFits)
         }
     }

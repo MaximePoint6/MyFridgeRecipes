@@ -13,10 +13,9 @@ struct ErrorView: View {
     
     // MARK: - Main View
     var body: some View {
-        VStack {
+        VStack(alignment: .center, spacing: 20) {
             Text("something.went.wrong".localized())
                 .font(.title)
-                .padding()
             Group {
                 switch error {
                     case .decoding, .otherProblem:
@@ -40,7 +39,7 @@ struct ErrorView: View {
 }
 
 
-// MARK: - Preview
+// MARK: - Previews
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

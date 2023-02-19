@@ -33,7 +33,8 @@ struct IconAndDataView: View {
     }
 }
 
-// MARK: - Preview
+
+// MARK: - Previews
 struct IconAndDataView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {

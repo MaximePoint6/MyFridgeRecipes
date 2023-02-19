@@ -28,14 +28,14 @@ struct IngredientSearchView: View {
             self.timer?.invalidate()
             self.timer = Timer.scheduledTimer(withTimeInterval: self.delay, repeats: false, block: { _ in
                 if !searchText.isEmpty {
-                    fridgeViewModel.fetchFoodSearch(searchText: newValue)
+                    fridgeViewModel.fetchIngredientSearch(searchText: newValue)
                 }
             })
         }
     }
     
     // MARK: - Subviews
-    var ingredientList: some View {
+    private var ingredientList: some View {
         List {
             ForEach(fridgeViewModel.ingredients, id: \.self) { ingredient in
                 Button {
@@ -52,7 +52,7 @@ struct IngredientSearchView: View {
 }
 
 
-// MARK: - Preview
+// MARK: - Previews
 struct IngredientSearchView_Previews: PreviewProvider {
     @StateObject static var fridgeViewModel = FridgeViewModel()
     static var previews: some View {

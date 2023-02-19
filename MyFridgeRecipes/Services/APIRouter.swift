@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 enum APIRouter {
-    case fetchFoodSearch(String)
+    case fetchIngredientSearch(String)
     case fetchRecipeSearch(String)
     case fetchRandomRecipes
     case fetchNextRecipesWithUrl(String)
@@ -18,7 +18,7 @@ enum APIRouter {
     /// Base url of the request.
     var baseURL: String {
         switch self {
-            case .fetchFoodSearch, .fetchRecipeSearch, .fetchRandomRecipes:
+            case .fetchIngredientSearch, .fetchRecipeSearch, .fetchRandomRecipes:
                 return "https://api.edamam.com"
             case .fetchNextRecipesWithUrl(let url), .fetchImage(let url):
                 return url
@@ -28,7 +28,7 @@ enum APIRouter {
     /// Request path.
     var path: String {
         switch self {
-            case .fetchFoodSearch:
+            case .fetchIngredientSearch:
                 return "/auto-complete"
             case .fetchRecipeSearch, .fetchRandomRecipes:
                 return "/api/recipes/v2"
@@ -40,7 +40,7 @@ enum APIRouter {
     /// HTTP request methods.
     var method: HTTPMethod {
         switch self {
-            case .fetchFoodSearch, .fetchRecipeSearch, .fetchRandomRecipes, .fetchNextRecipesWithUrl, .fetchImage:
+            case .fetchIngredientSearch, .fetchRecipeSearch, .fetchRandomRecipes, .fetchNextRecipesWithUrl, .fetchImage:
                 return .get
         }
     }
@@ -48,7 +48,7 @@ enum APIRouter {
     /// Query Parameter.
     var parameters: [String: String]? {
         switch self {
-            case .fetchFoodSearch(let query):
+            case .fetchIngredientSearch(let query):
                 return ["app_id": APIKeys.edamamFoodDatabaseID, "app_key": APIKeys.edamamFoodDatabase, "q": query, "limit": "10"]
             case .fetchRecipeSearch(let query):
                 return ["app_id": APIKeys.edamamRecipeSearchID, "app_key": APIKeys.edamamRecipeSearch, "type": "any", "q": query]

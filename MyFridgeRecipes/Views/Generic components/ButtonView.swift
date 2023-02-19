@@ -1,16 +1,16 @@
 //
-//  OnBoardingButtonView.swift
+//  ButtonView.swift
 //  MyFridgeRecipes
 //
-//  Created by Maxime Point on 17/02/2023.
+//  Created by Maxime Point on 27/01/2023.
 //
 
 import SwiftUI
 
-struct OnBoardingButtonView: View {
+struct ButtonView: View {
     
-    let backgroundColor: Color
-    let textColor: Color
+    let buttonType: ButtonType
+    let color: Color
     let title: String
     let action: () -> Void
     
@@ -27,12 +27,12 @@ struct OnBoardingButtonView: View {
                 Text(title)
                     .fontWeight(.semibold)
                     .padding()
-                    .foregroundColor(textColor)
+                    .foregroundColor(buttonType == .primary ? .white : color)
                 Spacer()
             }
             .overlay(
                 RoundedRectangle(cornerRadius: 15)
-                    .stroke(backgroundColor, lineWidth: 2)
+                    .stroke(buttonType == .primary ? .clear : color, lineWidth: 2)
             )
         })
         .background(
@@ -40,23 +40,23 @@ struct OnBoardingButtonView: View {
                 cornerRadius: 15,
                 style: .continuous
             )
-            .fill(backgroundColor)
+            .fill(buttonType == .primary ? color : .clear)
         )
-        .padding(.leading, 50)
-        .padding(.trailing, 50)
+        .padding(.leading)
+        .padding(.trailing)
         .padding(.top, 5)
         .padding(.bottom, 5)
         .accessibilityLabel(title)
     }
 }
 
-// MARK: - Preview
-struct OnBoardingButtonView_Previews: PreviewProvider {
+
+// MARK: - Previews
+struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingButtonView(backgroundColor: .white, textColor: .accentColor, title: "Test Button", action: {})
+        ButtonView(buttonType: .primary, color: .accentColor, title: "Test Button", action: {})
             .previewLayout(.sizeThatFits)
-        OnBoardingButtonView(backgroundColor: .accentColor, textColor: .white, title: "Test Button", action: {})
+        ButtonView(buttonType: .secondary, color: .accentColor, title: "Test Button", action: {})
             .previewLayout(.sizeThatFits)
     }
 }
-

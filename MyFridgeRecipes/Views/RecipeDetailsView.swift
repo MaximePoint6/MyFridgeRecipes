@@ -25,11 +25,13 @@ struct RecipeDetailsView: View {
         .ignoresSafeArea(.container, edges: .top)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                FavoriteButtonView(isLiked: $viewModel.recipe.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .accentColor, offColor: .white)
+                FavoriteButtonView(isLiked: $viewModel.recipe.isFavorite, onColor: .accentColor, offColor: .white) {
+                    viewModel.clickedOnIsfavorite()
+                    favoriteViewModel.updateFavoriteRecipes()
+                }
             }
         }
         .onAppear {
-            viewModel.setupFavoritesViewModel(favoritesViewModel: favoriteViewModel)
             viewModel.checkIfIsfavorite()
         }
         .alert(isPresented: $viewModel.coreDataError) {
@@ -39,7 +41,7 @@ struct RecipeDetailsView: View {
     
     
     // MARK: - Subviews
-    var headerSection: some View {
+    private var headerSection: some View {
         ZStack(alignment: .bottomLeading) {
             KFImage(viewModel.recipe.getImageUrl)
                 .resizable()
@@ -68,28 +70,31 @@ struct RecipeDetailsView: View {
         }
     }
     
-    var shareAndFavoritesButtonSection: some View {
+    private var shareAndFavoritesButtonSection: some View {
         HStack(alignment: .center) {
             if let shareURL = viewModel.recipe.getShareURL {
                 Spacer()
-                    Button {
-                        viewModel.share(this: [shareURL])
-                    } label: {
-                        HStack {
-                            Image(systemName: "square.and.arrow.up")
-                                .accessibility(hidden: true)
-                            Text("share".localized())
-                                .accessibility(hidden: true)
-                        }
+                Button {
+                    viewModel.share(this: [shareURL])
+                } label: {
+                    HStack {
+                        Image(systemName: "square.and.arrow.up")
+                            .accessibility(hidden: true)
+                        Text("share".localized())
+                            .accessibility(hidden: true)
                     }
-                    .foregroundColor(.primary)
-                    .accessibilityAddTraits(.isButton)
-                    .accessibilityLabel("share".localized())
-                    .accessibility(hint: Text("share.recipe".localized()))
+                }
+                .foregroundColor(.primary)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel("share".localized())
+                .accessibility(hint: Text("share.recipe".localized()))
             }
             Spacer()
             HStack {
-                FavoriteButtonView(isLiked: $viewModel.recipe.isFavorite, action: viewModel.clickedOnIsfavorite, onColor: .accentColor, offColor: .gray)
+                FavoriteButtonView(isLiked: $viewModel.recipe.isFavorite, onColor: .accentColor, offColor: .gray) {
+                    viewModel.clickedOnIsfavorite()
+                    favoriteViewModel.updateFavoriteRecipes()
+                }
                 Text("favoris".localized())
                     .accessibility(hidden: true)
             }
@@ -98,7 +103,7 @@ struct RecipeDetailsView: View {
         .padding()
     }
     
-    var recipeDataSection: some View {
+    private var recipeDataSection: some View {
         ZStack(alignment: .center) {
             Rectangle()
                 .foregroundColor(.accentColor)
@@ -114,43 +119,41 @@ struct RecipeDetailsView: View {
     }
     
     @ViewBuilder // By using @ViewBuilder the compiler understands that this function may or may not return a view depending on the content. Here, if there is no ingredientLine, the function will not return a view. If the ingredients are present, it will return a view that displays them.
-    var ingredientSection: some View {
+    private var ingredientSection: some View {
         if let ingredientLines = viewModel.recipe.ingredientLines, ingredientLines.count > 0 {
-            Group {
-                VStack(alignment: .center, spacing: 5) {
-                    Text("ingredients".localized())
-                        .font(.title2)
-                        .padding(.top, 10)
-                    HStack(alignment: .center, spacing: 5) {
-                        Text("for".localized())
-                        HStack {
-                            Text(viewModel.recipe.getPortionNumber)
-                            Image(systemName: "fork.knife")
-                                .accessibility(hidden: true)
-                        }
-                        .foregroundColor(.white)
-                        .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
-                        .background(Color.accentColor)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
+            VStack(alignment: .center, spacing: 5) {
+                Text("ingredients".localized())
+                    .font(.title2)
+                    .padding(.top, 10)
+                HStack(alignment: .center, spacing: 5) {
+                    Text("for".localized())
+                    HStack {
+                        Text(viewModel.recipe.getPortionNumber)
+                        Image(systemName: "fork.knife")
+                            .accessibility(hidden: true)
                     }
-                    .accessibilityElement(children: .ignore)
-                    .accessibilityLabel(String(format: "for.x.people".localized(), viewModel.recipe.getPortionNumber))
+                    .foregroundColor(.white)
+                    .padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 15))
+                    .background(Color.accentColor)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
                 }
-                VStack(alignment: .leading) {
-                    ForEach(ingredientLines, id: \.self) { ingredient in
-                        Text("• " + ingredient)
-                            .padding(1)
-                    }
-                }
-                .padding()
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(String(format: "for.x.people".localized(), viewModel.recipe.getPortionNumber))
             }
+            VStack(alignment: .leading) {
+                ForEach(ingredientLines, id: \.self) { ingredient in
+                    Text("• " + ingredient)
+                        .padding(1)
+                }
+            }
+            .padding()
         }
     }
     
     @ViewBuilder
-    var instructionsSection: some View {
+    private var instructionsSection: some View {
         if let instructions = viewModel.recipe.instructions, instructions.count > 0 {
-            Group {
+            VStack(alignment: .center, spacing: 5) {
                 Text("recipe".localized())
                     .font(.title2)
                     .padding(.top, 10)
@@ -169,11 +172,10 @@ struct RecipeDetailsView: View {
         }
     }
     
-    
 }
 
 
-// MARK: - Preview
+// MARK: - Previews
 struct RecipeDetailsView_Previews: PreviewProvider {
     @StateObject static var favoriteViewModel = FavoritesViewModel()
     static var viewModel = RecipeDetailsViewModel(recipe: MockData.previewSingleRecipe)

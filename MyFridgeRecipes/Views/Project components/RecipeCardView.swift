@@ -10,7 +10,7 @@ import Kingfisher
 
 struct RecipeCardView: View {
     
-    @ObservedObject var viewModel: RecipeCardViewModel
+    let viewModel: RecipeCardViewModel
     
     // MARK: - Main View
     var body: some View {
@@ -23,7 +23,7 @@ struct RecipeCardView: View {
     }
     
     // MARK: - Subviews
-    var cardImage: some View {
+    private var cardImage: some View {
         KFImage(viewModel.recipe.getImageUrl)
             .resizable()
             .aspectRatio(contentMode: .fill)
@@ -37,7 +37,7 @@ struct RecipeCardView: View {
             .accessibilityLabel(Text("recipe.picture".localized()))
     }
     
-    var cardText: some View {
+    private var cardText: some View {
         VStack(alignment: .leading) {
             Text(viewModel.recipe.getTitle)
                 .font(.title2)
@@ -45,6 +45,7 @@ struct RecipeCardView: View {
             Text(viewModel.recipe.getMealType + " • " + viewModel.recipe.getCuisineType)
                 .font(.caption)
                 .lineLimit(1)
+                .foregroundColor(Color.primary.opacity(0.6))
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel("recipe.name".localized() + viewModel.recipe.getTitle + ". " + "meal.type".localized() + viewModel.recipe.getMealType + ". " + "cuisine.type".localized() + viewModel.recipe.getCuisineType)
@@ -52,7 +53,7 @@ struct RecipeCardView: View {
 }
 
 
-// MARK: - Preview
+// MARK: - Previews
 struct RecipeCardView_Previews: PreviewProvider {
     static var previews: some View {
         RecipeCardView(viewModel: RecipeCardViewModel(recipe: MockData.previewSingleRecipe))

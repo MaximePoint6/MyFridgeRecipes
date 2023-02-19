@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TopBarView: View {
-
-    var viewModel: TopBarViewModel
+    
+    @StateObject var viewModel = TopBarViewModel()
     
     // MARK: - Main View
     var body: some View {
@@ -18,7 +18,9 @@ struct TopBarView: View {
                 Text(viewModel.helloLabel)
                     .font(.caption)
                     .foregroundColor(.accentColor)
-                titleSection
+                Text("what.to.cook.today".localized())
+                    .font(.largeTitle)
+                    .fontWeight(.semibold)
             }
             Spacer()
         }
@@ -27,23 +29,13 @@ struct TopBarView: View {
         .padding(.top, 5)
         .padding(.bottom, 5)
     }
-    
-    // MARK: - SUbviews
-    var titleSection: some View {
-        VStack(alignment: .leading) {
-            Text("what.to.cook.today".localized())
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-        }
-    }
 }
 
 
-// MARK: - Preview
+// MARK: - Previews
 struct TopBarView_Previews: PreviewProvider {
-    @StateObject static var topBarViewModel = TopBarViewModel()
     static var previews: some View {
-        TopBarView(viewModel: topBarViewModel)
+        TopBarView()
             .previewLayout(.sizeThatFits)
     }
 }

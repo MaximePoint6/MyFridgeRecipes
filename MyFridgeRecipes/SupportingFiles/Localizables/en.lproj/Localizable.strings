@@ -39,16 +39,16 @@
 "search.ingredient" = "Search for an ingredient";
 "remove.fridge.ingredients" = "Add delete buttons next to each ingredient from the fridge.";
 "add.fridge.ingredients" = "Add your fridge ingredients, and we'll find recipes for you!";
-"navigate.to.ingredient.search.View" = "Navigate to ingredient search screen";
-"navigate.to.recipe.list" = "Navigate to recipes list";
+"navigate.to.ingredient.search.View" = "Navigate to ingredient search screen.";
+"navigate.to.recipe.list" = "Navigate to recipes list.";
 "add.ingredient" = "Add the ingredient to the ingredients list in the fridge and close this search screen.";
 
 // ErrorView
-"something.went.wrong" = "Something went wrong";
-"contact.developer" = "Please contact developer";
-"no.internet.connection" = "Please check your internet connection";
-"api.limit" = "API limit reached, wait a few second";
-"service.unavailable" = "Service unavailable";
+"something.went.wrong" = "Something went wrong.";
+"contact.developer" = "Please contact developer.";
+"no.internet.connection" = "Please check your internet connection.";
+"api.limit" = "API limit reached, wait a few second.";
+"service.unavailable" = "Service unavailable.";
 "server.error" = "Server error code: ";
 
 // RecipeDetailsView
@@ -97,4 +97,4 @@
 
 // Alert
 "error = Error";
-"save.problem" = "There was a problem with the save";
+"save.problem" = "There was a problem with the save.";

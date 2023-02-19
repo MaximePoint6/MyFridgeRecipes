@@ -20,7 +20,6 @@ final class CDRecipesRepository {
     
     // MARK: - Repository Functions
     
-    
     /// To get all the favorite recipes (CoreData).
     /// - Parameter completion: Returns a result of type [Recipe] for success, or of type Error for failure.
     func getFavoriteRecipes(completion: (Result<[Recipe], Error>) -> Void) {

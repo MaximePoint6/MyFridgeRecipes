@@ -24,7 +24,6 @@ struct MyTabView: View {
                     Label("my.fridge".localized(), systemImage: "snowflake")
                         .accessibilityLabel("myfridge.page.tab".localized())
                 }
-                .accessibilityHint(Text("navigue vers"))
             FavoritesView()
                 .tabItem {
                     Label("my.favorites".localized(), systemImage: "heart.fill")
@@ -38,7 +37,7 @@ struct MyTabView: View {
 }
 
 
-// MARK: - Preview
+// MARK: - Previews
 struct TabView_Previews: PreviewProvider {
     @StateObject static var favoritesViewModel = FavoritesViewModel()
     static var previews: some View {

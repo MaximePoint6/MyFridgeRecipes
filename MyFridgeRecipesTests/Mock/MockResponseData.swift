@@ -35,15 +35,5 @@ class MockResponseData {
     static let error = TestError()
     
     // MARK: Mock correct datas
-    static let recipesCorrectData: URL = Bundle(for: MockResponseData.self).url(forResource: "Recipes", withExtension: "json")!
-    
-    // static let recipesIncorrectData = "erreur".data(using: .utf8)!
-    //    static let botAvatarImageResponseHead: Data = try! Data(contentsOf: Bundle(for: MockedData.self).url(forResource: "Resources/Responses/bot-avatar-image-head", withExtension: "data")!)
-    //    static let botAvatarImageFileUrl: URL = Bundle(for: MockedData.self).url(forResource: "wetransfer_bot_avater", withExtension: "png")!
-    //    static var recipesCorrectData: Data? {
-    //        let bundle = Bundle(for: MockResponseData.self)
-    //        let url = bundle.url(forResource: "Recipes", withExtension: "json")!
-    //        let data = try! Data(contentsOf: url)
-    //        return data
-    //    }
+    static let recipesCorrectData: URL = Bundle.main.url(forResource: "Recipes", withExtension: "json")!
 }

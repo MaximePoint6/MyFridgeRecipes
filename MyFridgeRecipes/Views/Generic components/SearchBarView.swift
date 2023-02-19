@@ -54,7 +54,7 @@ struct SearchBarView: View {
 }
 
 
-// MARK: - Preview
+// MARK: - Previews
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
         SearchBarView(text: .constant("test"), keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())

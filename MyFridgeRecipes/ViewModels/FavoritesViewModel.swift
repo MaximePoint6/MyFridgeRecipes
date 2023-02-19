@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class FavoritesViewModel: ObservableObject {
     
     @Published var pageState = PageState.loading
@@ -19,12 +18,18 @@ class FavoritesViewModel: ObservableObject {
         updateFavoriteRecipes()
     }
     
+    // MARK: - Other properties
+    
+    /// Array of stored recipes to update the pageState.
     private var favoriteRecipes: [Recipe] = [] {
         didSet {
             self.pageState = .loaded(favoriteRecipes)
         }
     }
     
+    // MARK: - Functions
+    
+    /// To get all the favorite recipes (CoreData).
     func updateFavoriteRecipes() {
         repository.getFavoriteRecipes { (result: Result<[Recipe], Error>) in
             switch result {
@@ -36,16 +41,15 @@ class FavoritesViewModel: ObservableObject {
         }
     }
     
+    /// To get the favorite recipes filtered according to a search (CoreData).
+    /// - Parameter searchText: recipe to search.
     func getFilteredRecipes(searchText: String) {
         repository.getFavoriteRecipes { (result: Result<[Recipe], Error>) in
             switch result {
                 case .success(let response):
                     self.favoriteRecipes = response.filter({ recipe in
-                        if let label = recipe.label {
-                            return label.lowercased().contains(searchText.lowercased())
-                        } else {
-                            return false
-                        }
+                        guard let label = recipe.label else { return false }
+                        return label.lowercased().contains(searchText.lowercased())
                     })
                 case .failure:
                     coreDataError = true

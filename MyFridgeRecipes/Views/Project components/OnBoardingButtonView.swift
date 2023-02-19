@@ -1,16 +1,16 @@
 //
-//  ButtonView.swift
+//  OnBoardingButtonView.swift
 //  MyFridgeRecipes
 //
-//  Created by Maxime Point on 27/01/2023.
+//  Created by Maxime Point on 17/02/2023.
 //
 
 import SwiftUI
 
-struct ButtonView: View {
+struct OnBoardingButtonView: View {
     
-    let buttonType: ButtonType
-    let color: Color
+    let backgroundColor: Color
+    let textColor: Color
     let title: String
     let action: () -> Void
     
@@ -27,12 +27,12 @@ struct ButtonView: View {
                 Text(title)
                     .fontWeight(.semibold)
                     .padding()
-                    .foregroundColor(buttonType == .primary ? .white : color)
+                    .foregroundColor(textColor)
                 Spacer()
             }
             .overlay(
                 RoundedRectangle(cornerRadius: 15)
-                    .stroke(buttonType == .primary ? .clear : color, lineWidth: 2)
+                    .stroke(backgroundColor, lineWidth: 2)
             )
         })
         .background(
@@ -40,22 +40,26 @@ struct ButtonView: View {
                 cornerRadius: 15,
                 style: .continuous
             )
-            .fill(buttonType == .primary ? color : .clear)
+            .fill(backgroundColor)
         )
-        .padding(.leading)
-        .padding(.trailing)
+        .padding(.leading, 50)
+        .padding(.trailing, 50)
         .padding(.top, 5)
         .padding(.bottom, 5)
         .accessibilityLabel(title)
     }
 }
 
-// MARK: - Preview
-struct ButtonView_Previews: PreviewProvider {
+
+// MARK: - Previews
+struct OnBoardingButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView(buttonType: .primary, color: .accentColor, title: "Test Button", action: {})
-            .previewLayout(.sizeThatFits)
-        ButtonView(buttonType: .secondary, color: .accentColor, title: "Test Button", action: {})
-            .previewLayout(.sizeThatFits)
+        ZStack {
+            Rectangle()
+                .foregroundColor(.accentColor)
+            OnBoardingButtonView(backgroundColor: .white, textColor: .accentColor, title: "Test Button", action: {})
+                .previewLayout(.sizeThatFits)
+        }
     }
 }
+

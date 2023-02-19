@@ -58,7 +58,8 @@ struct RecipesListView: View {
     }
 }
 
-// MARK: - Preview
+
+// MARK: - Previews
 struct MyFridgeRecipesView_Previews: PreviewProvider {
     static var previews: some View {
         Group {

@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct FavoritesView: View {
+    
     @EnvironmentObject var viewModel: FavoritesViewModel
     @State private var searchText = ""
     
     // MARK: - Main View
     var body: some View {
         NavigationView {
-            VStack(alignment: .center) {
+            VStack(alignment: .center, spacing: 5) {
                 VStack(alignment: .leading) {
                     titleSection
                     SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
@@ -36,8 +37,8 @@ struct FavoritesView: View {
     }
     
     
-    // MARK: - SUbviews
-    var titleSection: some View {
+    // MARK: - Subviews
+    private var titleSection: some View {
         VStack(alignment: .leading) {
             Text("all.favorites.recipes".localized())
                 .font(.largeTitle)
@@ -55,7 +56,7 @@ struct FavoritesView: View {
 }
 
 
-// MARK: - Preview
+// MARK: - Previews
 struct FavoriteView_Previews: PreviewProvider {
     @StateObject static var viewModel = FavoritesViewModel()
     static var previews: some View {

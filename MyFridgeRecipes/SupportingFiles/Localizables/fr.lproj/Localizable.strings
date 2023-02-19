@@ -39,16 +39,16 @@
 "search.ingredient" = "Rechercher un ingrédient";
 "remove.fridge.ingredients" = "Ajoute des boutons de suppresion à coté de chaque ingrédients du frigo.";
 "add.fridge.ingredients" = "Ajoute les ingrédients de ton frigo, et on te trouve des recettes !";
-"navigate.to.ingredient.search.View" = "Navigue vers l'écran de recherche d'ingrédients";
-"navigate.to.recipe.list" = "Navigue vers la liste de recettes";
+"navigate.to.ingredient.search.View" = "Navigue vers l'écran de recherche d'ingrédients.";
+"navigate.to.recipe.list" = "Navigue vers la liste de recettes.";
 "add.ingredient" = "Ajoute l'ingrédient à la liste des ingrédients du frigo et ferme cette écran de recherche.";
 
 // ErrorView
-"something.went.wrong" = "Quelque chose s'est mal passé";
-"contact.developer" = "Veuillez contacter le développeur";
-"no.internet.connection" = "S'il vous plait, vérifiez votre connexion internet";
-"api.limit" = "Limite API atteinte, attendez quelques secondes";
-"service.unavailable" = "Service non disponible";
+"something.went.wrong" = "Quelque chose s'est mal passé.";
+"contact.developer" = "Veuillez contacter le développeur.";
+"no.internet.connection" = "S'il vous plait, vérifiez votre connexion internet.";
+"api.limit" = "Limite API atteinte, attendez quelques secondes.";
+"service.unavailable" = "Service non disponible.";
 "server.error" = "Code d'erreur du serveur : ";
 
 // RecipeDetailsView
@@ -84,7 +84,7 @@
 
 // SearchBarView
 "delete" = "Supprimer";
-"delete.text" = "Supprime le texte dans la barre de recherche";
+"delete.text" = "Supprime le texte dans la barre de recherche.";
 "text.in.search.bar" = "Le texte dans la barre de recherche est ";
 "empty.search.bar" = "La barre de recherche est vide";
 "search.bar" = "Barre de recherche";
@@ -97,4 +97,4 @@
 
 // Alert
 "error = Erreur";
-"save.problem" = "Un probleme est survenu avec la sauvegarde";
+"save.problem" = "Un probleme est survenu avec la sauvegarde.";
