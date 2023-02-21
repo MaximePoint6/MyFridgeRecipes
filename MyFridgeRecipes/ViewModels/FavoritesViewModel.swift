@@ -12,9 +12,10 @@ class FavoritesViewModel: ObservableObject {
     @Published var pageState = PageState.loading
     @Published var coreDataError = false
     
-    private let repository = CDRecipesRepository()
+    private let repository: CDRecipesRepository
     
-    init() {
+    init(repository: CDRecipesRepository = CDRecipesRepository()) {
+        self.repository = repository
         updateFavoriteRecipes()
     }
     

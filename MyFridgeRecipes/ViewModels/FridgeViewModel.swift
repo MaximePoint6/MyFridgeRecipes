@@ -13,7 +13,7 @@ class FridgeViewModel: ObservableObject {
     @Published var pageState = PageState.loading
     @Published private(set) var nextRecipesLoading = false
     @Published var fridgeIngredientList = [String]()
-    @Published var ingredients: [String] = []
+    @Published var searchedIngredients: [String] = []
     
     private let apiManager: APIManagerProtocol
     
@@ -35,6 +35,19 @@ class FridgeViewModel: ObservableObject {
     /// Returns a fridge ingredient list, comma separated, of type String.
     private var foodsString: String {
         return fridgeIngredientList.compactMap { $0 }.joined(separator: ", ")
+    }
+    
+    // MARK: - UI
+    
+    /// Returns a sentence including the number of selected fridge ingredients.
+    var selectedIngredients: String {
+        if fridgeIngredientList.count == 0 {
+            return "no.added.ingredient".localized()
+        } else if fridgeIngredientList.count == 1 {
+            return String(format: "selected.ingredient".localized(), String(fridgeIngredientList.count))
+        } else {
+            return String(format: "selected.ingredients".localized(), String(fridgeIngredientList.count))
+        }
     }
     
     // MARK: - Functions
@@ -75,9 +88,9 @@ class FridgeViewModel: ObservableObject {
         apiManager.getRequest(router: APIRouter.fetchIngredientSearch(searchText)) { (result: Result<[String], AFError>) in
             switch result {
                 case .success(let response):
-                    self.ingredients = response
+                    self.searchedIngredients = response
                 case .failure:
-                    self.ingredients = []
+                    self.searchedIngredients = []
             }
         }
     }
@@ -114,19 +127,6 @@ class FridgeViewModel: ObservableObject {
                 self.recipes.append(contentsOf: newRecipes)
             case .updateRecipes:
                 self.recipes = newRecipes
-        }
-    }
-    
-    // MARK: - UI
-    
-    /// Returns a sentence including the number of selected fridge ingredients.
-    var selectedIngredients: String {
-        if fridgeIngredientList.count == 0 {
-            return "no.added.ingredient".localized()
-        } else if fridgeIngredientList.count == 1 {
-            return String(format: "selected.ingredient".localized(), String(fridgeIngredientList.count))
-        } else {
-            return String(format: "selected.ingredients".localized(), String(fridgeIngredientList.count))
         }
     }
     

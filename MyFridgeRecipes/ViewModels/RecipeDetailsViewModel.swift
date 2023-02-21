@@ -12,9 +12,10 @@ class RecipeDetailsViewModel: ObservableObject {
     @Published var recipe: Recipe
     @Published var coreDataError = false
     
-    private let repository = CDRecipesRepository()
+    private let repository: CDRecipesRepository
     
-    init(recipe: Recipe) {
+    init(recipe: Recipe, repository: CDRecipesRepository = CDRecipesRepository()) {
+        self.repository = repository
         self.recipe = recipe
         self.checkIfIsfavorite()
     }

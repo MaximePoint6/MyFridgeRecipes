@@ -11,11 +11,11 @@ import CoreData
 final class CDRecipesRepository {
     
     // MARK: - Properties
-    private let cdManager: CDManager
+    private let cdManager: CDManagerProtocol
     
     // MARK: - Init
-    init(coreDataStack: CDManager = CDManager.shared) {
-        self.cdManager = coreDataStack
+    init(cdManager: CDManagerProtocol = CDManager.shared) {
+        self.cdManager = cdManager
     }
     
     // MARK: - Repository Functions

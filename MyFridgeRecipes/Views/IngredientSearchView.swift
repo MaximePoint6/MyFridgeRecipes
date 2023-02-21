@@ -37,7 +37,7 @@ struct IngredientSearchView: View {
     // MARK: - Subviews
     private var ingredientList: some View {
         List {
-            ForEach(fridgeViewModel.ingredients, id: \.self) { ingredient in
+            ForEach(fridgeViewModel.searchedIngredients, id: \.self) { ingredient in
                 Button {
                     fridgeViewModel.addIngredient(ingredient)
                     presentationMode.wrappedValue.dismiss()

@@ -28,6 +28,9 @@ struct TopBarView: View {
         .padding(.trailing)
         .padding(.top, 5)
         .padding(.bottom, 5)
+        .onAppear {
+            viewModel.updateHelloLabel()
+        }
     }
 }
 

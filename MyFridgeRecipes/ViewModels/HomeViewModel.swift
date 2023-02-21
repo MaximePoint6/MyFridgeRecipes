@@ -11,7 +11,7 @@ import Alamofire
 class HomeViewModel: ObservableObject {
     
     @Published var pageState = PageState.loading
-    @Published var nextRecipesLoading = false
+    @Published private(set) var nextRecipesLoading = false
     
     private let apiManager: APIManagerProtocol
     

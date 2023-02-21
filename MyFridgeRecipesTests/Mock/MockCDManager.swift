@@ -1,25 +1,21 @@
 //
-//  CDManager.swift
-//  MyFridgeRecipes
+//  MockCDManager.swift
+//  MyFridgeRecipesTests
 //
-//  Created by Maxime Point on 06/02/2023.
+//  Created by Maxime Point on 20/02/2023.
 //
 
 import Foundation
 import CoreData
+@testable import MyFridgeRecipes
 
-final class CDManager: CDManagerProtocol {
-    
-    // MARK: - Singleton
-    
-    static let shared = CDManager()
-    private init() {}
+final class MockCDManager: CDManagerProtocol {
     
     // MARK: - Properties
     
     /// ViewContext of Coredata.
     var viewContext: NSManagedObjectContext {
-        return CDManager.shared.persistentContainer.viewContext
+        return persistentContainer.viewContext
     }
     
     // MARK: - Privates Properties
@@ -39,3 +35,4 @@ final class CDManager: CDManagerProtocol {
     }()
     
 }
+
