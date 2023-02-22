@@ -52,7 +52,7 @@ class APIManager: APIManagerProtocol {
     /// - Parameters:
     ///   - router: Provide the desired router to launch the request (allows to add to the request, the url, the parameters, the method ...).
     ///   - completion: Returns a completion with a result of type T for success and AFError for failure.
-    func getRequest<T: Codable>(router: URLRequestConvertible, completion: @escaping (Result<T, AFError>) -> Void) {
+    func getRequest<T: Decodable>(router: URLRequestConvertible, completion: @escaping (Result<T, AFError>) -> Void) {
         sessionManager.request(router)
             .responseDecodable(of: T.self, decoder: SnakeCaseJSONDecoder()) { response in
                 switch response.result {

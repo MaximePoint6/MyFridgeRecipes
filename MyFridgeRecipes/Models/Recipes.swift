@@ -8,26 +8,26 @@
 import Foundation
 
 // MARK: - Recipes
-struct Recipes: Codable {
+struct Recipes: Decodable {
     let _links: Links?
     let hits: [Hit]?
     
-    struct Links: Codable {
+    struct Links: Decodable {
         let next: Link? // recipe next page
     }
     
-    struct Hit: Codable {
+    struct Hit: Decodable {
         let recipe: Recipe?
     }
     
-    struct Link: Codable {
+    struct Link: Decodable {
         let href: String?
     }
 }
 
 
 // MARK: - Recipe
-struct Recipe: Codable {
+struct Recipe: Decodable {
     var isFavorite: Bool
     let label: String?
     let image: String?

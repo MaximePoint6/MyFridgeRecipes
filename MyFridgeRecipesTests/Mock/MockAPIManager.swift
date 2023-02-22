@@ -20,7 +20,7 @@ class MockAPIManager: APIManagerProtocol {
     /// - Parameters:
     ///   - router: Provide the desired router to launch the request (allows to add to the request, the url, the parameters, the method ...).
     ///   - completion: Returns the desired mock completion.
-    func getRequest<T: Codable>(router: Alamofire.URLRequestConvertible, completion: @escaping (Result<T, AFError>) -> Void) {
+    func getRequest<T: Decodable>(router: Alamofire.URLRequestConvertible, completion: @escaping (Result<T, AFError>) -> Void) {
         completeClosure = { result in
                     switch result {
                     case .success(let successResult):
@@ -33,7 +33,7 @@ class MockAPIManager: APIManagerProtocol {
     
     /// This function is used to add and therefore simulate a success of the getRequest function.
     /// - Parameter result: the object that will complete the completion of the getRequest function.
-    func fetchSuccess<T: Codable>(result: T) {
+    func fetchSuccess<T: Decodable>(result: T) {
         completeClosure(.success(result as Any))
     }
     
