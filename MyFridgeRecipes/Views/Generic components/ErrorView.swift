@@ -24,8 +24,12 @@ struct ErrorView: View {
                         Text("no.internet.connection".localized())
                     case .backend(let code):
                         switch code {
+                            case 401:
+                                Text("invalidApiKey".localized())
                             case 403:
                                 Text("api.limit".localized())
+                            case 429:
+                                Text("too.many.requests".localized())
                             case 503:
                                 Text("service.unavailable".localized())
                             default:

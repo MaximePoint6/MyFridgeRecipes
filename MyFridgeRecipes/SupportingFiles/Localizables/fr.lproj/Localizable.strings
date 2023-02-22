@@ -50,6 +50,7 @@
 "api.limit" = "Limite API atteinte, attendez quelques secondes.";
 "service.unavailable" = "Service non disponible.";
 "server.error" = "Code d'erreur du serveur : ";
+"too.many.requests" = "Trop de requêtes ont été effectuées dans un laps de temps. Veuillez réessayer ultérieurement.";
 
 // RecipeDetailsView
 "share" = "Partager";
