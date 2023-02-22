@@ -17,6 +17,9 @@ class ErrorManager {
         case otherProblem
     }
     
+    /// To deduce the PageState based on the alamofire error.
+    /// - Parameter error: a Alamofire Error.
+    /// - Returns: Page State.
     static func getErrorPageState(error: AFError) -> PageState {
         if let code = error.responseCode {
             return .failed(.backend(code))

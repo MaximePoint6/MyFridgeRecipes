@@ -11,29 +11,34 @@ import CoreData
 final class CDRecipesRepository {
     
     // MARK: - Properties
-    private let cdManager: CDManager
+    private let cdManager: CDManagerProtocol
     
     // MARK: - Init
-    init(coreDataStack: CDManager = CDManager.shared) {
-        self.cdManager = coreDataStack
+    init(cdManager: CDManagerProtocol = CDManager.shared) {
+        self.cdManager = cdManager
     }
     
-    // MARK: - Repository
-    func getFavoriteRecipes(completion: ([Recipe]) -> Void) {
+    // MARK: - Repository Functions
+    
+    /// To get all the favorite recipes (CoreData).
+    /// - Parameter completion: Returns a result of type [Recipe] for success, or of type Error for failure.
+    func getFavoriteRecipes(completion: (Result<[Recipe], Error>) -> Void) {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         do {
             let favoriteRecipes = try cdManager.viewContext.fetch(request)
             let recipes = favoriteRecipes.compactMap({ (rawRecipe: CDRecipe) -> Recipe? in
                 Recipe(fromCoreDataObject: rawRecipe)
             })
-            completion(recipes)
+            completion(.success(recipes))
         } catch {
             print("Error while retrieving CoreData data: \(error.localizedDescription)")
-            completion([])
+            completion(.failure(error))
         }
     }
     
-    func addFavoriteRecipes(recipe: Recipe) {
+    /// To add a favorite recipe (CoreData). Function that can return an error.
+    /// - Parameter recipe: the recipe to add.
+    func addFavoriteRecipes(recipe: Recipe) throws {
         let newFavoriteRecipe = CDRecipe(context: cdManager.viewContext)
         newFavoriteRecipe.isFavorite = recipe.isFavorite
         newFavoriteRecipe.label = recipe.label
@@ -46,96 +51,100 @@ final class CDRecipesRepository {
         newFavoriteRecipe.cuisineType = recipe.cuisineType
         newFavoriteRecipe.mealType = recipe.mealType
         newFavoriteRecipe.instructions = recipe.instructions
-        saveData()
-//        do {
-//            try cdManager.viewContext.save()
-//            completion()
-//        } catch {
-//            print("We were unable to save \(recipe.label ?? "recipe"). Error : \(error.localizedDescription)")
-//        }
-    }
-    
-    func removeFavoriteRecipe(recipe: Recipe) {
-        if let label = recipe.label, let recipeToDelete = fetchCDRecipe(withLabel: label) {
-            cdManager.viewContext.delete(recipeToDelete)
-            saveData()
+        do {
+            try saveData()
+        } catch {
+            throw error
         }
     }
     
-    func removeAllFavoriteRecipes() {
+    /// To remove a favorite recipe. Function that can return an error.
+    /// - Parameter recipe: the recipe to delete.
+    func removeFavoriteRecipe(recipe: Recipe) throws {
+        do {
+            if let label = recipe.label, let recipeToDelete = try fetchRecipe(withLabel: label) {
+                cdManager.viewContext.delete(recipeToDelete)
+                do {
+                    try saveData()
+                } catch {
+                    throw error
+                }
+            }
+        } catch {
+            throw error
+        }
+    }
+    
+    /// To delete all favorite recipes (CoreData). Function that can return an error.
+    func removeAllFavoriteRecipes() throws {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         do {
             let favoriteRecipes = try cdManager.viewContext.fetch(request)
-            
             for recipe in favoriteRecipes {
                 cdManager.viewContext.delete(recipe)
             }
-            saveData()
+            do {
+                try saveData()
+            } catch {
+                throw error
+            }
         } catch {
             print("Error while retrieving CoreData data: \(error.localizedDescription)")
+            throw error
         }
     }
     
-    func updateFavoriteRecipes(recipe: Recipe) {
-        if let label = recipe.label, let recipeToDelete = fetchCDRecipe(withLabel: label) {
-            recipeToDelete.isFavorite = recipe.isFavorite
-            recipeToDelete.label = recipe.label
-            recipeToDelete.image = recipe.image
-            recipeToDelete.shareAs = recipe.shareAs
-            recipeToDelete.yield = recipe.yield ?? 0
-            recipeToDelete.ingredientLines = recipe.ingredientLines
-            recipeToDelete.calories = recipe.calories ?? 0
-            recipeToDelete.totalTime = recipe.totalTime ?? 0
-            recipeToDelete.cuisineType = recipe.cuisineType
-            recipeToDelete.mealType = recipe.mealType
-            recipeToDelete.instructions = recipe.instructions
+    /// To edit a favorite recipe (CoreData). Function that can return an error.
+    /// - Parameter recipe: the recipe to edit.
+    func editFavoriteRecipes(recipe: Recipe) throws {
+        do {
+            if let label = recipe.label, let recipeToUpdate = try fetchRecipe(withLabel: label) {
+                recipeToUpdate.isFavorite = recipe.isFavorite
+                recipeToUpdate.label = recipe.label
+                recipeToUpdate.image = recipe.image
+                recipeToUpdate.shareAs = recipe.shareAs
+                recipeToUpdate.yield = recipe.yield ?? 0
+                recipeToUpdate.ingredientLines = recipe.ingredientLines
+                recipeToUpdate.calories = recipe.calories ?? 0
+                recipeToUpdate.totalTime = recipe.totalTime ?? 0
+                recipeToUpdate.cuisineType = recipe.cuisineType
+                recipeToUpdate.mealType = recipe.mealType
+                recipeToUpdate.instructions = recipe.instructions
+            }
+        } catch {
+            throw error
         }
     }
     
-    private func fetchCDRecipe(withLabel: String) -> CDRecipe? {
+    
+    // MARK: - Privates functions
+    
+    /// To fetch a recipe in CoreData. Function that can return an error.
+    /// - Parameter withLabel: Label / name of the recipe to fetch.
+    /// - Returns: a recipe of type CDRecipe? (CoreData).
+    private func fetchRecipe(withLabel: String) throws -> CDRecipe? {
         let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
         request.predicate = NSPredicate(format: "label == %@", withLabel as CVarArg)
         request.fetchLimit = 1
-        let result: [CDRecipe]? = try? cdManager.viewContext.fetch(request)
-        return result?.first
+        do {
+            let result: [CDRecipe]? = try cdManager.viewContext.fetch(request)
+            return result?.first
+        } catch {
+            print("Error while retrieving CoreData data: \(error.localizedDescription)")
+            throw error
+        }
     }
     
-    
-    private func saveData() {
+    /// To save the viewContext in CoreData. Function that can return an error.
+    private func saveData() throws {
         if cdManager.viewContext.hasChanges {
             do {
                 try cdManager.viewContext.save()
             } catch {
-                print("Error during CoreData backup: \(error.localizedDescription)")
+                print("Error while saving Coredata data: \(error.localizedDescription)")
+                throw error
             }
         }
     }
     
-}
-
-
-
-extension Recipe {
-    init?(fromCoreDataObject coreDataObject: CDRecipe) {
-//        guard let label = coreDataObject.label,
-//              let image = coreDataObject.image,
-//              let shareAs = coreDataObject.shareAs,
-//              let ingredientLines = coreDataObject.ingredientLines,
-//              let cuisineType = coreDataObject.cuisineType,
-//              let mealType = coreDataObject.mealType,
-//              let instructions = coreDataObject.instructions else {
-//            return nil
-//        }
-        self.isFavorite = coreDataObject.isFavorite
-        self.label = coreDataObject.label
-        self.image = coreDataObject.image
-        self.shareAs = coreDataObject.shareAs
-        self.yield = coreDataObject.yield
-        self.ingredientLines = coreDataObject.ingredientLines
-        self.calories = coreDataObject.calories
-        self.totalTime = coreDataObject.totalTime
-        self.cuisineType = coreDataObject.cuisineType
-        self.mealType = coreDataObject.mealType
-        self.instructions = coreDataObject.instructions
-    }
 }

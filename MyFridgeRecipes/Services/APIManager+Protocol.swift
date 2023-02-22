@@ -9,5 +9,5 @@ import Foundation
 import Alamofire
 
 protocol APIManagerProtocol {
-    func getRequest<T: Codable>(router: URLRequestConvertible, completion: @escaping (Result<T, AFError>) -> Void)
+    func getRequest<T: Decodable>(router: URLRequestConvertible, completion: @escaping (Result<T, AFError>) -> Void)
 }

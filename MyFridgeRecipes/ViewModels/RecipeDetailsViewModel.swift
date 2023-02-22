@@ -10,20 +10,19 @@ import Foundation
 class RecipeDetailsViewModel: ObservableObject {
     
     @Published var recipe: Recipe
-    var favoritesViewModel: FavoritesViewModel?
+    @Published var coreDataError = false
     
-    private let repository = CDRecipesRepository()
+    private let repository: CDRecipesRepository
     
-    
-    init(recipe: Recipe) {
+    init(recipe: Recipe, repository: CDRecipesRepository = CDRecipesRepository()) {
+        self.repository = repository
         self.recipe = recipe
         self.checkIfIsfavorite()
     }
     
-    func setupFavoritesViewModel(favoritesViewModel: FavoritesViewModel) {
-        self.favoritesViewModel = favoritesViewModel
-    }
+    // MARK: - Functions
     
+    /// Add or remove a favorite recipe.
     func clickedOnIsfavorite() {
         if recipe.isFavorite == true {
             recipe.isFavorite = false
@@ -32,25 +31,47 @@ class RecipeDetailsViewModel: ObservableObject {
             recipe.isFavorite = true
             addFavoriteRecipe(newFavoriteRecipe: recipe)
         }
-        self.favoritesViewModel?.updateFavoriteRecipes()
     }
     
-    func addFavoriteRecipe(newFavoriteRecipe: Recipe) {
-        repository.addFavoriteRecipes(recipe: newFavoriteRecipe)
-    }
-    
-    func removeFavoriteRecipe(recipe: Recipe) {
-        repository.removeFavoriteRecipe(recipe: recipe)
-    }
-    
+    /// Check if this recipe is in the favorites.
     func checkIfIsfavorite() {
-        repository.getFavoriteRecipes { favoriteRecipes in
-            recipe.isFavorite = favoriteRecipes.contains(where: { favoriteRecipes in favoriteRecipes.label == (recipe.label ?? "") })
+        guard let label = recipe.label else { return }
+        repository.getFavoriteRecipes { (result: Result<[Recipe], Error>) in
+            switch result {
+                case .success(let response):
+                    recipe.isFavorite = response.contains(where: { response in response.label == (label) })
+                case .failure:
+                    coreDataError = true
+            }
         }
     }
     
+    /// Starts the share view.
+    /// - Parameter elements: elements to share.
     func share(this elements: [Any]) {
         shareButton(elements: elements)
+    }
+    
+    // MARK: - Private Functions
+    
+    /// To add a favorite recipe (CoreData). Function that can return an error.
+    /// - Parameter newFavoriteRecipe: the recipe to add.
+    private func addFavoriteRecipe(newFavoriteRecipe: Recipe) {
+        do {
+            try repository.addFavoriteRecipes(recipe: newFavoriteRecipe)
+        } catch {
+            coreDataError = true
+        }
+    }
+    
+    /// To remove a favorite recipe. Function that can return an error.
+    /// - Parameter recipe: the recipe to delete.
+    private func removeFavoriteRecipe(recipe: Recipe) {
+        do {
+            try repository.removeFavoriteRecipe(recipe: recipe)
+        } catch {
+            coreDataError = true
+        }
     }
     
 }

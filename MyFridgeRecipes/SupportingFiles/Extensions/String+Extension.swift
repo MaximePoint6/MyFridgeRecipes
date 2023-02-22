@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - String
 extension String {
     
     /// Function to replace string of a text by others
@@ -37,7 +38,7 @@ extension String {
         return firstLetter + remainingLetters
     }
     
-    /// Function to return the translated text according to the language of the user indicated in the UserSettings.
+    /// Function to return the translated text according to the user's device language (or English by default if language isn't available in the app).
     func localized() -> String {
         let lang = Language(rawValue: String(Locale.preferredLanguages[0].prefix(2))) ?? .en
         let path = Bundle.main.path(forResource: lang.rawValue, ofType: "lproj")
@@ -52,8 +53,9 @@ extension String {
     }
 }
 
-
+// MARK: - Optional String
 extension String? {
+    /// To check if an optional string is null or empty. Returns true, if that the case, or false if it isn't null or empty.
     var isNilOrEmpty: Bool {
         return self == nil || self == ""
     }

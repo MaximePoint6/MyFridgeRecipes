@@ -7,9 +7,9 @@
 
 import Foundation
 
-class RecipeCardViewModel: ObservableObject {
+class RecipeCardViewModel {
     
-    @Published var recipe: Recipe
+    let recipe: Recipe
     
     init(recipe: Recipe) {
         self.recipe = recipe

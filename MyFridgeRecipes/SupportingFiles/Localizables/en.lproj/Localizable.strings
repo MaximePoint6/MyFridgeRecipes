@@ -9,12 +9,16 @@
 // TabView
 "home" = "Home";
 "my.fridge" = "My fridge";
-"my.favourites" = "My favourites";
+"my.favorites" = "My favorites";
+"home.page.tab" = "Home page tab";
+"myfridge.page.tab" = "My fridge page tab";
+"myfavorites.page.tab" = "My favorites page tab";
 
-// TopBarComponentView
+// TopBarView
 "good.morning," = "Good Morning,";
 "good.afternoon," = "Good Afternoon,";
 "good.evening," = "Good Evening,";
+"what.to.cook.today" = "Which recipe do you want to cook today?";
 
 // HomeView
 "search.recipe" = "Search for a recipe";
@@ -23,22 +27,28 @@
 "recipe.ideas" = "Recipe ideas";
 "favorite.recipes" = "Favorite recipes";
 "no.recipe" = "No recipe found";
+"recipe.list.including" = "Recipes list including ";
+"navigate.to.recipe.details" = "Navigate to recipe details";
 
 // FridgeView
-"add.other.food" = "Add other food";
+"add.other.ingredient" = "Add other ingredients";
 "selected.ingredients" = "%@ selected ingredients";
 "selected.ingredient" = "%@ selected ingredient";
 "show.recipes" = "Show recipes";
-"no.ingredient.selected" = "No ingredient selected";
+"no.added.ingredient" = "No added ingredient";
 "search.ingredient" = "Search for an ingredient";
-"remove.fridge.ingredients" = "Remove ingredients from the fridge";
+"remove.fridge.ingredients" = "Add delete buttons next to each ingredient from the fridge.";
+"add.fridge.ingredients" = "Add your fridge ingredients, and we'll find recipes for you!";
+"navigate.to.ingredient.search.View" = "Navigate to ingredient search screen.";
+"navigate.to.recipe.list" = "Navigate to recipes list.";
+"add.ingredient" = "Add the ingredient to the ingredients list in the fridge and close this search screen.";
 
 // ErrorView
-"something.went.wrong" = "Something went wrong";
-"contact.developer" = "Please contact developer";
-"no.internet.connection" = "Please check your internet connection";
-"api.limit" = "API limit reached, wait a few second";
-"service.unavailable" = "Service unavailable";
+"something.went.wrong" = "Something went wrong.";
+"contact.developer" = "Please contact developer.";
+"no.internet.connection" = "Please check your internet connection.";
+"api.limit" = "API limit reached, wait a few second.";
+"service.unavailable" = "Service unavailable.";
 "server.error" = "Server error code: ";
 
 // RecipeDetailsView
@@ -46,19 +56,27 @@
 "share.recipe" = "Share this recipe.";
 "preparation" = "Preparation";
 "per.portion" = "Per portion";
+"per.dish" = "Per dish";
 "ingredients" = "Ingredients";
 "for" = "For";
 "recipe" = "Recipe";
 "step" = "Step";
-"portions" = "portions";
-"minutes" = "minutes";
-"kcals" = "kcals";
+"minutes" = "%.0f minutes";
+"kcals" = "%.0f kcals";
+"minute" = "minute";
+"kcal" = "kcal";
 "favoris" = "Favoris";
 "like" = "Like";
 "saved.recipe" = "Recipe saved in favorites";
 "recipe.not.saved" = "Recipe not saved";
 "recipe.picture" = "Recipe picture";
 "people" = "People";
+"for.x.people" = "For %@ people";
+"save.your.recipe" = "Save your recipe in favorites.";
+"remove.from.favorites" = "Remove from favorites.";
+"recipe.name" = "Recipe name:";
+"meal.type" = "Meal type:";
+"cuisine.type" = "Cuisine type:";
 
 // FavoritesView
 "all.favorites.recipes" =  "Find here, all your favorite recipes!";
@@ -70,3 +88,13 @@
 "text.in.search.bar" = "Text in search bar is ";
 "empty.search.bar" = "Search bar is empty";
 "search.bar" = "Search bar";
+"find.available.content" = "Find available content based on the text entered.";
+
+// OnBoardingView
+"welcome" = "Welcome to %@!";
+"get.ready" = "Get ready to cook delicious meals!";
+"navigates.main.screen" = "Navigates to main screen.";
+
+// Alert
+"error = Error";
+"save.problem" = "There was a problem with the save.";

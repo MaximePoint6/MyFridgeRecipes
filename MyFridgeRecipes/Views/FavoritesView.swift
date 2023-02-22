@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct FavoritesView: View {
+    
     @EnvironmentObject var viewModel: FavoritesViewModel
     @State private var searchText = ""
-    @State private var isEditing = false
     
     // MARK: - Main View
     var body: some View {
         NavigationView {
-            VStack(alignment: .center) {
+            VStack(alignment: .center, spacing: 5) {
                 VStack(alignment: .leading) {
                     titleSection
-                    SearchBarView(text: $searchText, isEditing: $isEditing, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
+                    SearchBarView(text: $searchText, keyBoardType: .asciiCapable, placeHolderText: "search.recipe".localized())
                 }
                 Spacer()
                 RecipesListView(pageState: $viewModel.pageState, loadNextRecipes: {}, nextRecipesLoading: false, sectionTitle: "favorite.recipes".localized())
@@ -31,11 +31,14 @@ struct FavoritesView: View {
                 viewModel.getFilteredRecipes(searchText: newValue)
             }
         }
+        .alert(isPresented: $viewModel.coreDataError) {
+            Alert(title: Text("CoreData Error"), message: Text("Il y a eu une erreur avec CoreData."))
+        }
     }
     
     
-    // MARK: - SUbviews
-    var titleSection: some View {
+    // MARK: - Subviews
+    private var titleSection: some View {
         VStack(alignment: .leading) {
             Text("all.favorites.recipes".localized())
                 .font(.largeTitle)
@@ -53,13 +56,11 @@ struct FavoritesView: View {
 }
 
 
-// MARK: - Preview
+// MARK: - Previews
 struct FavoriteView_Previews: PreviewProvider {
-    @StateObject static var topBarViewModel = TopBarViewModel()
     @StateObject static var viewModel = FavoritesViewModel()
     static var previews: some View {
         FavoritesView()
-            .environmentObject(topBarViewModel)
             .environmentObject(viewModel)
     }
 }

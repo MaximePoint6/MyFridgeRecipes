@@ -7,13 +7,15 @@
 
 import Foundation
 
-enum Language: String, CaseIterable, Codable {
+enum Language: String, CaseIterable {
     case en
+    case fr
     
     /// Returns the language name
     var description: String {
         switch self {
             case .en: return "English"
+            case .fr: return "Français"
         }
     }
 }

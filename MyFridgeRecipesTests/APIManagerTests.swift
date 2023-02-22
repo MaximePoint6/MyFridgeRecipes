@@ -29,7 +29,7 @@ final class APIManagerTests: XCTestCase {
     }
     
     
-    func testAPIManager() {
+    func testAPIManager_success() {
         // Inform the router of the request
         let routerURLRequest = try! APIRouter.fetchRandomRecipes.asURLRequest()
         
@@ -56,7 +56,7 @@ final class APIManagerTests: XCTestCase {
     func testAPIManager_fail() {
         // Inform the router of the request
         let router = try! APIRouter.fetchRandomRecipes.asURLRequest()
-        
+
         // Create a MockResponseData with the router
         let mock = MockResponseData.mockResponseKO(router: router)
         mock.register() // Save this mock using the Mocker library

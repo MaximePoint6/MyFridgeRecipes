@@ -8,19 +8,20 @@
 import Foundation
 import Alamofire
 
-// Retry a request that had an error (settings: max retry, delay, etc.)
+/// To Add feature to etry a request that had an error (settings: max retry, delay, etc.).
 class APIRequestInterceptor: RequestInterceptor {
-  let retryLimit = 3 // If the request doesn't work, then 3 tries max (only if statusCode is between 500 and 599)
-  let retryDelay: TimeInterval = 10 // maximum delay per request (in seconds)
 
-    // To put headers to requests (example: Authorization)
+ /// Number of times the `Request` can be retried. (only if statusCode is between 500 and 599).
+  let retryLimit = 3
+
+    /// Maximum delay per request (in seconds).
+  let retryDelay: TimeInterval = 10
+
   func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
     var urlRequest = urlRequest
+      // To put headers to requests (example: Authorization)
       urlRequest.setValue("\(Language.en.rawValue)", forHTTPHeaderField: "Accept-Language")
       urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
-//    if let token = TokenManager.shared.fetchAccessToken() {
-//      urlRequest.setValue("token \(token)", forHTTPHeaderField: "Authorization")
-//    }
     completion(.success(urlRequest))
   }
 

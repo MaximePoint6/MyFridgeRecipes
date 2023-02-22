@@ -9,56 +9,74 @@
 // TabView
 "home" = "Accueil";
 "my.fridge" = "Mon frigo";
-"my.favourites" = "Mes favoris";
+"my.favorites" = "Mes favoris";
+"home.page.tab" = "Onglet de la page d'accueil";
+"myfridge.page.tab" = "Onglet de la page d'accueil mon frigo";
+"myfavorites.page.tab" = "Onglet de la page mes favoris";
 
-// TopBarComponentView
+// TopBarView
 "good.morning," = "Bonne matinée,";
 "good.afternoon," = "Bon après-midi,";
 "good.evening," = "Bonsoir,";
+"what.to.cook.today" = "Quelle recette souhaites-tu cuisiner aujourd'hui ?";
 
 // HomeView
-"search.recipe" = "Rechercher une recipe";
+"search.recipe" = "Rechercher une recette";
 
 // RecipesListView
 "recipe.ideas" = "Idées de recettes";
 "favorite.recipes" = "Recettes favorites";
 "no.recipe" = "Pas de recette trouvée";
+"recipe.list.including" = "Liste de recettes comprenant ";
+"navigate.to.recipe.details" = "Navigue vers les détails de la recette";
 
 // FridgeView
-"add.other.food" = "Ajouter un autre aliment";
+"add.other.ingredient" = "Ajouter un autre ingrédient";
 "selected.ingredients" = "%@ ingrédients sélectionnés";
 "selected.ingredient" = "%@ ingrédient sélectionné";
-"show.recipes" = "%@ Voir les recettes";
-"no.ingredient.selected" = "Pas d'ingredient sélectionné";
+"show.recipes" = "Voir les recettes";
+"no.added.ingredient" = "Pas d'ingrédient ajouté";
 "search.ingredient" = "Rechercher un ingrédient";
-"remove.fridge.ingredients" = "Supprimer des ingrédients du frigo";
+"remove.fridge.ingredients" = "Ajoute des boutons de suppresion à coté de chaque ingrédients du frigo.";
+"add.fridge.ingredients" = "Ajoute les ingrédients de ton frigo, et on te trouve des recettes !";
+"navigate.to.ingredient.search.View" = "Navigue vers l'écran de recherche d'ingrédients.";
+"navigate.to.recipe.list" = "Navigue vers la liste de recettes.";
+"add.ingredient" = "Ajoute l'ingrédient à la liste des ingrédients du frigo et ferme cette écran de recherche.";
 
 // ErrorView
-"something.went.wrong" = "Quelque chose s'est mal passé";
-"contact.developer" = "Veuillez contacter le développeur";
-"no.internet.connection" = "S'il vous plait, vérifiez votre connexion internet";
-"api.limit" = "Limite API atteinte, attendez quelques secondes";
-"service.unavailable" = "Service non disponible";
+"something.went.wrong" = "Quelque chose s'est mal passé.";
+"contact.developer" = "Veuillez contacter le développeur.";
+"no.internet.connection" = "S'il vous plait, vérifiez votre connexion internet.";
+"api.limit" = "Limite API atteinte, attendez quelques secondes.";
+"service.unavailable" = "Service non disponible.";
 "server.error" = "Code d'erreur du serveur : ";
 
 // RecipeDetailsView
 "share" = "Partager";
-"share.recipe" = "Share this recipe.";
+"share.recipe" = "Partage cette recette.";
 "preparation" = "Préparation";
 "per.portion" = "Par portion";
+"per.dish" = "Par plat";
 "ingredients" = "Ingrédients";
 "for" = "Pour";
 "recipe" = "Recette";
 "step" = "Étape";
-"portions" = "portions";
-"minutes" = "minutes";
-"kcals" = "kcals";
+"minutes" = "%.0f minutes";
+"kcals" = "%.0f kcals";
+"minute" = "minute";
+"kcal" = "kcal";
 "favoris" = "Favoris";
 "like" = "J'aime";
 "saved.recipe" = "Recette enregistrée dans les favorites";
 "recipe.not.saved" = "Recette non enregistrée";
 "recipe.picture" = "Image de la recette";
 "people" = "Personnes";
+"for.x.people" = "Pour %@ personnes";
+"save.your.recipe" = "Sauvegarde votre recette dans les favoris.";
+"remove.from.favorites" = "Supprime des favoris.";
+"recipe.name" = "Nom de la recette :";
+"meal.type" = "Type de repas :";
+"cuisine.type" = "Type de cuisine :";
 
 // FavoritesView
 "all.favorites.recipes" =  "Retrouve ici, toutes tes recettes favorites !";
@@ -66,7 +84,17 @@
 
 // SearchBarView
 "delete" = "Supprimer";
-"delete.text" = "Supprime le texte dans la barre de recherche";
+"delete.text" = "Supprime le texte dans la barre de recherche.";
 "text.in.search.bar" = "Le texte dans la barre de recherche est ";
 "empty.search.bar" = "La barre de recherche est vide";
 "search.bar" = "Barre de recherche";
+"find.available.content" = "Cherche le contenu disponible en fonction du texte renseigné.";
+
+// OnBoardingView
+"welcome" = "Bienvenue sur %@ !";
+"get.ready" = "Prépares-toi à cuisiner de délicieux petits plats !";
+"navigates.main.screen" = "Navigue vers l'écran principal.";
+
+// Alert
+"error = Erreur";
+"save.problem" = "Un probleme est survenu avec la sauvegarde.";
