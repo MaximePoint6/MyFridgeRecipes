@@ -13,23 +13,20 @@ struct OnBoardingView: View {
     
     // MARK: - Main View
     var body: some View {
-        Color.accentColor
-            .ignoresSafeArea()
-            .overlay(
-                VStack {
-                    titleSection
-                    imageSection
-                    OnBoardingButtonView(backgroundColor: .white, textColor: .accentColor, title: "show.recipes".localized(), action: { shouldAppear.toggle() })
-                        .accessibilityHint(Text("navigates.main.screen".localized()))
-                }
-                    .padding()
-            )
+            VStack {
+                titleSection
+                imageSection
+                OnBoardingButtonView(backgroundColor: .white, textColor: .accentColor, title: "show.recipes".localized(), action: { shouldAppear.toggle() })
+                    .accessibilityHint(Text("navigates.main.screen".localized()))
+            }
+            .padding()
+            .background(Color.accentColor.ignoresSafeArea())
     }
     
     // MARK: - Subviews
-   private var titleSection: some View {
+    private var titleSection: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("welcome".localized())
+            Text(String(format: "welcome".localized(), Bundle.main.displayName ?? "MyFridgeRecipe"))
                 .font(.title)
                 .fontWeight(.light)
                 .foregroundColor(.white)
@@ -45,7 +42,7 @@ struct OnBoardingView: View {
         ZStack(alignment: .bottom) {
             Image("OnBoardingImage")
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
                 .clipped()
             LinearGradient(
                 gradient: Gradient(colors: [.clear, .accentColor.opacity(1)]),

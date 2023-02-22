@@ -91,7 +91,7 @@
 "find.available.content" = "Cherche le contenu disponible en fonction du texte renseigné.";
 
 // OnBoardingView
-"welcome" = "Bienvenue sur MyFridgeRecipe !";
+"welcome" = "Bienvenue sur %@ !";
 "get.ready" = "Prépares-toi à cuisiner de délicieux petits plats !";
 "navigates.main.screen" = "Navigue vers l'écran principal.";
 

@@ -91,7 +91,7 @@
 "find.available.content" = "Find available content based on the text entered.";
 
 // OnBoardingView
-"welcome" = "Welcome to MyFridgeRecipe!";
+"welcome" = "Welcome to %@!";
 "get.ready" = "Get ready to cook delicious meals!";
 "navigates.main.screen" = "Navigates to main screen.";
 
