@@ -38,6 +38,7 @@ final class HomeViewModelTests: XCTestCase {
     }
     
     let imageUrl = URL(string: "https://edamam-product-images.s3.amazonaws.com/web-img/404/404b794b6145f7d38324e6387afb6ae6.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFYaCXVzLWVhc3QtMSJHMEUCIBsquVV2PObWXDdKui5wDbY58Uf2lE%2FgFkxEGvcJD1WSAiEAzUGadqPJIE%2FuBlhwswZ5c9SA1%2BbVJ0aiLgygfWzTTqcq1QQIv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgwxODcwMTcxNTA5ODYiDLTI%2BgK2k%2BcShcIQzSqpBII20P6PCxk%2BssIk%2FVOWPRRKnhrxfqdzWSP40MKDYVEWJw9SRNCh9TLZ03ZVeB27ImPRJ%2FE9InHpjPbTsn4rRkoCuKl7%2Fgvw6MpHQqKZyFKflZytGtr7iN97zJF35FezML7igy%2FmVue8pVQhNLsE1hVfcs58F05BzCiSeba9CsEkTbr3H%2FJvPULSNXcLZJeZq8MDIceFCgF5CsfzvGQzu8f0MwWYhCF%2FsiSrorVrLRdR%2FdjkQf1HAVkcnbLvn7GaBUwk2Sw6OP3gSiBMgUB1IbizOZ6zz25lX91sPJpkhInK4SDWz5sLkCjJUTnEZdPufrI367RxGzOCbxRUdmzNwav3EQcDb9uZT4O5tRTNpA9VKCr8yIM6CFIv96uuh3Fe4juRdcjMtyYvstT921sR097H4CvATIrE3C0ycFxfCzn7RDlu%2BKyrKg%2FDM3pZeHhVmhgpLZxbEW4qn5PTHqSAVYa8kPEfVAxUd2wB5gxBw3iOsOnqdvj3Ll8vNKVD7kMzh17%2BSrcfZnVPLsgOCiRSg0JiBbiYUd0%2Fukr7kNTvduIw08snylu2nhP4hxWbmDgoun9fRlNGtaNgwn6cuoNQ7dYwV8dJNDLlnZsnCtL5g7Z%2FhsELVmXmUPtT4zuQ6M%2BGzVLCSgSuW93KakHKE8W77Rx8vAfP11zY3hOEL%2F7lqsd64vebkgTc65sy98fwXUcdsrMXhnQYNC0Hyn3XA67nkO78gG%2ByDI1LLcAwn%2Fm0ngY6qQGishWA8MQYA1tDPAcT8qBmerrn6TDoTSgpvNxLQhzN5X6EhEfTFXPNpj4b3eEborYtaVUCOzZYbFCtvUN7p11NHn2ezy9oqbr5YTARYDIM4bA3bEnJNs0YU3%2B45XR8d%2FJhP6CPr847hNjbBiN%2BieV9%2BM9F54PF%2BRMqXSm6jRgyO5shmzvJWI4jyNIU2iuQEPLZ4erw9kAkzTvdZyc%2BCVkSxKA618HR2DcV&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230122T134518Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFIHHWDTDC%2F20230122%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=6f707078186da4b0f401c69aae88581d4b401705cb19b2b540c1803b9b6cb8d7")
+    let sourceUrl = URL(string: "http://cookalmostanything.blogspot.com/2010/01/boulangere-potatoes.html")
     let title = "Boulangere Potatoes"
     let calories = String(format: "kcals".localized(), 1045.801841315484/4)
     let portionNumber = String(Int(4.0))
@@ -60,6 +61,7 @@ final class HomeViewModelTests: XCTestCase {
                 XCTFail("Request should not fail. Error : \(error)")
             case .loaded(let recipes):
                 XCTAssertEqual(imageUrl, recipes[0].getImageUrl)
+                XCTAssertEqual(sourceUrl, recipes[0].getSourceUrl)
                 XCTAssertEqual(title, recipes[0].getTitle)
                 XCTAssertEqual(calories, recipes[0].getCalories)
                 XCTAssertEqual(portionNumber, recipes[0].getPortionNumber)

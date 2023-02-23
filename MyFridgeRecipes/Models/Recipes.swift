@@ -31,6 +31,7 @@ struct Recipe: Decodable {
     var isFavorite: Bool
     let label: String?
     let image: String?
+    let url: String?
     let shareAs: String? // share link
     let yield: Double? // number of portions in recipe
     let ingredientLines: [String]?
@@ -44,6 +45,7 @@ struct Recipe: Decodable {
         case isFavorite
         case label
         case image
+        case url
         case shareAs
         case yield
         case ingredientLines
@@ -58,6 +60,7 @@ struct Recipe: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         label = try container.decode(String.self, forKey: .label)
         image = try container.decode(String.self, forKey: .image)
+        url = try container.decode(String.self, forKey: .url)
         shareAs = try container.decodeIfPresent(String.self, forKey: .shareAs)
         yield = try container.decode(Double.self, forKey: .yield)
         ingredientLines = try container.decode([String].self, forKey: .ingredientLines)
@@ -74,6 +77,7 @@ struct Recipe: Decodable {
         self.isFavorite = coreDataObject.isFavorite
         self.label = coreDataObject.label
         self.image = coreDataObject.image
+        self.url = coreDataObject.url
         self.shareAs = coreDataObject.shareAs
         self.yield = coreDataObject.yield
         self.ingredientLines = coreDataObject.ingredientLines
@@ -94,6 +98,12 @@ extension Recipe {
             return URL(string: "https://cdn.pixabay.com/photo/2015/10/26/07/21/vegetables-1006694_960_720.jpg")!
         }
         return URL(string: urlString)!
+    }
+    
+    /// To get recipe source url.
+    var getSourceUrl: URL? {
+        guard let urlString = self.url else { return nil }
+        return URL(string: urlString)
     }
     
     /// To get recipe title.

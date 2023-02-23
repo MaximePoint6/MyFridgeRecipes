@@ -78,6 +78,7 @@
 "recipe.name" = "Recipe name:";
 "meal.type" = "Meal type:";
 "cuisine.type" = "Cuisine type:";
+"get.directions" = "Get directions";
 
 // FavoritesView
 "all.favorites.recipes" =  "Find here, all your favorite recipes!";

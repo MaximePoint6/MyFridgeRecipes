@@ -11,6 +11,7 @@
         <attribute name="mealType" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName=".[String]"/>
         <attribute name="shareAs" optional="YES" attributeType="String"/>
         <attribute name="totalTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
         <attribute name="yield" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
 </model>

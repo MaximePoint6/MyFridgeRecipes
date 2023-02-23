@@ -10,7 +10,7 @@ import UIKit
 
 /// Starts the share view.
 /// - Parameter elements: elements to share.
-func shareButton(elements: [Any]) {
+func showShareView(elements: [Any]) {
     let activityController = UIActivityViewController(activityItems: elements, applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(activityController,
                                                                         animated: true,

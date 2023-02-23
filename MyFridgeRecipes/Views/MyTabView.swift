@@ -9,6 +9,10 @@ import SwiftUI
 
 struct MyTabView: View {
     
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.systemBackground
+    }
+    
     @AppStorage(AppStorageKeys.OnBoardingViewShouldAppear.rawValue) var OnBoardingViewShouldAppear: Bool = true
     
     // MARK: - Main View

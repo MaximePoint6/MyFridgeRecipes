@@ -10,6 +10,7 @@ import Kingfisher
 
 struct RecipeDetailsView: View {
     
+    @Environment(\.openURL) var openURL
     @ObservedObject var viewModel: RecipeDetailsViewModel
     @EnvironmentObject var favoriteViewModel: FavoritesViewModel
     
@@ -169,6 +170,17 @@ struct RecipeDetailsView: View {
                     }
                 }
             }
+        } else {
+            Button("get.directions".localized()) {
+                if let url = viewModel.recipe.getSourceUrl {
+                    openURL(url)
+                }
+            }
+            .font(.headline)
+            .padding(.top, 10)
+            .padding(.bottom)
+            .padding(.leading)
+            .padding(.bottom)
         }
     }
     

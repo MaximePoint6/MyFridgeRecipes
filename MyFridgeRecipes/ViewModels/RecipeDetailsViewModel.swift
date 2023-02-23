@@ -49,7 +49,7 @@ class RecipeDetailsViewModel: ObservableObject {
     /// Starts the share view.
     /// - Parameter elements: elements to share.
     func share(this elements: [Any]) {
-        shareButton(elements: elements)
+        showShareView(elements: elements)
     }
     
     // MARK: - Private Functions

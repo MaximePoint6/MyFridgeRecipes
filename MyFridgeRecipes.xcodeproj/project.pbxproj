@@ -333,12 +333,12 @@
 		CA4C1AC3297ADE79009EDF38 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CA6DD69729A764C80013DDF1 /* AppStorage */,
 				CA4C1AC8297ADF1B009EDF38 /* CoreData */,
 				CA025EBB297AF3B50004B340 /* Language.swift */,
 				CA025EDE297C59B60004B340 /* Recipes.swift */,
 				CA025EE4297EEAFC0004B340 /* ErrorManager.swift */,
 				CAB55618298BB85A003E5F4C /* PageState.swift */,
-				CA05847D29A117F500DE2062 /* AppStorageKeys.swift */,
 				CA26941229A26A2C00ADA388 /* ActionType.swift */,
 			);
 			path = Models;
@@ -420,6 +420,14 @@
 				CA5CAF57299CD68A00DBB57C /* ShareButton.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CA6DD69729A764C80013DDF1 /* AppStorage */ = {
+			isa = PBXGroup;
+			children = (
+				CA05847D29A117F500DE2062 /* AppStorageKeys.swift */,
+			);
+			path = AppStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

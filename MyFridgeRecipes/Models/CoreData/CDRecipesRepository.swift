@@ -43,6 +43,7 @@ final class CDRecipesRepository {
         newFavoriteRecipe.isFavorite = recipe.isFavorite
         newFavoriteRecipe.label = recipe.label
         newFavoriteRecipe.image = recipe.image
+        newFavoriteRecipe.url = recipe.url
         newFavoriteRecipe.shareAs = recipe.shareAs
         newFavoriteRecipe.yield = recipe.yield ?? 0
         newFavoriteRecipe.ingredientLines = recipe.ingredientLines
@@ -102,6 +103,7 @@ final class CDRecipesRepository {
                 recipeToUpdate.isFavorite = recipe.isFavorite
                 recipeToUpdate.label = recipe.label
                 recipeToUpdate.image = recipe.image
+                recipeToUpdate.url = recipe.url
                 recipeToUpdate.shareAs = recipe.shareAs
                 recipeToUpdate.yield = recipe.yield ?? 0
                 recipeToUpdate.ingredientLines = recipe.ingredientLines
