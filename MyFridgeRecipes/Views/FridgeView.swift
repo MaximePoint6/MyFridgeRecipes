@@ -58,7 +58,7 @@ struct FridgeView: View {
                     .rotationEffect(.degrees(10))
                     .blinking(duration: 0.5)
                     .accessibility(hidden: true)
-                Image("Fridge")
+                Image.fridge
                     .resizable()
                     .scaledToFit()
                     .frame(height: 100)

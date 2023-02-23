@@ -40,7 +40,7 @@ struct OnBoardingView: View {
     
     private var imageSection: some View {
         ZStack(alignment: .bottom) {
-            Image("OnBoardingImage")
+            Image.onBoardingImage
                 .resizable()
                 .scaledToFit()
                 .clipped()
