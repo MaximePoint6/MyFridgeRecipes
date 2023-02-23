@@ -39,6 +39,7 @@ final class FavoritesViewModelTests: XCTestCase {
     
     // MARK: - fetchRecipeSearch Function
     func test_updateFavoriteRecipes_success() {
+        let expectation = self.expectation(description: "Request should succeed")
         // When start fetch
         favoritesViewModel.updateFavoriteRecipes()
         
@@ -49,11 +50,14 @@ final class FavoritesViewModelTests: XCTestCase {
                 XCTFail("Request should not fail. Error : \(error)")
             case .loaded(let recipes):
                 XCTAssertEqual(label, recipes[0].label)
+                expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 2.0)
     }
     
     // MARK: - getFilteredRecipes
     func test_getFilteredRecipes_success() {
+        let expectation = self.expectation(description: "Request should succeed")
         // When start fetch
         favoritesViewModel.getFilteredRecipes(searchText: "Pot")
         
@@ -65,10 +69,13 @@ final class FavoritesViewModelTests: XCTestCase {
             case .loaded(let recipes):
                 XCTAssertEqual(1, recipes.count)
                 XCTAssertEqual(label, recipes[0].label)
+                expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 2.0)
     }
     
     func test_getFilteredRecipes_noRecipe() {
+        let expectation = self.expectation(description: "Request should succeed")
         // When start fetch
         favoritesViewModel.getFilteredRecipes(searchText: "Test")
         
@@ -79,7 +86,9 @@ final class FavoritesViewModelTests: XCTestCase {
                 XCTFail("Request should not fail. Error : \(error)")
             case .loaded(let recipes):
                 XCTAssertEqual(0, recipes.count)
+                expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 2.0)
     }
 
 }

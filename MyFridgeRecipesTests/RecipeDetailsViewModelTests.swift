@@ -26,7 +26,7 @@ final class RecipeDetailsViewModelTests: XCTestCase {
         // Setup MockCDManager
         mockCDManager = MockCDManager()
         mockCDRecipesRepository = CDRecipesRepository(cdManager: mockCDManager)
-        recipeDetailsViewModel = RecipeDetailsViewModel(recipe: recipe)
+        recipeDetailsViewModel = RecipeDetailsViewModel(recipe: recipe, repository: mockCDRecipesRepository)
         // Update Mock CoreData
         try! mockCDRecipesRepository.removeAllFavoriteRecipes()
     }
@@ -39,6 +39,7 @@ final class RecipeDetailsViewModelTests: XCTestCase {
     // MARK: - deleteIngredient function
     func test_clickedOnIsfavorite_removeFavorite() {
         try! mockCDRecipesRepository.addFavoriteRecipes(recipe: recipe)
+        recipeDetailsViewModel.checkIfIsfavorite()
         recipeDetailsViewModel.clickedOnIsfavorite()
         XCTAssertEqual(recipeDetailsViewModel.recipe.isFavorite, false)
     }

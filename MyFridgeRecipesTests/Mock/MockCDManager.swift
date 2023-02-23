@@ -25,7 +25,10 @@ final class MockCDManager: CDManagerProtocol {
     
     /// LazyVar to load the property only the first time. This prevents installing CoreData multiple times = performance gain.
     private lazy var persistentContainer: NSPersistentContainer = {
+        let description = NSPersistentStoreDescription()
+        description.url = URL(fileURLWithPath: "/dev/null")
         let container = NSPersistentContainer(name: persistentContainerName)
+        container.persistentStoreDescriptions = [description]
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
