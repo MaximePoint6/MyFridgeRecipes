@@ -25,7 +25,6 @@ struct SearchBarView: View {
             .accessibilityAddTraits(.isSearchField)
             .accessibilityLabel("search.bar".localized())
             .accessibilityHint(Text("find.available.content".localized()))
-            .accessibilityAddTraits(.isSearchField)
             Spacer()
             Image(systemName: "xmark.circle.fill")
                 .foregroundColor(Color.gray)
