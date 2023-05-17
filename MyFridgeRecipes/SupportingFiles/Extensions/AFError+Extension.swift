@@ -10,7 +10,7 @@ import Alamofire
 
 // To compare AFError.
 extension AFError: Equatable {
-    public static func==(lhs: AFError, rhs: AFError) -> Bool {
+    public static func == (lhs: AFError, rhs: AFError) -> Bool {
         return lhs.errorDescription == rhs.errorDescription
     }
 }
