@@ -1,7 +1,7 @@
 # MyFridgeRecipes
 
 <img width="134" alt="image" src="https://github.com/MaximePoint6/MyFridgeRecipes/assets/97056010/0e406185-cf5b-46d9-a40d-e5c8068e3ccf">
-![MFR](https://github.com/MaximePoint6/MyFridgeRecipes/assets/97056010/8d98170e-8ce7-4caa-8c5b-4b8a5cee8eb1)
+<img width="134" alt="image" src="https://github.com/MaximePoint6/MyFridgeRecipes/assets/97056010/8d98170e-8ce7-4caa-8c5b-4b8a5cee8eb1">
 
 Turn your fridge into a chef! With our easy and delicious recipe finder app, the possibilities are endless.
 
